@@ -19,7 +19,11 @@
     </head>
     <body>
       <dialog id="login" class="mdl-dialog">
-        <h4 class="mdl-dialog__title"><img src="img/giraffe.svg"/></h4>
+        <h4 class="mdl-dialog__title">
+            <img class="logo" src="img/giraffe.svg"/>
+            <object class="eye" data="img/eye.svg" type="image/svg+xml"></object>
+            <canvas class="canvas"/>
+        </h4>
         <form action="#">
           <div class="mdl-dialog__content">
             <input type="text" id="serverInput" placeholder="https://jira-server:port"/>
