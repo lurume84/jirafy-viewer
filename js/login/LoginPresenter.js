@@ -7,30 +7,22 @@
         this.loginView = Context.getLoginView(this);
         this.loginView.init();
 
-        this.networkView = Context.getNetworkPresenter().networkView;
-        this.activityView = Context.getActivityPresenter().activityView;
+        //this.networkView = Context.getNetworkPresenter().networkView;
     }
 
     Object.defineProperties(LoginPresenter.prototype,
     {
         login : {
-            value: function(user, password)
+            value: function(server, user, password)
             {
                 var self = this;
                     
-                this.interactor.login(user, password, new viewer.listeners.BaseDecisionListener(
+                this.interactor.login(server, user, password, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        $.each( data.region, function( key, value )
-                        {
-                            credentials.region = key;
-                        });
-                        
-                        credentials.token = data.authtoken.authtoken;
+                        credentials = data;
 
                         self.loginView.load(data);
-                        self.activityView.onLogin(data);
-                        self.networkView.onLogin(data);
                     },
                     function(data)
                     {
@@ -47,16 +39,9 @@
                 this.interactor.getToken(new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        $.each( data.region, function( key, value )
-                        {
-                            credentials.region = key;
-                        });
-                        
-                        credentials.token = data.authtoken.authtoken;
+                        credentials = data;
 
                         self.loginView.load(data);
-                        self.activityView.onLogin(data);
-                        self.networkView.onLogin(data);
                     },
                     function(data)
                     {

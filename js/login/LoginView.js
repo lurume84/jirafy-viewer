@@ -21,7 +21,7 @@
                     {
                         $("#login .progress").show();
                         $("#login .submit").hide();
-                        self.presenter.login($("#login .user").val(), $("#login .password").val());
+                        self.presenter.login($("#login .server").val(), $("#login .user").val(), $("#login .password").val());
                         evt.preventDefault();
                     });
                     
