@@ -53,6 +53,13 @@ html, body
     margin-left:60px;
 }
 
+#login canvas
+{
+    position:absolute;
+    left:129px;
+    top:73px;
+}
+
 .logo_label
 {
     color: #3FA0D6;
@@ -75,14 +82,4 @@ html, body
 #toast div
 {
     margin-left: 30px;
-}
-
-.eye{
-  margin: auto;
-/*   background:#ccc; */
-}
-.pupil{
-  position:relative;
-/*   transform:  rotate(390deg); */
-/*   transform-origin: 20px center; */
 }
