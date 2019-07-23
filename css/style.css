@@ -43,12 +43,6 @@ html, body
 #login .mdl-dialog__title img
 {
     width:100px;
-    margin-left:60px;
-}
-
-#login .mdl-dialog__title object
-{
-    width:100px;
     height:100px;
     margin-left:60px;
 }

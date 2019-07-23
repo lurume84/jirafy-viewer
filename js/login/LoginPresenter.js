@@ -33,7 +33,7 @@
             value: function()
             {
                 var self = this;
-                    
+                
                 this.interactor.getToken(new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
@@ -59,7 +59,7 @@
                     },
                     function(data)
                     {
-                        
+                        self.loginView.showError(data);
                     }));
             },
             enumerable: false

@@ -58,7 +58,7 @@
 					type: "GET",
                     dataType: 'json',
                     contentType: 'application/json',
-					url: credentials.server + "/rest/agile/1.0/board?maxResults=1&startAt=0",
+					url: credentials.server + "/rest/auth/1/session",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
 					},
