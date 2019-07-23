@@ -35,6 +35,27 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.LoginInteractor();
             },
             enumerable: false
+        },
+        getSprintPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.SprintPresenter(this);
+            },
+            enumerable: false
+        },
+        getSprintView : {
+            value: function(presenter)
+            {
+                return new viewer.views.SprintView(presenter);
+            },
+            enumerable: false
+        },
+        getSprintInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.SprintInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -44,7 +65,8 @@ viewer.listeners = viewer.listeners || {};
 (function(helpers)
 {
     var list =  {
-                    login : "getLoginPresenter"
+                    login : "getLoginPresenter",
+                    sprint: "getSprintPresenter",
                 };
 
     function Initializer()

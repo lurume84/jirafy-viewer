@@ -86,6 +86,8 @@
             {
                 $("#login .progress").hide();
                 $("#login")[0].close();
+                
+                $(document).trigger( "login");
             },
             enumerable: false
         },
