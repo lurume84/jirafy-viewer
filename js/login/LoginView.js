@@ -29,7 +29,7 @@
                     
                     self.drawEyes();
                     
-                    //self.presenter.checkToken();
+                    self.presenter.checkToken();
                 });
             },
             enumerable: false
@@ -85,15 +85,6 @@
             value: function(data)
             {
                 $("#login .progress").hide();
-                
-                var userName = $("#login .user").val();
-                
-                if(userName == "")
-                {
-                    userName = "Recovered session";
-                }
-                
-                $(".avatar-dropdown > span").html(userName);
                 $("#login")[0].close();
             },
             enumerable: false

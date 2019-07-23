@@ -20,9 +20,7 @@
                 this.interactor.login(server, user, password, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        credentials = data;
-
-                        self.loginView.load(data);
+                        self.checkToken();
                     },
                     function(data)
                     {
@@ -40,8 +38,24 @@
                     function(data)
                     {
                         credentials = data;
-
-                        self.loginView.load(data);
+                        self.healthCheck(data, self.loginView.load);
+                    },
+                    function(data)
+                    {
+                        
+                    }));
+            },
+            enumerable: false
+        },
+        healthCheck : {
+            value: function(data, callback)
+            {
+                var self = this;
+                    
+                this.interactor.healthCheck(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        callback(data);
                     },
                     function(data)
                     {

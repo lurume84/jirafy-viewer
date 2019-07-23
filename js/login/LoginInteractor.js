@@ -13,12 +13,10 @@
 				$.ajax
 				({
 					type: "POST",
-					url: "/login",
-					data: {"server": server, "user": user, "password": password},
+					url: "/token.json",
+					data: JSON.stringify({server: server, token: btoa(user + ":" + password)}),
 					dataType: 'json',
-					beforeSend: function(xhr) { 
-						
-					},
+                    contentType: 'application/json',
 					success: function (json)
 					{
 						listener.onSuccess(json);
@@ -39,6 +37,31 @@
 					type: "GET",
 					url: "/token.json",
 					dataType: 'json',
+                    contentType: 'application/json',
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						listener.onError(jqxhr.responseJSON);
+					}
+				});
+            },
+            enumerable: false
+        },
+        healthCheck : {
+            value: function(listener)
+            {
+				$.ajax
+				({
+					type: "GET",
+                    dataType: 'json',
+                    contentType: 'application/json',
+					url: credentials.server + "/rest/agile/1.0/board?maxResults=1&startAt=0",
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+					},
 					success: function (json)
 					{
 						listener.onSuccess(json);
