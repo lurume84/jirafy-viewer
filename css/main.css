@@ -49,6 +49,13 @@
     background-color: #252528;
 }
 
+.left-panel .left-panel-inner
+{
+    display:flex;
+    flex-direction:column;
+    height:100%
+}
+
 .left-panel .content 
 {
     display: flex;
@@ -110,6 +117,7 @@
     margin: 0;
     text-transform: uppercase;
     font-weight: 100;
+    line-height: 20px;
 }
 
 .left-panel .playlists-container 
