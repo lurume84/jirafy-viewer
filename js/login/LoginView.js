@@ -16,7 +16,7 @@
 
                 $(document).ready(function ()
                 {             
-                    $("#login")[0].showModal();
+                    $("#login dialog")[0].showModal();
                     $("#login form").submit(function(evt)
                     {
                         $("#login .progress").show();
@@ -84,10 +84,12 @@
         load : {
             value: function(data)
             {
+                $("#login").hide();
+                $(".app-container").removeClass("hidden");
                 $("#login .progress").hide();
-                $("#login")[0].close();
+                $("#login dialog")[0].close();
                 
-                $(document).trigger( "login");
+                $(document).trigger( "login", data);
             },
             enumerable: false
         },

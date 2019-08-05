@@ -56,6 +56,69 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.SprintInteractor();
             },
             enumerable: false
+        },
+        getUncommittedPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.UncommittedPresenter(this);
+            },
+            enumerable: false
+        },
+        getUncommittedView : {
+            value: function(presenter)
+            {
+                return new viewer.views.UncommittedView(presenter);
+            },
+            enumerable: false
+        },
+        getUncommittedInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.UncommittedInteractor();
+            },
+            enumerable: false
+        },
+        getExplorePresenter : {
+            value: function()
+            {
+                return new viewer.presenters.ExplorePresenter(this);
+            },
+            enumerable: false
+        },
+        getExploreView : {
+            value: function(presenter)
+            {
+                return new viewer.views.ExploreView(presenter);
+            },
+            enumerable: false
+        },
+        getExploreInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.ExploreInteractor();
+            },
+            enumerable: false
+        },
+        getUserPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.UserPresenter(this);
+            },
+            enumerable: false
+        },
+        getUserView : {
+            value: function(presenter)
+            {
+                return new viewer.views.UserView(presenter);
+            },
+            enumerable: false
+        },
+        getUserInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.UserInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -67,6 +130,9 @@ viewer.listeners = viewer.listeners || {};
     var list =  {
                     login : "getLoginPresenter",
                     sprint: "getSprintPresenter",
+                    uncommitted: "getUncommittedPresenter",
+                    explore: "getExplorePresenter",
+                    user: "getUserPresenter",
                 };
 
     function Initializer()

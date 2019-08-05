@@ -3,7 +3,9 @@
         <meta charset="UTF-8"/>
         <link rel="stylesheet" href="lib/mdl/material.min.css">
         <link rel="stylesheet" href="lib/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="css/login.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/fonts.css">
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/mdl/material.min.js"></script>
@@ -18,28 +20,85 @@
         <script src="js/sprint/SprintView.js"></script>
         <script src="js/sprint/SprintInteractor.js"></script>
         <script src="js/sprint/SprintPresenter.js"></script>
+        <script src="js/uncommitted/UncommittedView.js"></script>
+        <script src="js/uncommitted/UncommittedInteractor.js"></script>
+        <script src="js/uncommitted/UncommittedPresenter.js"></script>
+        <script src="js/explore/ExploreView.js"></script>
+        <script src="js/explore/ExploreInteractor.js"></script>
+        <script src="js/explore/ExplorePresenter.js"></script>
+        <script src="js/user/UserView.js"></script>
+        <script src="js/user/UserInteractor.js"></script>
+        <script src="js/user/UserPresenter.js"></script>
         <title>Jirafy Viewer</title>
     </head>
     <body>
-      <dialog id="login" class="mdl-dialog">
-        <h4 class="mdl-dialog__title">
-            <img class="logo" src="img/giraffe.svg"/>
-            <canvas class="canvas"></canvas>
-        </h4>
-        <form action="#">
-          <div class="mdl-dialog__content">
-            <input type="text" class="server" placeholder="https://jira-server:port"/>
-            <input type="text" class="user" placeholder="Username"/>
-            <input type="password" class="password" placeholder="Password"/>
-            <button type="submit" class="mdl-button mdl-color--primary submit">LOGIN</button>
-          </div>
-          <div class="progress mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-        </form>
-      </dialog>
-      <div id="toast" class="mdl-js-snackbar mdl-snackbar">
-          <i class="fas fa-exclamation-triangle"></i>
-          <div class="mdl-snackbar__text"></div>
-          <button class="mdl-snackbar__action" type="button"></button>
+        <div class="app-container visible hidden">
+            <div class="page-container">
+                <div class="left-panel">
+                    <div class="left-panel-inner">
+                        <div class="content ps-container ps-active-y">
+                            <div class="main-menu"></div>
+                            <div class="divider"></div>
+                            <div class="current-user-widget">
+                                
+                            </div>
+                            <div class="your-music">
+                                <h2>Sprint 109</h2>
+                                <div class="menu-item" ui-sref="songs" ui-sref-active="active" href="/songs">
+                                    <i class="icon icon-note"></i> Songs</div>
+                                <div class="menu-item" ui-sref="albums" ui-sref-active="active" href="/albums">
+                                    <i class="icon icon-cd"></i> Albums</div>
+                                <div class="menu-item" ui-sref="artists" ui-sref-active="active" href="/artists">
+                                    <i class="icon icon-mic"></i> Artists</div>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="playlists-container">
+                                <div class="playlists">
+                                    <h2>Playlists</h2>
+                                    <div class="playlists-list">
+                                        <!-- ngRepeat: playlist in playlists.all -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 561px;">
+                                <div class="ps-scrollbar-y" style="top: 0px; height: 532px;"></div>
+                            </div>
+                            <div class="new-playlist">
+                                <i class="icon icon-plus"></i>
+                                <div class="text">New Task</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="middle-view">
+                    <div class="main-view"></div>
+                    <div class="right-panel closed"></div>
+                    <div class="context-menu hidden"></div>
+                </div>
+            </div>
+            <div class="player-controls"></div>
+        </div>
+        <div id="login">
+            <dialog class="mdl-dialog">
+                <h4 class="mdl-dialog__title">
+                    <img class="logo" src="img/giraffe.svg"/>
+                    <canvas class="canvas"></canvas>
+                </h4>
+                <form action="#">
+                  <div class="mdl-dialog__content">
+                    <input type="text" class="server" placeholder="https://jira-server:port"/>
+                    <input type="text" class="user" placeholder="Username"/>
+                    <input type="password" class="password" placeholder="Password"/>
+                    <button type="submit" class="mdl-button mdl-color--primary submit">LOGIN</button>
+                  </div>
+                  <div class="progress mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+                </form>
+            </dialog>
+        </div>
+        <div id="toast" class="mdl-js-snackbar mdl-snackbar">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
         </div>
     </body>
     <script>
@@ -48,6 +107,9 @@
         var initializeConfig = initializeConfig || [];
         initializeConfig.push("login");
         initializeConfig.push("sprint");
+        initializeConfig.push("uncommitted");
+        initializeConfig.push("explore");
+        initializeConfig.push("user");
 
         (function()
         {

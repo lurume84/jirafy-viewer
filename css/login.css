@@ -1,0 +1,58 @@
+#login
+{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+}
+
+#login input
+{
+    margin-top: 12px;
+    border: 0;
+    background: #fff;
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: .5rem .6rem;
+    border-radius: .2rem;
+}
+
+#login button
+{
+    margin-top: 12px;
+    width: 100%;
+    font-weight: 700 !important;
+}
+  
+#login .progress
+{
+    display: none;
+}
+
+#login dialog
+{
+    background: rgba(255, 255, 255, .08);
+}
+
+#login .mdl-dialog__title img
+{
+    width:100px;
+    height:100px;
+    margin-left:60px;
+}
+
+#login canvas
+{
+    position:absolute;
+    left:127px;
+    top:77px;
+}
+
+.logo_label
+{
+    color: #3FA0D6;
+    border-top: 2px solid #3FA0D6;
+}

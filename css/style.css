@@ -3,61 +3,20 @@ html, body
     font-family: 'Roboto', 'Helvetica', sans-serif !important;
     background-color: #19191B;
     color:#cbcbcc;
-}
-
-#login input
-{
-    margin-top: 12px;
-    border: 0;
-    background: #fff;
-    outline: none;
+    height: 100%;
     width: 100%;
-    font-size: 1rem;
-    font-weight: 300;
-    padding: .5rem .6rem;
-    border-radius: .2rem;
+    overflow: hidden;
 }
 
-#login button
+.hidden
 {
-    margin-top: 12px;
-    width: 100%;
-    font-weight: 700 !important;
-}
-  
-#login .progress
-{
-    display: none;
-}
-
-#login
-{
-    background: rgba(255, 255, 255, .08);
+    display: none!important;
+    visibility: hidden!important;
 }
 
 .content .progress
 {
     width:100%;
-}
-
-#login .mdl-dialog__title img
-{
-    width:100px;
-    height:100px;
-    margin-left:60px;
-}
-
-#login canvas
-{
-    position:absolute;
-    left:127px;
-    top:77px;
-}
-
-.logo_label
-{
-    color: #3FA0D6;
-    border-top: 2px solid #3FA0D6;
 }
 
 .mdl-radio
