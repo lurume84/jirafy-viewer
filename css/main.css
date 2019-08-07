@@ -264,3 +264,26 @@
     -webkit-user-drag: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+.playlists h2 .title
+{
+    float: left;
+}
+
+.playlists h2 button
+{
+    margin-top: -5px;
+    margin-right: -5px;
+    float: right;
+}
+
+.playlists h2 ul
+{
+    position: absolute;
+    z-index: 9999;
+}
+
+.playlists-list .menu-item img
+{
+    -webkit-filter: grayscale(100%);
+}

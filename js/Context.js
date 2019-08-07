@@ -119,6 +119,27 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.UserInteractor();
             },
             enumerable: false
+        },
+        getBoardPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.BoardPresenter(this);
+            },
+            enumerable: false
+        },
+        getBoardView : {
+            value: function(presenter)
+            {
+                return new viewer.views.BoardView(presenter);
+            },
+            enumerable: false
+        },
+        getBoardInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.BoardInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -133,6 +154,7 @@ viewer.listeners = viewer.listeners || {};
                     uncommitted: "getUncommittedPresenter",
                     explore: "getExplorePresenter",
                     user: "getUserPresenter",
+                    board: "getBoardPresenter",
                 };
 
     function Initializer()

@@ -3,6 +3,7 @@
         <meta charset="UTF-8"/>
         <link rel="stylesheet" href="lib/mdl/material.min.css">
         <link rel="stylesheet" href="lib/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="lib/perfect-scrollbar/perfect-scrollbar.css">
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/icons.css">
         <link rel="stylesheet" href="css/login.css">
@@ -10,6 +11,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/mdl/material.min.js"></script>
+        <script src="lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="lib/moment.min.js"></script>
         <script src="lib/hls.js"></script>
         <script src="js/Context.js"></script>
@@ -30,6 +32,9 @@
         <script src="js/user/UserView.js"></script>
         <script src="js/user/UserInteractor.js"></script>
         <script src="js/user/UserPresenter.js"></script>
+        <script src="js/board/BoardView.js"></script>
+        <script src="js/board/BoardInteractor.js"></script>
+        <script src="js/board/BoardPresenter.js"></script>
         <title>Jirafy Viewer</title>
     </head>
     <body>
@@ -37,7 +42,7 @@
             <div class="page-container">
                 <div class="left-panel">
                     <div class="left-panel-inner">
-                        <div class="content ps-container ps-active-y">
+                        <div class="content">
                             <div class="main-menu"></div>
                             <div class="divider"></div>
                             <div class="current-user-widget">
@@ -55,14 +60,9 @@
                             <div class="divider"></div>
                             <div class="playlists-container">
                                 <div class="playlists">
-                                    <h2>User stories</h2>
-                                    <div class="playlists-list">
-                                        <!-- ngRepeat: playlist in playlists.all -->
-                                    </div>
+                                    <h2></h2>
+                                    <div class="playlists-list"></div>
                                 </div>
-                            </div>
-                            <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px; height: 561px;">
-                                <div class="ps-scrollbar-y" style="top: 0px; height: 532px;"></div>
                             </div>
                         </div>
                         <div class="new-playlist">
@@ -104,13 +104,15 @@
     </body>
     <script>
         var credentials = {server: "", user: "", password: ""};
-
+        var g_issuetype_map = {user_story: {"9": "us", "10302" : "offsprint_us"}, task: {"12": "qa", "5": "dev", "10402": "at", "10303": "offsprint_task"}};
+        
         var initializeConfig = initializeConfig || [];
         initializeConfig.push("login");
         initializeConfig.push("sprint");
         initializeConfig.push("uncommitted");
         initializeConfig.push("explore");
         initializeConfig.push("user");
+        initializeConfig.push("board");
 
         (function()
         {
