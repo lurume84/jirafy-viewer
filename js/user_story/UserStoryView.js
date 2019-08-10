@@ -73,9 +73,16 @@
                 }
                 
                 element.find(".track-duration").html(moment.utc(data.fields.aggregatetimeoriginalestimate*1000).format('HH:mm'));
-                element.find(".popularity-fill").css("width", data.fields.aggregateprogress.percent + "%");
                 
-                console.log(data);
+                if(g_status_map.closed[data.fields.status.id] != undefined)
+                {
+                    $("<i/>", {class: "icon icon-ok"}).appendTo(element.find(".popularity"));
+                    element.find(".track-name .ellipses").addClass("strike-through");
+                }
+                else
+                { 
+                    $("<div/>", {class: "popularity-widget", html: "<div class=\"popularity-fill\" style=\"width: " + data.fields.aggregateprogress.percent + "%\"></div>"}).appendTo(element.find(".popularity"));
+                }
             },
             enumerable: false
         },

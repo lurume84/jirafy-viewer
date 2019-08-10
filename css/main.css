@@ -318,3 +318,8 @@ button, input, optgroup, select, textarea
     text-transform: uppercase;
     font-weight: 500;
 }
+
+.strike-through
+{
+    text-decoration: line-through;
+}

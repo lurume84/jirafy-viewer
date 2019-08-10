@@ -110,6 +110,7 @@
     <script>
         var credentials = {server: "", user: "", password: ""};
         var g_issuetype_map = {user_story: {"9": "us", "10302" : "offsprint_us"}, task: {"12": "qa", "5": "dev", "10402": "at", "10303": "offsprint_task"}};
+        var g_status_map = {closed: {"10028": "resolved", "6": "closed"}};
         
         var initializeConfig = initializeConfig || [];
         initializeConfig.push("login");

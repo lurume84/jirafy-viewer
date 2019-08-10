@@ -263,3 +263,24 @@
     -webkit-filter: grayscale(100%);
     opacity: 0.8;
 }
+
+.album-table .flex-table-row:hover .track-index
+{
+    display:none
+}
+
+.album-table .flex-table-row:hover .play-icon
+{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex
+}
+
+.album-table .flex-table-row:hover .more-options>.icon
+{
+    display:inline-block
+}
+
+.flex-table-row:hover{
+    background-color:#1e1e20
+}
