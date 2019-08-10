@@ -32,9 +32,10 @@
                 $(".main-view").load("js/user_story/template.html", function()
                 {
                     $(this).find(".playlist-image img").attr("src", data.fields.project.avatarUrls["48x48"]);
-                    $(this).find(".playlist-name").html(data.fields.summary);
-                    $(this).find(".info-container:first-child .value").html(data.fields.subtasks.length + " tasks");
-                    $(this).find(".info-container:nth-child(2) .value").html(moment.utc(data.fields.aggregatetimeoriginalestimate*1000).format('HH:mm'));
+                    $(this).find(".playlist-name").html(data.key);
+                    $(this).find(".info-container:first-child .value").html(data.fields.summary);
+                    $(this).find(".info-container:nth-child(2) .value").html(data.fields.subtasks.length + " tasks / " + moment.utc(data.fields.aggregatetimeoriginalestimate*1000).format('HH:mm') + "h");
+                    
                     data.fields.subtasks.length > 0 ? $(this).find(".no-tracks").hide() : $(this).find(".no-tracks").show();
                     
                     var row = $(this).find(".album-table .flex-table-row:nth-child(2)").detach();
