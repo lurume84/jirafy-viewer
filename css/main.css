@@ -323,3 +323,8 @@ button, input, optgroup, select, textarea
 {
     text-decoration: line-through;
 }
+
+.flex-table-row.complete
+{
+    opacity: 0.5;
+}

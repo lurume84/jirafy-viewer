@@ -54,6 +54,12 @@
                         clone.find(".artist-name .artists").html(task.fields.summary);
                         $("<img/>", {src: task.fields.issuetype.iconUrl}).appendTo(clone.find(".add-remove-track"));
                         
+                        if(g_status_map.closed[task.fields.status.id] != undefined)
+                        {
+                            $("<i/>", {class: "icon icon-ok"}).appendTo(clone.find(".popularity"));
+                            clone.addClass("complete");
+                        }
+                        
                         clone.appendTo($(".album-table"));
                         
                         self.presenter.getIssue(clone, task.key);
@@ -74,12 +80,7 @@
                 
                 element.find(".track-duration").html(moment.utc(data.fields.aggregatetimeoriginalestimate*1000).format('HH:mm'));
                 
-                if(g_status_map.closed[data.fields.status.id] != undefined)
-                {
-                    $("<i/>", {class: "icon icon-ok"}).appendTo(element.find(".popularity"));
-                    element.find(".track-name .ellipses").addClass("strike-through");
-                }
-                else
+                if(g_status_map.closed[data.fields.status.id] == undefined)
                 { 
                     $("<div/>", {class: "popularity-widget", html: "<div class=\"popularity-fill\" style=\"width: " + data.fields.aggregateprogress.percent + "%\"></div>"}).appendTo(element.find(".popularity"));
                 }
