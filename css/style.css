@@ -36,3 +36,8 @@ html, body
 {
     margin-left: 30px;
 }
+
+img, legend 
+{
+    border: 0;
+}

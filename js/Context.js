@@ -140,6 +140,27 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.BoardInteractor();
             },
             enumerable: false
+        },
+        getUserStoryPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.UserStoryPresenter(this);
+            },
+            enumerable: false
+        },
+        getUserStoryView : {
+            value: function(presenter)
+            {
+                return new viewer.views.UserStoryView(presenter);
+            },
+            enumerable: false
+        },
+        getUserStoryInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.UserStoryInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -155,6 +176,7 @@ viewer.listeners = viewer.listeners || {};
                     explore: "getExplorePresenter",
                     user: "getUserPresenter",
                     board: "getBoardPresenter",
+                    user_story: "getUserStoryPresenter",
                 };
 
     function Initializer()

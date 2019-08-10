@@ -68,10 +68,18 @@
             {
                 $.each(data.issues, function()
                 {
-                    $("<div/>", {class: "menu-item", alt: this.key, html: "<i><img src='" + this.fields.issuetype.iconUrl + "'></i> " + this.fields.summary}).appendTo($(".playlists-list"));
+                    var us = $("<div/>", {class: "menu-item", "us-id": this.key, html: "<i><img src='" + this.fields.issuetype.iconUrl + "'></i> " + this.fields.summary}).appendTo($(".playlists-list"));
+                
+                    us.click(function()
+                    {
+                        $(".menu-item").removeClass("active");
+                        $(this).addClass("active");
+                    }) 
                 });
                 
                 this.ps.update();
+                
+                $(".playlists-list").trigger("loaded");
             },
             enumerable: false
         },

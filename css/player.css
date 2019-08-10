@@ -1,0 +1,14 @@
+.player-controls {
+    background-color: #252528;
+    color: #fff;
+    flex: 0 0 50px;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #141416;
+    position: relative;
+    
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

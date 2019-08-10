@@ -249,22 +249,6 @@
     color: #cbcbcc;
 }
 
-.player-controls
-{
-    background-color: #252528;
-    color: #fff;
-    flex: 0 0 50px;
-    width: 100%;
-    display: flex;
-    border-top: 1px solid #141416;
-    position: relative;
-    
-    touch-action: pan-y;
-    user-select: none;
-    -webkit-user-drag: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
 .playlists h2 .title
 {
     float: left;
@@ -287,4 +271,50 @@
 {
     -webkit-filter: grayscale(100%);
     opacity: 0.6;
+}
+
+a.btn.primary, button.primary 
+{
+    background-color: #78b806;
+    color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    border: none;
+}
+
+a.btn, button 
+{
+    color: #cbcbcc;
+    background-color: #232326;
+    padding: 8px 1pc;
+    border: 1px solid #42444b;
+    border-radius: 3px;
+    font-size: 1rem;
+}
+
+button, html input[type=button], input[type=reset], input[type=submit] 
+{
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+button, select 
+{
+    text-transform: none;
+}
+
+button 
+{
+    overflow: visible;
+}
+
+button, input, optgroup, select, textarea 
+{
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+
+.player-controls .lyrics, a.btn.cancel, a.btn.primary, button.cancel, button.primary {
+    text-transform: uppercase;
+    font-weight: 500;
 }
