@@ -40,6 +40,9 @@
         <script src="js/user_story/UserStoryView.js"></script>
         <script src="js/user_story/UserStoryInteractor.js"></script>
         <script src="js/user_story/UserStoryPresenter.js"></script>
+        <script src="js/player/PlayerView.js"></script>
+        <script src="js/player/PlayerInteractor.js"></script>
+        <script src="js/player/PlayerPresenter.js"></script>
         <title>Jirafy Viewer</title>
     </head>
     <body>
@@ -82,7 +85,9 @@
                     <div class="context-menu hidden"></div>
                 </div>
             </div>
-            <div class="player-controls"></div>
+            <div class="player-controls" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                
+            </div>
         </div>
         <div id="login">
             <dialog class="mdl-dialog">
@@ -120,6 +125,7 @@
         initializeConfig.push("user");
         initializeConfig.push("board");
         initializeConfig.push("user_story");
+        initializeConfig.push("player");
 
         (function()
         {

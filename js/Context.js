@@ -161,6 +161,27 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.UserStoryInteractor();
             },
             enumerable: false
+        },
+        getPlayerPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.PlayerPresenter(this);
+            },
+            enumerable: false
+        },
+        getPlayerView : {
+            value: function(presenter)
+            {
+                return new viewer.views.PlayerView(presenter);
+            },
+            enumerable: false
+        },
+        getPlayerInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.PlayerInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -177,6 +198,7 @@ viewer.listeners = viewer.listeners || {};
                     user: "getUserPresenter",
                     board: "getBoardPresenter",
                     user_story: "getUserStoryPresenter",
+                    player: "getPlayerPresenter",
                 };
 
     function Initializer()

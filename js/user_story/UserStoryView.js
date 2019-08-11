@@ -46,7 +46,7 @@
                         var task = $(this)[0];
                         
                         clone.find(".track-index").html(index + 1);
-                        clone.find(".play-icon").hide();
+                        
                         clone.find(".pause-icon").hide();
                         clone.find(".playing-icon-container").hide();
                         clone.find(".remove-track").hide();
@@ -62,6 +62,11 @@
                         }
                         
                         clone.appendTo($(".album-table"));
+                        
+                        clone.dblclick(function() 
+                        {
+                            $(document).trigger("play", task.key);
+                        });
                         
                         self.presenter.getIssue(clone, task.key);
                     });

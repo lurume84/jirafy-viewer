@@ -1,0 +1,29 @@
+<div class="buttons">
+    <i class="icon icon-to-start prev"></i> 
+    <i class="icon icon-play toggle-play"></i>
+    <i class="icon icon-pause toggle-play hidden"></i>
+    <i class="icon icon-to-end next"></i>
+</div>
+<!-- ngIf: isPhone -->
+<div class="controls-toggler">
+    <i class="icon icon-dot-3" sidebar-toggler=".buttons.right"></i>
+</div>
+<div class="progress-container">
+    <div class="elapsed-time hidden-phone">00:00:00</div>
+    <div class="progress-bar" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+        <div class="elapsed"></div>
+        <div class="progress"></div>
+        <div class="handle"></div>
+    </div>
+    <div class="track-length hidden-phone">00:00:00</div>
+</div>
+
+<!-- ngIf: !utils.getSetting('hide_lyrics_button') -->
+    <div class="lyrics hidden-phone disabled" ng-class="{ 'showing-lyrics': player.isShowingLyrics, disabled: !player.currentTrack }" ng-if="!utils.getSetting('hide_lyrics_button')">Commit</div>
+<!-- end ngIf: !utils.getSetting('hide_lyrics_button') -->
+
+<div class="buttons right" ng-class="{ closed: isPhone }">
+    <div class="volume-container" volume-controls="">
+        <i class="icon icon-volume-up-1 volume" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></i>
+    </div>
+</div>

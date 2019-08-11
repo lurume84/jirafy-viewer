@@ -46,6 +46,7 @@
     -webkit-flex-flow: row nowrap;
     -ms-flex-flow: row nowrap;
     flex-flow: row nowrap;
+    user-select: none;
 }
 
 .flex-table-header 
@@ -273,7 +274,7 @@
 {
     display:-webkit-flex;
     display:-ms-flexbox;
-    display:flex
+    display:flex;
 }
 
 .album-table .flex-table-row:hover .more-options>.icon
@@ -283,4 +284,72 @@
 
 .flex-table-row:hover{
     background-color:#1e1e20
+}
+
+.album-table .playing{
+    color:#78b806;
+    background-color:#252528
+}
+.album-table .playing .album-name,.album-table .playing .artists>.artist,.album-table .playing .track-duration{
+    color:#78b806
+}
+.album-table .playing .track-index{
+    display:none
+}
+.album-table .playing .playing-icon-container{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex
+}
+.album-table .playing .hover-icon{
+    cursor:pointer;
+    position:relative
+}
+.album-table .playing .hover-icon:hover .playing-icon-container{
+    display:none
+}
+.album-table .playing .hover-icon:hover .pause-icon{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex
+}
+.album-table .playing:hover .play-icon{
+    display:none
+}
+@media only screen and (max-width:1024px){
+    .album-table .playing{
+        font-size:.9rem
+    }
+    .album-table .playing .play-icon{
+        display:none!important
+    }
+}
+.album-table .pause-icon,.album-table .play-icon{
+    display:none;
+    background-color:#3e3e43;
+    color:#e5e5e5;
+    border-radius:50%;
+    font-size:.9rem;
+    width:27px;
+    height:27px;
+    -webkit-align-items:center;
+    -ms-flex-align:center;
+    align-items:center;
+    -webkit-justify-content:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    cursor:pointer
+}
+.album-table .play-icon{
+    padding-left:3px
+}
+@media only screen and (max-width:1024px){
+    .album-table .play-icon{
+        display:-webkit-flex!important;
+        display:-ms-flexbox!important;
+        display:flex!important
+    }
+}
+.album-table .pause-icon{
+    padding-left:1px
 }
