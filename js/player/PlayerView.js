@@ -47,16 +47,34 @@
         onPlayInfo : {
             value: function(data)
             {
+                if(this.task != undefined)
+                {
+                    this.pause();
+                }
+                
                 this.task = data;
+                this.presenter.getUncommitted();
+            },
+            enumerable: false
+        },
+        onLoadUncommitted : {
+            value: function(data)
+            {
+                this.uncommitted = data[this.task.key];
+                
+                if(this.uncommitted == undefined)
+                {
+                    this.uncommitted = 0;
+                }
                 
                 $(".current-track").removeClass("hidden");
                 
-                $(".current-track .track-name").html(data.fields.summary);
-                $(".current-track .artist-name .artists").html(data.key);
+                $(".current-track .track-name").html(this.task.fields.summary);
+                $(".current-track .artist-name .artists").html(this.task.key);
                 
-                if(data.fields.assignee != undefined)
+                if(this.task.fields.assignee != undefined)
                 {
-                    $(".current-track img").attr("src", data.fields.assignee.avatarUrls["48x48"]);
+                    $(".current-track img").attr("src", this.task.fields.assignee.avatarUrls["48x48"]);
                 }
                 
                 this.play();
@@ -79,6 +97,8 @@
                     $(".player-controls .track-length").html(moment.utc(seconds*1000).format('HH:mm:ss'));
                 }
                 
+                this.updateTime(this);
+                
                 this.timer = setInterval(this.updateTime, 1000, this);
                 
             },
@@ -97,7 +117,9 @@
                 $(".player-controls .icon-pause").addClass("hidden");
                 $(".player-controls .icon-play").removeClass("hidden");
                 
-                console.log(diff);
+                this.presenter.setUncommitted(this.task.key, diff / 1000);
+                
+                this.uncommitted += diff / 1000;
             },
             enumerable: false
         },
@@ -114,6 +136,9 @@
                 if(self.playing)
                 {
                     var diff = ((Date.now() - self.startDate));
+                    
+                    diff += (self.uncommitted * 1000);
+                    
                     $(".player-controls .progress-container .elapsed-time").html(moment.utc(diff).format('HH:mm:ss'));
                     
                     var percent = diff / (self.task.fields.timetracking.remainingEstimateSeconds*1000) * 100;
@@ -124,6 +149,12 @@
                     
                     $(".player-controls .progress-bar .elapsed").css("width", percent + "%");
                 }
+            },
+            enumerable: false
+        },
+        onSaveUncommitted : {
+            value: function()
+            {
                 
             },
             enumerable: false

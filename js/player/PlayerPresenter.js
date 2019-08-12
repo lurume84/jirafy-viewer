@@ -26,6 +26,54 @@
                     }));
             },
             enumerable: false
+        },
+        getUncommitted : {
+            value: function()
+            {
+                var self = this;
+                    
+                this.interactor.getUncommitted(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onLoadUncommitted(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
+        setUncommitted : {
+            value: function(key, seconds)
+            {
+                var self = this;
+                this.interactor.getUncommitted(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        if(data[key] == undefined)
+                        {
+                            data[key] = 0;
+                        }
+                        
+                        data[key] += seconds;
+                        
+                        self.interactor.setUncommitted(data, new viewer.listeners.BaseDecisionListener(
+                        function(data)
+                        {
+                            self.view.onSaveUncommitted(data);
+                        },
+                        function(data)
+                        {
+                            self.view.showError(data);
+                        }));
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
         }
     });
 
