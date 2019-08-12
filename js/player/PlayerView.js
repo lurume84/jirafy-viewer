@@ -28,7 +28,12 @@
                 
                     $(".player-controls .icon-pause").click(function()
                     {
-                        self.pause(self);
+                        self.pause();
+                    });
+                    
+                    $(".player-controls .stop").click(function()
+                    {
+                        self.stop();
                     });
                 });
                 
@@ -80,19 +85,26 @@
             enumerable: false
         },
         pause : {
-            value: function(self)
+            value: function()
             {
                 clearInterval(this.timer);
                 
-                var diff = ((Date.now() - self.startDate));
+                var diff = ((Date.now() - this.startDate));
                 
-                self.playing = false;
-                self.startDate = undefined;
+                this.playing = false;
+                this.startDate = undefined;
                 
                 $(".player-controls .icon-pause").addClass("hidden");
                 $(".player-controls .icon-play").removeClass("hidden");
                 
                 console.log(diff);
+            },
+            enumerable: false
+        },
+        stop : {
+            value: function()
+            {
+                this.pause();
             },
             enumerable: false
         },
