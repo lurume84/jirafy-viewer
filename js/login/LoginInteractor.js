@@ -13,7 +13,7 @@
 				$.ajax
 				({
 					type: "POST",
-					url: "/token.json",
+					url: "/data/token.json",
 					data: JSON.stringify({server: server, token: btoa(user + ":" + password)}),
 					dataType: 'json',
                     contentType: 'application/json',
@@ -35,7 +35,7 @@
 				$.ajax
 				({
 					type: "GET",
-					url: "/token.json",
+					url: "/data/token.json",
 					dataType: 'json',
                     contentType: 'application/json',
 					success: function (json)

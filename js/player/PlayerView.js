@@ -18,7 +18,18 @@
 
                 $(".player-controls").load("js/player/template.html", function()
                 {
-                    
+                    $(".player-controls .icon-play").click(function()
+                    {
+                        if(self.task != undefined)
+                        {
+                            self.play();
+                        }
+                    });
+                
+                    $(".player-controls .icon-pause").click(function()
+                    {
+                        self.pause(self);
+                    });
                 });
                 
                 $(document).on("play", function (evt, key)
@@ -31,39 +42,76 @@
         onPlayInfo : {
             value: function(data)
             {
-                this.playing = true;
                 this.task = data;
+                
+                $(".current-track").removeClass("hidden");
+                
+                $(".current-track .track-name").html(data.fields.summary);
+                $(".current-track .artist-name .artists").html(data.key);
+                
+                if(data.fields.assignee != undefined)
+                {
+                    $(".current-track img").attr("src", data.fields.assignee.avatarUrls["48x48"]);
+                }
+                
+                this.play();
+            },
+            enumerable: false
+        },
+        play : {
+            value: function()
+            {
+                this.playing = true;
                 this.startDate = Date.now();
                 
                 $(".player-controls .icon-play").addClass("hidden");
-                $(".player-controls .icon-pause").removeClass("hidden").click(function()
-                {
-                    $(this).addClass("hidden");
-                    $(".player-controls .icon-play").removeClass("hidden");
-                });
+                $(".player-controls .icon-pause").removeClass("hidden");
                 
-                if(data.fields.timetracking.remainingEstimateSeconds != undefined)
+                var seconds = this.task.fields.timetracking.remainingEstimateSeconds;
+                
+                if(seconds != undefined)
                 {
-                    $(".player-controls .track-length").html(moment.utc(data.fields.timetracking.remainingEstimateSeconds*1000).format('HH:mm:ss'));
+                    $(".player-controls .track-length").html(moment.utc(seconds*1000).format('HH:mm:ss'));
                 }
                 
                 this.timer = setInterval(this.updateTime, 1000, this);
+                
+            },
+            enumerable: false
+        },
+        pause : {
+            value: function(self)
+            {
+                clearInterval(this.timer);
+                
+                var diff = ((Date.now() - self.startDate));
+                
+                self.playing = false;
+                self.startDate = undefined;
+                
+                $(".player-controls .icon-pause").addClass("hidden");
+                $(".player-controls .icon-play").removeClass("hidden");
+                
+                console.log(diff);
             },
             enumerable: false
         },
         updateTime : {
             value: function(self)
             {
-                var diff = ((Date.now() - self.startDate));
-                $(".player-controls .progress-container .elapsed-time").html(moment.utc(diff).format('HH:mm:ss'));
-                
-                var percent = diff / (self.task.fields.timetracking.remainingEstimateSeconds*1000) * 100;
-                if(percent > 100)
+                if(self.playing)
                 {
-                    percent = 100;
+                    var diff = ((Date.now() - self.startDate));
+                    $(".player-controls .progress-container .elapsed-time").html(moment.utc(diff).format('HH:mm:ss'));
+                    
+                    var percent = diff / (self.task.fields.timetracking.remainingEstimateSeconds*1000) * 100;
+                    if(percent > 100)
+                    {
+                        percent = 100;
+                    }
+                    
+                    $(".player-controls .progress-bar .elapsed").css("width", percent + "%");
                 }
-                
-                $(".player-controls .progress-bar .elapsed").css("width", percent + "%");
                 
             },
             enumerable: false

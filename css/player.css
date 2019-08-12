@@ -289,3 +289,103 @@
         top:-4px
     }
 }
+
+.album-page .album-header>.info .artist-name:hover,.artist-page .artist-header .artist-info>.genres>.genre:hover,
+.left-panel .current-track>.info>.artist-name>.artists>.artist:hover,.search-page .tab>.artists-albums .albums .album>.info .artist-name:hover,
+.search-page .tab>.artists-albums .albums .album>.info>.name:hover,.search-page .tab>.artists-albums .albums .playlist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .albums .playlist>.info>.name:hover,.search-page .tab>.artists-albums .albums .user>.info .artist-name:hover,
+.search-page .tab>.artists-albums .albums .user>.info>.name:hover,.search-page .tab>.artists-albums .albums>.artist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .albums>.artist>.info>.name:hover,.search-page .tab>.artists-albums .artists .album>.info .artist-name:hover,
+.search-page .tab>.artists-albums .artists .album>.info>.name:hover,.search-page .tab>.artists-albums .artists .playlist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .artists .playlist>.info>.name:hover,.search-page .tab>.artists-albums .artists .user>.info .artist-name:hover,
+.search-page .tab>.artists-albums .artists .user>.info>.name:hover,.search-page .tab>.artists-albums .artists>.artist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .artists>.artist>.info>.name:hover,.search-page .tab>.artists-albums .playlists .album>.info .artist-name:hover,
+.search-page .tab>.artists-albums .playlists .album>.info>.name:hover,.search-page .tab>.artists-albums .playlists .playlist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .playlists .playlist>.info>.name:hover,.search-page .tab>.artists-albums .playlists .user>.info .artist-name:hover,
+.search-page .tab>.artists-albums .playlists .user>.info>.name:hover,.search-page .tab>.artists-albums .playlists>.artist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .playlists>.artist>.info>.name:hover,.search-page .tab>.artists-albums .users .album>.info .artist-name:hover,
+.search-page .tab>.artists-albums .users .album>.info>.name:hover,.search-page .tab>.artists-albums .users .playlist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .users .playlist>.info>.name:hover,.search-page .tab>.artists-albums .users .user>.info .artist-name:hover,
+.search-page .tab>.artists-albums .users .user>.info>.name:hover,.search-page .tab>.artists-albums .users>.artist>.info .artist-name:hover,
+.search-page .tab>.artists-albums .users>.artist>.info>.name:hover,.album-table .artists>.artist:hover,.album-table .featuring>.artist:hover,
+.albums-page .albums .album>figcaption .album-name:hover,.albums-page .albums .album>figcaption .artist-name:hover,
+.artists-page .artists .artist>figcaption .artist-name:hover,.filter-bar>.sort>.text:hover,.playlist-page .playlist-header>.info>.artist-name:hover,
+.search-panel>.result-container.playlists .media-subtext:hover
+{
+    text-decoration:underline
+}
+
+.left-panel .current-track{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-align-items:center;
+    -ms-flex-align:center;
+    align-items:center;
+    padding:6px 8px 5px;
+    border-top:1px solid #141416;
+    -webkit-flex:0 0 auto;
+    -ms-flex:0 0 auto;
+    flex:0 0 auto
+}
+.left-panel .current-track .add-remove{
+    cursor:pointer;
+    width:25px;
+    -webkit-flex:0 0 auto;
+    -ms-flex:0 0 auto;
+    flex:0 0 auto;
+    text-align:center
+}
+.left-panel .current-track .add-remove .remove-track,.left-panel .current-track .add-remove .track-added{
+    display:none
+}
+.left-panel .current-track .add-remove.saved .track-added{
+    display:block
+}
+.left-panel .current-track .add-remove.saved .add-track,.left-panel .current-track .add-remove.saved:hover .track-added{
+    display:none
+}
+.left-panel .current-track .add-remove.saved:hover .remove-track{
+    display:block
+}
+.left-panel .current-track>img{
+    width:55px;
+    height:55px;
+    -webkit-flex:0 0 auto;
+    -ms-flex:0 0 auto;
+    flex:0 0 auto
+}
+.left-panel .current-track>.info{
+    margin-left:10px;
+    max-width:calc(100% - 90px);
+    -webkit-flex:1 1 auto;
+    -ms-flex:1 1 auto;
+    flex:1 1 auto
+}
+.left-panel .current-track>.info>.track-name{
+    font-size:1rem;
+    font-weight:400;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis
+}
+.left-panel .current-track>.info>.artist-name{
+    color:#898B8C;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:.9rem
+}
+.left-panel .current-track>.info>.artist-name>.artists{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    color:#898B8C
+}
+.left-panel .current-track>.info>.artist-name>.artists>.artist{
+    cursor:pointer;
+    padding-left:4px
+}
+.left-panel .current-track>.info>.artist-name>.artists>.artist:first-of-type{
+    padding-left:0
+}
