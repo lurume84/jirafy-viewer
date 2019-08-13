@@ -18,7 +18,7 @@
                 {             
                     $(".playlists-list > div").click(function()
                     {
-                        self.presenter.load($(this).attr("us-id"))
+                        self.presenter.load($(this).attr("us-id"));
                     });
                 });
             },

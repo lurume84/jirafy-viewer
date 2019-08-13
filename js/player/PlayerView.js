@@ -117,7 +117,14 @@
                 $(".player-controls .icon-pause").addClass("hidden");
                 $(".player-controls .icon-play").removeClass("hidden");
                 
-                this.presenter.setUncommitted(this.task.key, diff / 1000);
+                var seconds = diff / 1000;
+                
+                if(isNaN(seconds))
+                {
+                    seconds = 0;
+                }
+                
+                this.presenter.setUncommitted(this.task.key, seconds);
                 
                 this.uncommitted += diff / 1000;
             },

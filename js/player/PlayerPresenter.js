@@ -3,6 +3,7 @@
     function PlayerPresenter(Context)
     {
         this.interactor = Context.getPlayerInteractor();
+        this.interactorUncommitted = Context.getUncommittedInteractor();
        
         this.view = Context.getPlayerView(this);
         this.view.init();
@@ -32,7 +33,7 @@
             {
                 var self = this;
                     
-                this.interactor.getUncommitted(new viewer.listeners.BaseDecisionListener(
+                this.interactorUncommitted.load(new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
                         self.view.onLoadUncommitted(data);
@@ -48,7 +49,7 @@
             value: function(key, seconds)
             {
                 var self = this;
-                this.interactor.getUncommitted(new viewer.listeners.BaseDecisionListener(
+                this.interactorUncommitted.load(new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
                         if(data[key] == undefined)
@@ -58,7 +59,7 @@
                         
                         data[key] += seconds;
                         
-                        self.interactor.setUncommitted(data, new viewer.listeners.BaseDecisionListener(
+                        self.interactorUncommitted.save(data, new viewer.listeners.BaseDecisionListener(
                         function(data)
                         {
                             self.view.onSaveUncommitted(data);

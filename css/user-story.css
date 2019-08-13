@@ -235,9 +235,9 @@
 
 .album-table .popularity, .album-table .track-duration 
 {
-    -webkit-flex-grow: .6;
-    -ms-flex-positive: .6;
-    flex-grow: .6;
+    -webkit-flex-grow: .8;
+    -ms-flex-positive: .8;
+    flex-grow: .8;
     color: #898B8C;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
