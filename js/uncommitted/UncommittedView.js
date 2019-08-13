@@ -22,11 +22,8 @@
                     {
                         $(".menu-item").removeClass("active");
                         $(this).addClass("active");
-                        
-                        $(".main-view").load("js/uncommitted/template.html", function()
-                        {
-                            self.presenter.load();
-                        });
+                
+                        self.presenter.load();
                     });
                     
                     self.presenter.load();
@@ -43,9 +40,26 @@
                 {
                     if(Object.keys(data).length > 0)
                     {
-                        $(".playlist-header").removeClass("hidden");
-                        $(".album-table").removeClass("hidden");
-                        $(".no-tracks").addClass("hidden");
+                        $(".playlist-page .actions .option-btn").click(function()
+                        {
+                            var dialog = $(".playlist-page .actions .empty-dialog");
+                            
+                            dialog[0].showModal();
+                            
+                            dialog.find(".mdl-button.close").click(function()
+                            {
+                                dialog[0].close();
+                            });
+                            
+                            dialog.find(".mdl-button.confirm").click(function()
+                            {
+                                self.presenter.empty();
+                            });
+                        });
+                            
+                        $(".playlist-page .playlist-header").removeClass("hidden");
+                        $(".playlist-page .album-table").removeClass("hidden");
+                        $(".playlist-page .no-tracks").addClass("hidden");
                         
                         var row = $(this).find(".album-table .flex-table-row:nth-child(2)").detach();
                     
@@ -89,6 +103,13 @@
                 $("<img/>", {src: data.fields.issuetype.iconUrl}).appendTo(element.find(".add-remove-track"));
                 element.find(".artist-name .artists").html(data.fields.summary);
                 element.find(".album-name .ellipses").html(data.fields.parent.key);
+            },
+            enumerable: false
+        },
+        onEmpty : {
+            value: function()
+            {
+                this.presenter.load();
             },
             enumerable: false
         },

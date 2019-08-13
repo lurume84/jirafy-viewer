@@ -35,6 +35,17 @@
     position: relative;
 }
 
+.mdl-dialog
+{
+    background: rgba(255, 255, 255, .08);
+    color: #cbcbcc;
+}
+
+.mdl-dialog p, .mdl-dialog button
+{
+    color: #cbcbcc;
+}
+
 .left-panel
 {
     height: 100%;
@@ -275,10 +286,15 @@
 
 a.btn.primary, button.primary 
 {
-    background-color: #78b806;
-    color: #fff;
+    background-color: #FFD740 !important;
+    color: #000 !important;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
     border: none;
+}
+
+.mdl-button.mdl-color--primary
+{
+    color: #000 !important;
 }
 
 a.btn, button 

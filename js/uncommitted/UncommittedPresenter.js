@@ -43,7 +43,24 @@
                     }));
             },
             enumerable: false
-        }
+        },
+        empty : {
+            value: function()
+            {
+                var self = this;
+                    
+                this.interactor.save({}, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onEmpty(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
     });
 
     presenters.UncommittedPresenter = UncommittedPresenter;
