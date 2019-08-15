@@ -35,8 +35,6 @@
                             self.commit();
                         });
                         
-                        self.scrolllbar = new PerfectScrollbar($(".mdl-dialog__content")[0], { suppressScrollX: true });
-                        
                         self.next();
                         
                         dialog[0].showModal();
@@ -118,6 +116,7 @@
                     clone.find("input[name=adjustmentAmount]").prop("disabled", this.value != "manual");
                 });
                 
+                this.scrolllbar = new PerfectScrollbar(clone[0], { suppressScrollX: true });
                 this.scrolllbar.update();
                 componentHandler.upgradeAllRegistered();
                 
