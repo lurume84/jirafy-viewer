@@ -1,6 +1,7 @@
 .commit-dialog 
 {
     width: 760px;
+    max-height:90%;
 }
   
 .commit-dialog .header 
@@ -50,18 +51,27 @@
 
 .commit-dialog .info .right
 {
-    width: 60%;
-    min-height: 350;
+    width: 70%;
 }
 
 .commit-dialog .info .left
 {
-    width: 40%;
+    width: 30%;
+}
+
+.commit-dialog .info2
+{
+    margin-top: 80px;
+}
+
+.commit-dialog .info3
+{
+    width: 100%;
 }
 
 .commit-dialog .short-field
 {
-    width: 75px;
+    width: 65px;
 }
 
 .commit-dialog .header .info .name 
@@ -79,7 +89,7 @@
 .commit-dialog .header .info .sub-name, .commit-dialog .header .info .name 
 {
     overflow: hidden;
-    max-width: 90pt;
+    max-width: 400;
     text-overflow: ellipsis;
 }
 
@@ -98,7 +108,7 @@
 .commit-dialog textarea
 {
     width:100%;
-    height:250;
+    height:100;
     margin-left: 10px;
     margin-top: 12px;
 }
@@ -132,9 +142,16 @@
 .commit-dialog .radio
 {
     padding-left: 10px;
+    float: left;
 }
 
 .commit-dialog span 
 {
     color: #cbcbcc;
+}
+
+.labelInput
+{
+    display:block;
+    margin-top: -7px;
 }

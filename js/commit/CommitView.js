@@ -50,8 +50,41 @@
             {
                 $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo(element.find(".header .image"));
                 element.find(".header .info .sub-name").html(data.fields.summary);
+            },
+            enumerable: false
+        },
+        onTransitions : {
+            value: function(element, data)
+            {
+                $.each(data.transitions, function(index)
+                {
+                    var transition = $("<div/>", {class: "radio", html: 
+                    "    <label class=\"transitionRadio mdl-radio mdl-js-radio mdl-js-ripple-effect\" for=\"transition-" + (index + 1) + "\">" +
+                    "      <input type=\"radio\" id=\"transition-" + (index + 1) + "\" class=\"mdl-radio__button\" name=\"transition\" value=\"" + this.id + "\">" +
+                    "      <span class=\"mdl-radio__label\">" + this.name + "</span>" +
+                    "    </label>" +
+                    "</div>"});
+                    
+                    transition.appendTo(element.find(".info3 > .radios"));
+                    
+                    $.each(this.fields, function()
+                    {
+                        if(this.schema.type == "string")
+                        {
+                            var field = "<textarea class=\"fieldTransition transition-" + (index + 1) + " hidden\" placeholder=\"" + this.name + "\"></textarea>";
+                            
+                            element.find(".info3 > .fields").append(field);
+                        }
+                    });
+                });
                 
-                // element.find(".album-name .ellipses").html(data.fields.parent.key);
+                element.find(".transitionRadio input").change(function()
+                {
+                    element.find(".fieldTransition").addClass("hidden");
+                    element.find("." + this.id).removeClass("hidden");
+                })
+                
+                componentHandler.upgradeAllRegistered();
             },
             enumerable: false
         },
@@ -78,6 +111,7 @@
                 componentHandler.upgradeAllRegistered();
                 
                 this.presenter.getIssue(clone, key);
+                this.presenter.getTransitions(clone, key);
             },
             enumerable: false
         },

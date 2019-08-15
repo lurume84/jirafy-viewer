@@ -44,6 +44,23 @@
             },
             enumerable: false
         },
+        getTransitions : {
+            value: function(element, key)
+            {
+                var self = this;
+                    
+                this.interactor.getTransitions(key, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onTransitions(element, data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         empty : {
             value: function()
             {
