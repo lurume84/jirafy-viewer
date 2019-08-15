@@ -182,6 +182,27 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.PlayerInteractor();
             },
             enumerable: false
+        },
+        getCommitPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.CommitPresenter(this);
+            },
+            enumerable: false
+        },
+        getCommitView : {
+            value: function(presenter)
+            {
+                return new viewer.views.CommitView(presenter);
+            },
+            enumerable: false
+        },
+        getCommitInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.CommitInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -199,6 +220,7 @@ viewer.listeners = viewer.listeners || {};
                     board: "getBoardPresenter",
                     user_story: "getUserStoryPresenter",
                     player: "getPlayerPresenter",
+                    commit: "getCommitPresenter",
                 };
 
     function Initializer()

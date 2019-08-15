@@ -1,0 +1,56 @@
+<dialog class="commit-dialog mdl-dialog">
+    <div class="mdl-dialog__content">
+      <div class="commit-task">
+        <div class="header">
+            <div class="image"></div>
+            <div class="info">
+                <div class="name"></div>
+                <div class="sub-name"></div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="left">
+                <label class="label" for="commit-timespent">Time spent</label>
+                <input id="commit-timespent" type="text" class="timespent"/>
+                <label class="label" for="commit-timespent">Remaining estimate</label>
+                <div class="radio">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                      <input type="radio" id="option-1" class="mdl-radio__button" name="adjustEstimate" value="auto" checked>
+                      <span class="mdl-radio__label">Adjust automatically</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                      <input type="radio" id="option-2" class="mdl-radio__button" name="adjustEstimate" value="leave">
+                      <span class="mdl-radio__label">Use existing estimate</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                      <input type="radio" id="option-3" class="mdl-radio__button" name="adjustEstimate" value="new">
+                      <span class="mdl-radio__label">Set to</span>
+                      <input class="text short-field" name="newEstimate" type="text" disabled="disabled">
+                      <span class="aui-form example">(eg. 3w 4d 12h)</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+                      <input type="radio" id="option-4" class="mdl-radio__button" name="adjustEstimate" value="manual">
+                      <span class="mdl-radio__label">Reduce by</span>
+                      <input class="text short-field" name="adjustmentAmount" type="text" disabled="disabled">
+                      <span class="aui-form example">(eg. 3w 4d 12h)</span>
+                    </label>
+                </div>
+            </div>
+            <div class="right">
+                <label class="label" for="commit-description">Work description</label>
+                <textarea id="commit-description" name="description" placeholder="Describe the work done"></textarea>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-dialog__actions mdl-dialog__actions">
+      <button type="button" class="mdl-button confirm">Commit</button>
+      <button type="button" class="mdl-button close">Cancel</button>
+    </div>
+</dialog>

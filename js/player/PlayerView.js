@@ -47,7 +47,7 @@
         onPlayInfo : {
             value: function(data)
             {
-                if(this.task != undefined)
+                if(this.task != undefined && this.playing)
                 {
                     this.pause();
                 }

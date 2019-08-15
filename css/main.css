@@ -37,13 +37,18 @@
 
 .mdl-dialog
 {
-    background: rgba(255, 255, 255, .08);
+    background: #28282A;
     color: #cbcbcc;
 }
 
 .mdl-dialog p, .mdl-dialog button
 {
     color: #cbcbcc;
+}
+
+.mdl-radio 
+{
+    font-size: 14px;
 }
 
 .left-panel

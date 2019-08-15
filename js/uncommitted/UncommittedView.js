@@ -16,7 +16,7 @@
 
                 $(document).on("login", function ()
                 {             
-                    var menu = $("<div/>", {class: "menu-item active", href: "", html: "Uncommited"});
+                    var menu = $("<div/>", {class: "menu-item active", href: "", html: "Uncommitted"});
                     menu.appendTo($(".left-panel-inner .content .main-menu"));
                     menu.click(function()
                     {
@@ -40,6 +40,11 @@
                 {
                     if(Object.keys(data).length > 0)
                     {
+                        $(".playlist-page .actions .primary").click(function()
+                        {
+                            $(document).trigger("commit", data);
+                        });
+                        
                         $(".playlist-page .actions .option-btn").click(function()
                         {
                             var dialog = $(".playlist-page .actions .empty-dialog");

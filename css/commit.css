@@ -1,0 +1,140 @@
+.commit-dialog 
+{
+    width: 760px;
+}
+  
+.commit-dialog .header 
+{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #323235;
+}
+
+.commit-dialog .header .image 
+{
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.commit-dialog .header .image img 
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.commit-dialog .header .info 
+{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.commit-dialog .info .left, .commit-dialog .info .right
+{
+    float: left;
+}
+
+.commit-dialog .info .right
+{
+    width: 60%;
+    min-height: 350;
+}
+
+.commit-dialog .info .left
+{
+    width: 40%;
+}
+
+.commit-dialog .short-field
+{
+    width: 75px;
+}
+
+.commit-dialog .header .info .name 
+{
+    margin-bottom: 2px;
+    color: #cbcbcc;
+}
+
+.commit-dialog .header .info .sub-name 
+{
+    font-size: .9rem;
+    color: #898B8C;
+}
+
+.commit-dialog .header .info .sub-name, .commit-dialog .header .info .name 
+{
+    overflow: hidden;
+    max-width: 90pt;
+    text-overflow: ellipsis;
+}
+
+.commit-dialog input, .commit-dialog textarea
+{
+    border: 0;
+    background: #323235;
+    color: #cbcbcc;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 300;
+    border-radius: .2rem;
+    padding: .5rem .6rem;
+}
+
+.commit-dialog textarea
+{
+    width:100%;
+    height:250;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+
+.commit-dialog input:disabled
+{
+    opacity: 0.66;
+}
+
+.commit-dialog input.timespent
+{
+    margin-left: 10px;
+    margin-top: 12px;
+    width: 50%;
+}
+
+.commit-dialog .description
+{
+    font-size: 12px;
+    margin-left: 15px;
+    color: #c0c0c0;
+}
+
+.commit-dialog label.label
+{
+    color: #898B8C;
+    display: block;
+    padding-top: 10px;
+}
+
+.commit-dialog .radio
+{
+    padding-left: 10px;
+}
+
+.commit-dialog span 
+{
+    color: #cbcbcc;
+}
