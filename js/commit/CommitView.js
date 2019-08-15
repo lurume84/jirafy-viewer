@@ -72,7 +72,18 @@
                         if(this.schema.type == "string")
                         {
                             var field = "<textarea class=\"fieldTransition transition-" + (index + 1) + " hidden\" placeholder=\"" + this.name + "\"></textarea>";
+                            element.find(".info3 > .fields").append(field);
+                        }
+                        else if(this.schema.type == "resolution")
+                        {
+                            var options = "";
                             
+                            $.each(this.allowedValues, function()
+                            {
+                                options += "<option value=\"" + this.id + "\">" + this.name + "</option>";
+                            });
+
+                            var field = $("<select/>", {class: "fieldTransition transition-" + (index + 1) + " hidden", html: options});
                             element.find(".info3 > .fields").append(field);
                         }
                     });

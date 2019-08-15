@@ -1,7 +1,7 @@
 .commit-dialog 
 {
     width: 760px;
-    max-height:90%;
+    height: 600px;
 }
   
 .commit-dialog .header 
@@ -93,7 +93,7 @@
     text-overflow: ellipsis;
 }
 
-.commit-dialog input, .commit-dialog textarea
+.commit-dialog input, .commit-dialog textarea, .commit-dialog select
 {
     border: 0;
     background: #323235;
@@ -103,6 +103,12 @@
     font-weight: 300;
     border-radius: .2rem;
     padding: .5rem .6rem;
+}
+
+.commit-dialog select
+{
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .commit-dialog textarea
