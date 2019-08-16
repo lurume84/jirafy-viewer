@@ -35,6 +35,18 @@
                     {
                         self.stop();
                     });
+                    
+                    $(".player-controls .commit-switch").click(function()
+                    {
+                        if($(this).hasClass("disabled"))
+                        {
+                            $(this).removeClass("disabled");
+                        }
+                        else
+                        {
+                            $(this).addClass("disabled");
+                        }
+                    });
                 });
                 
                 $(document).on("play", function (evt, key)
@@ -174,7 +186,12 @@
         onSaveUncommitted : {
             value: function()
             {
+                var uncommitted = $(".left-panel-inner .content .main-menu .menu-item:first-child");
                 
+                if(uncommitted.hasClass("active"))
+                {
+                    uncommitted.trigger("click");
+                }
             },
             enumerable: false
         },
