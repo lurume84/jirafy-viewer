@@ -50,6 +50,10 @@
                 {
                     $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo(element.find(".header .image").html(""));
                 }
+                else
+                {
+                    element.find(".header .image").remove();
+                }
                 element.find(".header .info .sub-name").html(data.fields.summary);
             },
             enumerable: false
