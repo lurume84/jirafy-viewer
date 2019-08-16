@@ -92,6 +92,11 @@
                                 $(document).trigger("play", key);
                             });
                             
+                            clone.find(".play-icon").click(function() 
+                            {
+                                $(document).trigger("play", key);
+                            });
+                            
                             clone.contextmenu(function(evt) 
                             {
                                 $(document).trigger("context-menu", {key: key, pos: {left:evt.pageX,top:evt.pageY}});

@@ -69,6 +69,11 @@
                 {
                     $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo($("#context-menu .header .image").html(""));
                 }
+                else
+                {
+                    $("#context-menu .header .image").remove();
+                }
+                
                 $("#context-menu .header .info .name").html(data.key);
                 $("#context-menu .header .info .sub-name").html(data.fields.summary);
             },
