@@ -92,6 +92,12 @@
                                 $(document).trigger("play", key);
                             });
                             
+                            clone.contextmenu(function(evt) 
+                            {
+                                $(document).trigger("context-menu", {key: key, pos: {left:evt.pageX,top:evt.pageY}});
+                                evt.preventDefault();
+                            });
+                            
                             self.presenter.getIssue(clone, key);
                             index++;
                         }

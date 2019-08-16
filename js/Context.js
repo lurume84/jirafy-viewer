@@ -203,6 +203,27 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.CommitInteractor();
             },
             enumerable: false
+        },
+        getContextMenuPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.ContextMenuPresenter(this);
+            },
+            enumerable: false
+        },
+        getContextMenuView : {
+            value: function(presenter)
+            {
+                return new viewer.views.ContextMenuView(presenter);
+            },
+            enumerable: false
+        },
+        getContextMenuInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.ContextMenuInteractor();
+            },
+            enumerable: false
         }
     });
 
@@ -221,6 +242,7 @@ viewer.listeners = viewer.listeners || {};
                     user_story: "getUserStoryPresenter",
                     player: "getPlayerPresenter",
                     commit: "getCommitPresenter",
+                    context_menu: "getContextMenuPresenter",
                 };
 
     function Initializer()

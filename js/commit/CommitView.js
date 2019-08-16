@@ -46,7 +46,10 @@
         onIssue : {
             value: function(element, data)
             {
-                $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo(element.find(".header .image").html(""));
+                if(data.fields.assignee != undefined)
+                {
+                    $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo(element.find(".header .image").html(""));
+                }
                 element.find(".header .info .sub-name").html(data.fields.summary);
             },
             enumerable: false

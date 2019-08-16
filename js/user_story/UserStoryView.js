@@ -68,6 +68,12 @@
                             $(document).trigger("play", task.key);
                         });
                         
+                        clone.contextmenu(function(evt) 
+                        {
+                            $(document).trigger("context-menu", {key: task.key, pos: {left:evt.pageX,top:evt.pageY}});
+                            evt.preventDefault();
+                        });
+                        
                         self.presenter.getIssue(clone, task.key);
                     });
                     

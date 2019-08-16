@@ -1,0 +1,179 @@
+#context-menu,#context-menu>.header{
+    display:-webkit-flex;
+    display:-ms-flexbox
+}
+
+#context-menu{
+    display:flex;
+    -webkit-flex-direction:column;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    position:absolute;
+    background-color:#252528;
+    width:220px;
+    box-shadow:0 1px 5px 0 rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12);
+    padding:10px 0 0;
+    overflow:hidden;
+    z-index:99;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    list-style:none;
+    color:#cbcbcc
+}
+@media only screen and (max-width:627px){
+    #not-found-page>h1{
+        font-size:3rem
+    }
+    #context-menu{
+        width:calc(100% - 40px)!important;
+        left:20px!important;
+        top:50px!important
+    }
+}
+#context-menu>.header{
+    display:flex;
+    width:92%;
+    margin:0 auto;
+    padding:0 0 10px;
+    border-bottom:1px solid #323235
+}
+#context-menu>.header>.image{
+    width:60px;
+    height:60px;
+    margin-right:15px;
+    -webkit-flex:0 0 auto;
+    -ms-flex:0 0 auto;
+    flex:0 0 auto
+}
+#context-menu>.header>.image img{
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+
+#context-menu>.header>.image .loading-content 
+{
+    width: 60px;
+    height: 60px;
+}
+
+#context-menu>.header>.image .mdl-spinner 
+{
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+#context-menu>.header>.info{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-flex-direction:column;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    -webkit-justify-content:center;
+    -ms-flex-pack:center;
+    justify-content:center;
+    white-space:nowrap
+}
+#context-menu>.header>.info .sub-name,#context-menu>.header>.info>.name{
+    overflow:hidden;
+    max-width:90pt;
+    text-overflow:ellipsis
+}
+#context-menu>.header>.info>.name{
+    margin-bottom:2px;
+    color:#cbcbcc
+}
+#context-menu>.header>.info>.sub-name{
+    font-size:.9rem;
+    color:#898B8C
+}
+#context-menu>.body{
+    position:relative;
+    -webkit-flex:1 1 auto;
+    -ms-flex:1 1 auto;
+    flex:1 1 auto
+}
+#context-menu>.body>.add-to-playlist{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    background-color:#252528;
+    width:100%;
+    height:100%;
+    padding:10px;
+    font-size:1.05rem;
+    transition:-webkit-transform .25s ease;
+    transition:transform .25s ease
+}
+#context-menu>.body>.add-to-playlist.slide-out{
+    -webkit-transform:translateX(100%);
+    transform:translateX(100%)
+}
+#context-menu>.body>.add-to-playlist>.back{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    border-bottom:1px solid #343438;
+    padding-bottom:10px;
+    cursor:pointer
+}
+#context-menu>.body>.add-to-playlist>.back:hover{
+    color:#f2f2f2
+}
+#context-menu>.body>.add-to-playlist>.back>.icon{
+    margin-right:5px
+}
+#context-menu>.body>.add-to-playlist>.new-playlist{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    margin:18px 0;
+    cursor:pointer
+}
+#context-menu>.body>.add-to-playlist>.new-playlist>.icon,#context-menu>.body>.add-to-playlist>.playlists>.playlist>.icon{
+    margin-right:5px
+}
+#context-menu>.body>.add-to-playlist>.new-playlist:hover{
+    color:#cbcbcc
+}
+#context-menu>.body>.add-to-playlist>.playlists>.playlist{
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    padding:4px;
+    background-color:#2d2d30;
+    margin-bottom:6px;
+    border-radius:3px;
+    cursor:pointer
+}
+#context-menu>.body>.add-to-playlist>.playlists>.playlist:hover{
+    background-color:#323235;
+    color:#cbcbcc
+}
+#context-menu .context-menu-item{
+    padding:10px;
+    cursor:pointer;
+    border-left:5px solid transparent
+}
+@media only screen and (max-width:627px){
+    #context-menu .context-menu-item{
+        border-bottom:1px solid #323235;
+        padding:20px 10px
+    }
+}
+#context-menu .context-menu-item>.icon{
+    margin-right:10px
+}
+#context-menu .context-menu-item:hover{
+    background-color:#323235;
+    border-left:5px solid #8F8F8F
+}
+#context-menu .separator{
+    background-color:#323235;
+    height:1px;
+    padding:0
+}
