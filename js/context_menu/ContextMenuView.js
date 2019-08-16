@@ -82,6 +82,13 @@
                 container.offset({left: 0, top: 0});
                 container.hide();
                 container.html("");
+                
+                var uncommitted = $(".left-panel-inner .content .main-menu .menu-item:first-child");
+                
+                if(uncommitted.hasClass("active"))
+                {
+                    uncommitted.trigger("click");
+                }
             },
             enumerable: false
         },
