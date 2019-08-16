@@ -74,7 +74,12 @@
                 
                 if(this.task.fields.assignee != undefined)
                 {
+                    $(".current-track img").show();
                     $(".current-track img").attr("src", this.task.fields.assignee.avatarUrls["48x48"]);
+                }
+                else
+                {
+                    $(".current-track img").hide();
                 }
                 
                 this.play();
@@ -134,6 +139,13 @@
             value: function()
             {
                 this.pause();
+                
+                this.task = undefined;
+                this.uncommitted = 0;
+                $(".current-track").addClass("hidden");
+                $(".player-controls .progress-container .elapsed-time").html("00:00:00");
+                $(".player-controls .track-length").html("00:00:00");
+                $(".player-controls .progress-bar .elapsed").css("width", "0%");
             },
             enumerable: false
         },
