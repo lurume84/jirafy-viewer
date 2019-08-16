@@ -224,6 +224,13 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.ContextMenuInteractor();
             },
             enumerable: false
+        },
+        getSettingsInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.SettingsInteractor();
+            },
+            enumerable: false
         }
     });
 

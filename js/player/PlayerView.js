@@ -15,6 +15,7 @@
                 var self = this;
                 
                 this.playing = false;
+                this.commit = false;
 
                 $(".player-controls").load("js/player/template.html", function()
                 {
@@ -38,15 +39,15 @@
                     
                     $(".player-controls .commit-switch").click(function()
                     {
-                        if($(this).hasClass("disabled"))
-                        {
-                            $(this).removeClass("disabled");
-                        }
-                        else
-                        {
-                            $(this).addClass("disabled");
-                        }
+                        self.presenter.setSetting("commit", $(this).hasClass("disabled"));
                     });
+                    
+                    $(".player-controls .volume-container i").click(function()
+                    {
+                        self.presenter.setSetting("sound", $(this).hasClass("icon-volume-off-1"));
+                    });
+                    
+                    self.presenter.getSettings();
                 });
                 
                 $(document).on("play", function (evt, key)
@@ -152,6 +153,13 @@
             {
                 this.pause();
                 
+                if(this.commit)
+                {
+                    var data = {};
+                    data[this.task.key] = this.uncommitted;
+                    $(document).trigger("commit", data);
+                }
+                
                 this.task = undefined;
                 this.uncommitted = 0;
                 $(".current-track").addClass("hidden");
@@ -192,6 +200,38 @@
                 {
                     uncommitted.trigger("click");
                 }
+            },
+            enumerable: false
+        },
+        onLoadSettings : {
+            value: function(data)
+            {
+                if(data["commit"] == undefined || !data["commit"])
+                {
+                    $(".player-controls .commit-switch").addClass("disabled");
+                    this.commit = false;
+                }
+                else
+                {
+                    $(".player-controls .commit-switch").removeClass("disabled");
+                    this.commit = true;
+                }
+                
+                if(data["sound"] == undefined || !data["sound"])
+                {
+                    $(".player-controls .volume-container i").removeClass("icon-volume-up-1").addClass("icon-volume-off-1");
+                }
+                else
+                {
+                    $(".player-controls .volume-container i").removeClass("icon-volume-off-1").addClass("icon-volume-up-1");
+                }
+            },
+            enumerable: false
+        },
+        onSaveSetting : {
+            value: function(data)
+            {
+                this.onLoadSettings(data);
             },
             enumerable: false
         },

@@ -179,6 +179,7 @@
     color:#666!important;
     cursor:default
 }
+
 .player-controls .controls-toggler,.player-controls .track-info{
     display:none;
     -webkit-flex-direction:column;
