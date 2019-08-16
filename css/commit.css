@@ -34,6 +34,18 @@
     object-fit: cover;
 }
 
+.commit-dialog .header .image .loading-content 
+{
+    width: 60px;
+    height: 60px;
+}
+
+.commit-dialog .header .image .mdl-spinner 
+{
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
 .commit-dialog .header .info 
 {
     display: -webkit-flex;
@@ -46,6 +58,19 @@
     -ms-flex-pack: center;
     justify-content: center;
     white-space: nowrap;
+}
+
+.commit-dialog .header .commit-progress 
+{
+    width:100;
+    position:absolute;
+    right:30px;
+    top:30px;
+}
+
+.commit-dialog .header .commit-progress .bufferbar
+{
+    background: #323235;
 }
 
 .commit-dialog .info .left, .commit-dialog .info .right
@@ -88,6 +113,7 @@
 {
     font-size: .9rem;
     color: #898B8C;
+    height:20px;
 }
 
 .commit-dialog .header .info .sub-name, .commit-dialog .header .info .name 

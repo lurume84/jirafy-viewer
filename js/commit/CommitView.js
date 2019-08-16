@@ -23,21 +23,21 @@
                     {
                         self.template = $(this).find(".commit-task").detach();
                         
-                        var dialog = $(this).find(".commit-dialog");
+                        self.dialog = $(this).find(".commit-dialog");
                         
-                        dialog.find(".mdl-button.close").click(function()
+                        self.dialog.find(".mdl-button.close").click(function()
                         {
-                            dialog[0].close();
+                            self.dialog[0].close();
                         });
                         
-                        dialog.find(".mdl-button.confirm").click(function()
+                        self.dialog.find(".mdl-button.confirm").click(function()
                         {
                             self.commit();
                         });
                         
                         self.next();
                         
-                        dialog[0].showModal();
+                        self.dialog[0].showModal();
                     });
                 });
             },
@@ -46,7 +46,7 @@
         onIssue : {
             value: function(element, data)
             {
-                $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo(element.find(".header .image"));
+                $("<img/>", {src: data.fields.assignee.avatarUrls["48x48"]}).appendTo(element.find(".header .image").html(""));
                 element.find(".header .info .sub-name").html(data.fields.summary);
             },
             enumerable: false
@@ -100,35 +100,47 @@
         next : {
             value: function()
             {
-                var key = Object.keys(this.data)[this.index]
+                var elements = Object.keys(this.data);
                 
-                var seconds = this.data[key];
-                var clone = this.template.clone();
-                
-                clone.find(".header .info .name").html(key);
-                clone.find("#commit-timespent").val(moment.utc(seconds*1000).format('HH:mm:ss'));
-                
-                clone.appendTo($(".commit-dialog .mdl-dialog__content"));
-                
-                clone.find("input[name=adjustEstimate]").change(function()
+                if(elements.length > this.index)
                 {
-                    clone.find("input[name=newEstimate]").prop("disabled", this.value != "new");
-                    clone.find("input[name=adjustmentAmount]").prop("disabled", this.value != "manual");
-                });
-                
-                this.scrolllbar = new PerfectScrollbar(clone[0], { suppressScrollX: true });
-                this.scrolllbar.update();
-                componentHandler.upgradeAllRegistered();
-                
-                this.presenter.getIssue(clone, key);
-                this.presenter.getTransitions(clone, key);
+                    var key = Object.keys(this.data)[this.index]
+                    
+                    var seconds = this.data[key];
+                    var clone = this.template.clone();
+                    
+                    clone.find(".header .info .name").html(key);
+                    clone.find("#commit-timespent").val(moment.utc(seconds*1000).format('HH:mm:ss'));
+                    
+                    clone.appendTo($(".commit-dialog .mdl-dialog__content").html(""));
+                    
+                    clone.find("input[name=adjustEstimate]").change(function()
+                    {
+                        clone.find("input[name=newEstimate]").prop("disabled", this.value != "new");
+                        clone.find("input[name=adjustmentAmount]").prop("disabled", this.value != "manual");
+                    });
+                    
+                    this.scrolllbar = new PerfectScrollbar(clone[0], { suppressScrollX: true });
+                    this.scrolllbar.update();
+                    componentHandler.upgradeAllRegistered();
+                    
+                    $(".commit-dialog .header .commit-progress")[0].MaterialProgress.setProgress((this.index / elements.length) * 100);
+                    
+                    this.presenter.getIssue(clone, key);
+                    this.presenter.getTransitions(clone, key);
+                }
+                else
+                {
+                    this.dialog[0].close();
+                }
             },
             enumerable: false
         },
         commit : {
             value: function()
             {
-                
+                this.index++;
+                this.next();
             },
             enumerable: false
         },
