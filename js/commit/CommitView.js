@@ -133,7 +133,7 @@
                     this.scrolllbar.update();
                     componentHandler.upgradeAllRegistered();
                     
-                    $(".commit-dialog .header .commit-progress")[0].MaterialProgress.setProgress((this.index / elements.length) * 100);
+                    $(".commit-dialog .header .commit-progress")[0].MaterialProgress.setProgress(((this.index + 1) / elements.length) * 100);
                     
                     this.presenter.getIssue(clone, key);
                     this.presenter.getTransitions(clone, key);

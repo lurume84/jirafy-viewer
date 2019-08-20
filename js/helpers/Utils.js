@@ -1,3 +1,11 @@
+$(document).ready(function ()
+{             
+    $("#toolbar-window .close").click(function()
+    {
+       window.close();   
+    });
+});
+
 moment.locale('en', {
     relativeTime: {
       future: 'in %s',
