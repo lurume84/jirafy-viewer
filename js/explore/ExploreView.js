@@ -73,10 +73,15 @@
                     {
                         cover.addClass(user.key);
                         cover.find(".image img").attr("src", user.avatarUrls["48x48"]);
-                        cover.find(".album-name").html(user.displayName);
-                        cover.find(".artist-name").html(user.emailAddress);
+                        cover.find(".title").html(user.displayName);
+                        cover.find(".subtitle span").html("1");
                         
                         cover.appendTo(container);
+                    }
+                    else
+                    {
+                        var cnt = container.find("figure." + user.key + " .subtitle span");
+                        cnt.html(parseInt(cnt.html(), 10) + 1);
                     }
                 }
             },

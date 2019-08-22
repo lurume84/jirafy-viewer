@@ -92,15 +92,10 @@
 }
 
 .albums-page .albums .album {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 20%;
+    width: 22%;
     margin: 0;
     padding: 14px;
+    cursor: pointer;
 }
 
 figure {
@@ -109,12 +104,16 @@ figure {
 
 #songs-page, .albums-page .albums .album>.image, .hover-overlay .image {
     position: relative;
+    width: 48px;
+    height: 48px;
+    float: left;
+    background-color: #252528;
+    padding: 8px;
 }
 
 .albums-page .albums .album>.image>img {
     width: 48px;
     height: 48px;
-    height: auto;
     display: block;
 }
 
@@ -139,23 +138,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     display: block;
 }
 
-.albums-page .albums .album>figcaption .album-name, .albums-page .albums .album>figcaption .artist-name {
-    cursor: pointer;
+.albums-page .albums .album>figcaption .title, .albums-page .albums .album>figcaption .subtitle {
     display: block;
     color: inherit;
-}
-
-.albums-page .albums .album>figcaption .artist-name {
-    color: #898B8C !important;
-    margin-top: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.albums-page .albums .album>figcaption .album-name, .albums-page .albums .album>figcaption .artist-name {
+.albums-page .albums .album>figcaption .subtitle {
+    color: #898B8C !important;
+    margin-top: 5px;
+}
+
+.albums-page .albums .album>figcaption .title, .albums-page .albums .album>figcaption .subtitle {
     cursor: pointer;
     display: block;
     color: inherit;
+    height:20px;
 }
 
 .hover-overlay .overlay {
