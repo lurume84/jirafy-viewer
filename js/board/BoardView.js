@@ -79,7 +79,7 @@
                 
                 this.ps.update();
                 
-                $(".playlists-list").trigger("loaded");
+                $(".playlists-list").trigger("loaded", data);
             },
             enumerable: false
         },

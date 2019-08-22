@@ -7,16 +7,42 @@
 
     Object.defineProperties(ExploreInteractor.prototype,
     {
-        getList : {
-            value: function(listener)
+        getIssue : {
+            value: function(key, listener)
             {
 				$.ajax
 				({
-					type: "POST",
-					url: "/data/token.json",
-					data: JSON.stringify({server: server, token: btoa(user + ":" + password)}),
-					dataType: 'json',
+					type: "GET",
+                    dataType: 'json',
                     contentType: 'application/json',
+					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=subtasks",
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						listener.onError(jqxhr.responseJSON);
+					}
+				});
+            },
+            enumerable: false
+        },
+        getSubtask : {
+            value: function(key, listener)
+            {
+				$.ajax
+				({
+					type: "GET",
+                    dataType: 'json',
+                    contentType: 'application/json',
+					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=assignee",
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+					},
 					success: function (json)
 					{
 						listener.onSuccess(json);

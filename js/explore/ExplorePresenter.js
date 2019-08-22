@@ -10,15 +10,32 @@
 
     Object.defineProperties(ExplorePresenter.prototype,
     {
-        getList : {
-            value: function()
+        getIssue : {
+            value: function(key)
             {
                 var self = this;
                     
-                this.interactor.getList(new viewer.listeners.BaseDecisionListener(
+                this.interactor.getIssue(key, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        
+                        self.view.onIssue(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
+        getSubtask : {
+            value: function(key)
+            {
+                var self = this;
+                    
+                this.interactor.getSubtask(key, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onSubtask(data);
                     },
                     function(data)
                     {

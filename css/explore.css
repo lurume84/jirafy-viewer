@@ -1,0 +1,175 @@
+.albums-page {
+    min-height: 100%;
+    padding: 20px 25px;
+}
+
+#songs-page, .albums-page {
+    max-width: 100pc;
+    margin: 0 auto;
+}
+
+.page-shadow {
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.5);
+    border-left: 1px solid #222326;
+}
+
+.filter-bar {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #2a2b30;
+    padding-bottom: 10px;
+    margin: 10px 15px;
+}
+
+.albums-page .albums {
+    display: flex;
+    width: 100%;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.albums-page .albums, .modal {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+
+.filter-bar>.sort {
+    position: relative;
+    z-index: 5;
+    font-size: 1.2rem;
+    color: #898B8C;
+    -webkit-flex: 1 1 65%;
+    -ms-flex: 1 1 65%;
+    flex: 1 1 65%;
+    padding-top: 13px;
+}
+
+
+.filter-bar>.filter {
+    background-color: #252528;
+    height: 35px;
+    -webkit-flex: 1 1 35%;
+    -ms-flex: 1 1 35%;
+    flex: 1 1 35%;
+    max-width: 330px;
+    position: relative;
+    color: #898B8C;
+}
+
+
+.filter-bar>.filter>input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0 10px 0 30px;
+    background-color: #252528;
+}
+
+.filter-bar>.filter>.icon {
+    position: absolute;
+    top: 9px;
+    left: 5px;
+}
+
+.albums-page .albums {
+    display: flex;
+    width: 100%;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.albums-page .albums, .modal {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+}
+
+@media only screen and (max-width: 1024px)
+.albums-page .albums .album {
+    width: 33.33%;
+}
+
+.albums-page .albums .album {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 20%;
+    margin: 0;
+    padding: 14px;
+}
+
+figure {
+    margin: 1em 40px;
+}
+
+#songs-page, .albums-page .albums .album>.image, .hover-overlay .image {
+    position: relative;
+}
+
+.albums-page .albums .album>.image>img {
+    width: 48px;
+    height: 48px;
+    height: auto;
+    display: block;
+}
+
+.albums-page .albums .album>figcaption {
+    background-color: #252528;
+    padding: 10px;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+
+.albums-page .albums .album>figcaption .album-name, .albums-page .albums .album>figcaption .artist-name {
+    cursor: pointer;
+    display: block;
+    color: inherit;
+}
+
+.albums-page .albums .album>figcaption .artist-name {
+    color: #898B8C !important;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.albums-page .albums .album>figcaption .album-name, .albums-page .albums .album>figcaption .artist-name {
+    cursor: pointer;
+    display: block;
+    color: inherit;
+}
+
+.hover-overlay .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.8);
+    display: none;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
