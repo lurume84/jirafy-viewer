@@ -1,0 +1,146 @@
+.public-user-profile {
+    position: relative;
+    height: 100%;
+}
+
+.public-user-profile .header {
+    margin-bottom: 15px;
+    background-position: 0 32%;
+    position: relative;
+    min-height: 200px;
+}
+
+.public-user-profile .header, .radio-page {
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.public-user-profile .header>.header-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom,transparent -80%,#19191B 100%);
+    padding: 30px 30px 10px;
+}
+
+.public-user-profile .header>.header-overlay>.inner-header {
+    max-width: 600px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.public-user-profile .header .avatar {
+    margin-right: 25px;
+    width: 23%;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.public-user-profile .header .avatar>img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 50%;
+    border:5px solid #fff;
+}
+
+.public-user-profile .header .info {
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-top: 25px;
+}
+
+.public-user-profile .header .info>.username {
+    font-size: 1.8rem;
+    font-weight: 100;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #666974;
+    padding-bottom: 5px;
+}
+
+.public-user-profile .header .info>.actions {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.public-user-profile .header .info>.actions>.follow-info {
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.public-user-profile .header .info>.actions>.follow-info>.following {
+    border-right: 1px solid #666974;
+}
+
+.public-user-profile .header .info>.actions>.follow-info>.followers, .public-user-profile .header .info>.actions>.follow-info>.following {
+    padding: 0 10px;
+}
+
+.public-user-profile .header .info>.actions>.follow-info>.followers>.number, .public-user-profile .header .info>.actions>.follow-info>.following>.number {
+    text-align: center;
+}
+
+.public-user-profile .content .navigation {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 30px 0 35px 35px;
+    font-size: 1rem;
+    color: #898B8C;
+    text-transform: uppercase;
+    border-bottom: 1px solid #2a2b30;
+}
+
+.public-user-profile .content .navigation>.nav-item.active {
+    border-color: #FFD740;
+    color: #fff;
+}
+
+.public-user-profile .content .navigation>.nav-item:first-of-type {
+    margin-left: 0;
+}
+
+.public-user-profile .content .navigation>.nav-item {
+    border-bottom: 3px solid transparent;
+    transition: border-color .2s ease;
+    margin: 0 10px;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.public-user-profile .content .no-playlists {
+    text-align: center;
+    font-size: 1.5rem;
+    width: 100%;
+    margin-top: 40px;
+    font-weight: 100;
+    background-color: #252528;
+    padding: 5pc 0;
+}
+
+.public-user-profile .content .no-playlists img {
+    width:100px;
+    height:auto;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.public-user-profile .content .tabs {
+    padding: 20px 35px;
+}

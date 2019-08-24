@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/commit.css">
         <link rel="stylesheet" href="css/context-menu.css">
         <link rel="stylesheet" href="css/explore.css">
+        <link rel="stylesheet" href="css/user.css">
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/mdl/material.min.js"></script>
         <script src="lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -63,15 +64,12 @@
                         <div class="content">
                             <div class="main-menu"></div>
                             <div class="divider"></div>
-                            <div class="current-user-widget">
+                            <div class="current-user-widget menu-item">
                                 
                             </div>
                             <div class="your-music">
                                 <h2>Your sprint</h2>
-                                <div class="menu-item" ui-sref="songs" ui-sref-active="active" href="/songs">
-                                    <i class="icon icon-note"></i>Tasks</div>
-                                <div class="menu-item" ui-sref="albums" ui-sref-active="active" href="/albums">
-                                    <i class="icon icon-cd"></i> User stories</div>
+                                <div class="your-music-list"></div>
                             </div>
                             <div class="divider"></div>
                             <div class="playlists-container">
@@ -128,11 +126,6 @@
                 </form>
             </dialog>
         </div>
-        <div id="toast" class="mdl-js-snackbar mdl-snackbar">
-            <i class="fas fa-exclamation-triangle"></i>
-            <div class="mdl-snackbar__text"></div>
-            <button class="mdl-snackbar__action" type="button"></button>
-        </div>
         <div class="modal-dialog"></div>
         <div id="context-menu"></div>
         <div id="draggable-window"></div>
@@ -140,6 +133,11 @@
             <div class="close">
                 <i class="fas fa-times"></i>
             </div>
+        </div>
+        <div id="toast" class="mdl-js-snackbar mdl-snackbar">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
         </div>
     </body>
     <script>

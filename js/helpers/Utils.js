@@ -65,3 +65,15 @@ function base64Encode(str)
     }
     return out;
 }
+
+function showError(data)
+{
+    var message = "Unspecified error";
+                
+    if(data != undefined)
+    {
+        message = data.message;
+    }
+    
+    document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: message});
+}

@@ -129,6 +129,12 @@
     padding-top: 50px;
 }
 
+.playlist-page .no-tracks img {
+    width:100px;
+    height:auto;
+    margin-right: 20px;
+}
+
 .playlist-page .no-tracks > h3 
 {
     font-size: 1.7rem;

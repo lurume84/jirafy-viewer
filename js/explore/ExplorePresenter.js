@@ -18,7 +18,10 @@
                 this.interactor.getIssue(key, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        self.view.onIssue(data);
+                        $.each(data.fields.subtasks, function()
+                        {
+                            self.getSubtask(this.key);
+                        });
                     },
                     function(data)
                     {
@@ -35,7 +38,10 @@
                 this.interactor.getSubtask(key, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        self.view.onSubtask(data);
+                        if(g_status_map.closed[data.fields.status.id] == undefined)
+                        {
+                            self.view.onSubtask(data);
+                        }
                     },
                     function(data)
                     {

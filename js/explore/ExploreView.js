@@ -46,18 +46,6 @@
             },
             enumerable: false
         },
-        onIssue : {
-            value: function(data)
-            {
-                var self = this;
-                
-                $.each(data.fields.subtasks, function()
-                {
-                    self.presenter.getSubtask(this.key);
-                });
-            },
-            enumerable: false
-        },
         onSubtask : {
             value: function(data)
             {
@@ -75,7 +63,10 @@
                         cover.find(".image img").attr("src", user.avatarUrls["48x48"]);
                         cover.find(".title").html(user.displayName);
                         cover.find(".subtitle span").html("1");
-                        
+                        cover.click(function()
+                        {
+                           $(document).trigger("user_profile", user.key); 
+                        });
                         cover.appendTo(container);
                     }
                     else
@@ -90,7 +81,7 @@
         showError : {
             value: function(data)
             {
-                document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: data.message});
+                showError(data);
             },
             enumerable: false
         }

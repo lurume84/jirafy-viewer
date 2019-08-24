@@ -192,6 +192,7 @@
     height: 40px;
     margin-right: 10px;
     border-radius: 50%;
+    border:2px solid #fff;
 }
 .current-user-widget .user-email 
 {
@@ -270,11 +271,11 @@
     float: left;
 }
 
-.playlists h2 button
+.playlists h2 i
 {
-    margin-top: -5px;
-    margin-right: -5px;
+    margin-top: 2px;
     float: right;
+    cursor:pointer;
 }
 
 .playlists h2 ul
@@ -348,4 +349,9 @@ button, input, optgroup, select, textarea
 .flex-table-row.complete
 {
     opacity: 0.5;
+}
+
+.iconMenu
+{
+    font-size: 14px;
 }

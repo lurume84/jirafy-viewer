@@ -29,12 +29,11 @@
             value: function(data)
             {
                 $("<div/>", {class: "title", html: data.values[0].name}).appendTo($(".playlists > h2"));
-                var button = $("<button/>", {id: "playlist-lower-right", class: "mdl-button mdl-js-button mdl-button--icon", 
-                                html: "<i class='material-icons'>more_vert</i>"});
+                var button = $("<i/>", {class: "iconMenu fas fa-exchange-alt"});
                 
                 button.appendTo($(".playlists > h2"));
                 
-                var boards = $("<ul/>", {for: "playlist-lower-right", class: "mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect", 
+                var boards = $("<ul/>", {class: "mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect", 
                                 html: ""});
                  
                 $.each(data.values, function()
@@ -86,7 +85,7 @@
         showError : {
             value: function(data)
             {
-                document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: data.message});
+                showError(data);
             },
             enumerable: false
         }

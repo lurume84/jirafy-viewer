@@ -102,7 +102,7 @@
         showError : {
             value: function(data)
             {
-                document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: data.message});
+                showError(data);
             },
             enumerable: false
         }

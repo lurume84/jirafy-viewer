@@ -99,7 +99,7 @@
                 $("#login .progress").hide();
                 $("#login .submit").show();
                 
-                document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: data.message});
+                showError(data);
             },
             enumerable: false
         }
