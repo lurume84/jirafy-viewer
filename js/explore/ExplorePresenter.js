@@ -22,6 +22,8 @@
                         {
                             self.getSubtask(this.key);
                         });
+                        
+                        self.view.onIssue(data.fields.subtasks.length);
                     },
                     function(data)
                     {
@@ -40,8 +42,10 @@
                     {
                         if(g_status_map.closed[data.fields.status.id] == undefined)
                         {
-                            self.view.onSubtask(data);
+                            self.view.onClosedSubtask(data);
                         }
+                        
+                        self.view.onSubtask(data);
                     },
                     function(data)
                     {

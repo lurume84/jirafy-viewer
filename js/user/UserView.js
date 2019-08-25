@@ -79,24 +79,37 @@
                 
                 $(".main-view").load("js/user/template.html", function()
                 {
-                    var template = $(this);
+                    self.template = $(this);
                     
-                    self.row = template.find(".album-table .rows .flex-table-row").detach();
+                    self.progress = self.template.find(".worklog-progress");
+                    componentHandler.upgradeElement(self.progress[0]);
                     
-                    template.find(".inner-header .avatar img").attr("src", data.avatarUrls["48x48"]);
-                    template.find(".info .username").html(data.displayName);
+                    self.row = self.template.find(".album-table .rows .flex-table-row").detach();
                     
-                    template.find(".navigation .nav-item").click(function()
+                    self.template.find(".inner-header .avatar img").attr("src", data.avatarUrls["48x48"]);
+                    self.template.find(".info .username").html(data.displayName);
+                    
+                    self.template.find(".navigation .nav-item").click(function()
                     {
                         $(this).addClass("active").siblings().removeClass("active");
-                        template.find(".tabs > div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
+                        self.template.find(".tabs > div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
                         self.ps.update();
                     });
+                    
+                    var monday = moment().startOf('isoweek');
+                    
+                    self.template.find(".weekday").eq(0).find(".title").append(monday.format('D'));
+                    self.template.find(".weekday").eq(1).find(".title").append(monday.add(1, "days").format('D'));
+                    self.template.find(".weekday").eq(2).find(".title").append(monday.add(1, "days").format('D'));
+                    self.template.find(".weekday").eq(3).find(".title").append(monday.add(1, "days").format('D'));
+                    self.template.find(".weekday").eq(4).find(".title").append(monday.add(1, "days").format('D'));
                     
                     $.each(self.issues, function()
                     {
                         self.presenter.getIssue(data.key, this.key);
                     });
+                    
+                    self.days = [];
                     
                     self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
                     
@@ -167,9 +180,59 @@
             enumerable: false
         },
         onWorklog : {
-            value: function(data)
+            value: function(seconds, date)
             {
-                console.log(data);
+                var day = moment(date).day();
+                var weekday = this.template.find(".worklog .weekday").eq(day - 1);
+                
+                weekday.removeClass("disabled");
+                
+                if(weekday != undefined)
+                {
+                    var hours = weekday.find(".hours").html("");
+                    var rates = weekday.find(".rates").html("");
+                
+                    if(this.days[day] == undefined)
+                    {
+                        this.days[day] = 0;
+                    }
+                    
+                    this.days[day] += seconds;
+                    
+                    $("<span/>", {class: "", html: moment.utc(this.days[day] * 1000).format("H:mm")}).appendTo(hours);
+                    
+                    var rate = (this.days[day] / (60 * 60 * 8));
+                    
+                    if(rate < 1)
+                    {
+                        var trend = round((rate - 1) * 100, 2);
+                        $("<span/>", {class: "", html: "<span class='icomoon-trending-down red-fg'></span><span class='trend red-fg'>" + trend + "%</span> of target"}).appendTo(rates);
+                    }
+                    else
+                    {
+                        var trend = Math.abs(round((1 - rate) * 100, 2));
+                        $("<span/>", {class: "", html: "<span class='icomoon-trending-up green-fg'></span><span class='trend green-fg'>" + trend + "%</span> of target"}).appendTo(rates);
+                    }
+                }
+            },
+            enumerable: false
+        },
+        onWorklogModified : {
+            value: function(ids)
+            {
+                // this.max = ids.length;
+                // this.cnt = 0;
+            },
+            enumerable: false
+        },
+        onWorklogList : {
+            value: function()
+            {
+                // this.cnt++;
+                // this.progress[0].MaterialProgress.setProgress(((this.cnt + 1) / this.max) * 100);
+                // componentHandler.upgradeElement(this.progress[0]);
+                
+                this.progress.hide();
             },
             enumerable: false
         },

@@ -139,22 +139,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .albums-page .albums .album>figcaption .title, .albums-page .albums .album>figcaption .subtitle {
-    display: block;
-    color: inherit;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    height:20px;
 }
 
 .albums-page .albums .album>figcaption .subtitle {
     color: #898B8C !important;
     margin-top: 5px;
-}
-
-.albums-page .albums .album>figcaption .title, .albums-page .albums .album>figcaption .subtitle {
-    cursor: pointer;
-    display: block;
-    color: inherit;
-    height:20px;
 }
 
 .hover-overlay .overlay {
@@ -177,11 +172,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin: 0 35px;
     font-size: 1rem;
     color: #898B8C;
     text-transform: uppercase;
     border-bottom: 1px solid #2a2b30;
+    margin: 30px 0 35px 35px;
 }
 
 .albums-page .navigation>.nav-item.active {
@@ -201,4 +196,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     margin: 0 10px;
     padding: 5px 8px;
     cursor: pointer;
+}
+
+.albums-page .friends-progress
+{
+    position:absolute;
+    margin-top: -10px;
+    right: 10px;
+    width: 100px;
 }

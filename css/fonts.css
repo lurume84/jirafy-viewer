@@ -283,3 +283,14 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?tfpepm');
+  src:  url('../fonts/icomoon.eot?tfpepm#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?tfpepm') format('truetype'),
+    url('../fonts/icomoon.woff?tfpepm') format('woff'),
+    url('../fonts/icomoon.svg?tfpepm#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

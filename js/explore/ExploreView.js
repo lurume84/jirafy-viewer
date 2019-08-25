@@ -14,11 +14,11 @@
             {
                 var self = this;
 
-                var issues = [];
+                this.issues = [];
                 
                 $(".playlists-list").on("loaded", function (evt, data)
                 {             
-                    issues = data.issues;
+                    self.issues = data.issues;
                 });
                 
                 $(document).on("login", function ()
@@ -34,7 +34,13 @@
                         {
                             self.figure = $(this).find("figure.album").detach();
                             
-                            $.each(issues, function()
+                            self.progress = $(this).find(".friends-progress");
+                            componentHandler.upgradeElement(self.progress[0]);
+                            
+                            self.numTasks = 0;
+                            self.cnt = 0;
+                            
+                            $.each(self.issues, function()
                             {
                                 self.presenter.getIssue(this.key);
                             }); 
@@ -46,7 +52,7 @@
             },
             enumerable: false
         },
-        onSubtask : {
+        onClosedSubtask : {
             value: function(data)
             {
                 var cover = this.figure.clone();
@@ -74,6 +80,33 @@
                         var cnt = container.find("figure." + user.key + " .subtitle span");
                         cnt.html(parseInt(cnt.html(), 10) + 1);
                     }
+                }
+            },
+            enumerable: false
+        },
+        onIssue : {
+            value: function(length)
+            {
+                this.numTasks += length;
+            },
+            enumerable: false
+        },
+        onSubtask : {
+            value: function(data)
+            {
+                this.cnt++;
+                
+                componentHandler.upgradeElement(this.progress[0]);
+                
+                this.progress[0].MaterialProgress.setProgress(((this.cnt + 1) / this.numTasks) * 100);
+                    
+                if(this.cnt >= this.numTasks)
+                {
+                    this.progress.hide();
+                }
+                else
+                {
+                    this.progress.show();
                 }
             },
             enumerable: false

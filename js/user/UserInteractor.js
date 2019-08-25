@@ -133,12 +133,43 @@
         getWorklogModified : {
             value: function(beginDate, endDate, listener)
             {
+                var self = this;
 				$.ajax
 				({
 					type: "GET",
                     dataType: 'json',
                     contentType: 'application/json',
 					url: credentials.server + "/rest/api/2/worklog/updated?since=" + beginDate + "&until=" + endDate,
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+                        
+                        if(!json.lastPage)
+                        {
+                            self.getWorklogPage(json.nextPage, listener);
+                        }
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						listener.onError(jqxhr.responseJSON);
+					}
+				});
+            },
+            enumerable: false
+        },
+        getWorklogPage : {
+            value: function(path, listener)
+            {
+                var self = this;
+				$.ajax
+				({
+					type: "GET",
+                    dataType: 'json',
+                    contentType: 'application/json',
+					url: credentials.server + path,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
 					},

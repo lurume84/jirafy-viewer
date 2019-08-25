@@ -105,6 +105,8 @@
 
                         if(ids.length > 0)
                         {
+                            self.view.onWorklogModified(ids);
+                            
                             self.interactor.getWorklogList(ids, new viewer.listeners.BaseDecisionListener(
                                 function(data)
                                 {
@@ -112,9 +114,11 @@
                                     {
                                         if(value.author.key == userKey)
                                         {
-                                            self.view.onWorklog(value.timeSpentSeconds);
+                                            self.view.onWorklog(value.timeSpentSeconds, value.updated);
                                         }
                                     });
+                                    
+                                    self.view.onWorklogList(data);
                                 },
                                 function(data)
                                 {
