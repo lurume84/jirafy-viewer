@@ -145,7 +145,7 @@
     padding: 20px 35px;
 }
 
-.worklog 
+.worklog .weekday-container
 {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -166,6 +166,7 @@
     font-size: 2vw;
     line-height: 3vw;
     margin-bottom: 10px;
+    margin-left: 5px;
 }
 
 .worklog .weekday > figcaption .hours
@@ -239,4 +240,14 @@
 {
     background-color: #252528;
     background-image: none !important;
+}
+
+.worklog .countdown
+{
+    background-color: #252528;
+    margin: 14px;
+    height: 8vw;
+    line-height: 8vw;
+    text-align: center;
+    font-size: 4vw;
 }

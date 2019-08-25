@@ -110,6 +110,7 @@
                     });
                     
                     self.days = [];
+                    self.total = 0;
                     
                     self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
                     
@@ -198,6 +199,24 @@
                     }
                     
                     this.days[day] += seconds;
+                    
+                    this.total += seconds;
+                    
+                    var secondsLeft = (40 * 60 * 60) - this.total;
+                    
+                    var countdown = this.template.find(".countdown");
+                    
+                    if(secondsLeft > 0)
+                    {
+                        var time = moment.utc(secondsLeft * 1000);
+                        countdown.html(time.format("H") + " hours " + time.format("mm") + " minutes left");
+                    }
+                    else
+                    {
+                        countdown.html("Happy weekend!");
+                    }
+                    
+                    countdown.removeClass("hidden");
                     
                     $("<span/>", {class: "", html: moment.utc(this.days[day] * 1000).format("H:mm")}).appendTo(hours);
                     
