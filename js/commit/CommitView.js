@@ -117,9 +117,12 @@
                     var clone = this.template.clone();
                     
                     clone.find(".header .info .name").html(key);
-                    clone.find("#commit-hourspent").val(moment.utc(seconds*1000).format('H'));
-                    clone.find("#commit-minutespent").val(moment.utc(seconds*1000).format('m'));
-                    clone.find("#commit-secondspent").val(moment.utc(seconds*1000).format('s'));
+                    
+                    var time = secondsToHHMMSS(seconds);
+                    
+                    clone.find("#commit-hourspent").val(time.hours);
+                    clone.find("#commit-minutespent").val(time.minutes);
+                    clone.find("#commit-secondspent").val(time.seconds);
                     
                     clone.appendTo($(".commit-dialog .mdl-dialog__content").html(""));
                     

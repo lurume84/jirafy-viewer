@@ -112,7 +112,8 @@
                 
                 if(seconds != undefined)
                 {
-                    $(".player-controls .track-length").html(moment.utc(seconds*1000).format('HH:mm:ss'));
+                    var time = secondsToHHMMSS(seconds);
+                    $(".player-controls .track-length").html(time.hours + ":" + time.minutes + ":" + time.seconds);
                 }
                 
                 this.updateTime(this);
@@ -178,7 +179,9 @@
                     
                     diff += (self.uncommitted * 1000);
                     
-                    $(".player-controls .progress-container .elapsed-time").html(moment.utc(diff).format('HH:mm:ss'));
+                    var time = secondsToHHMMSS(diff);
+                    
+                    $(".player-controls .progress-container .elapsed-time").html(time.hours + ":" + time.minutes + ":" + time.seconds);
                     
                     var percent = diff / (self.task.fields.timetracking.remainingEstimateSeconds*1000) * 100;
                     if(percent > 100)

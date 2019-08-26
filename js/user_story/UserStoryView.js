@@ -34,7 +34,10 @@
                     $(this).find(".playlist-image img").attr("src", data.fields.project.avatarUrls["48x48"]);
                     $(this).find(".playlist-name").html(data.key);
                     $(this).find(".info-container:first-child .value").html(data.fields.summary);
-                    $(this).find(".info-container:nth-child(2) .value").html(data.fields.subtasks.length + " tasks / " + moment.utc(data.fields.aggregatetimeoriginalestimate*1000).format('HH:mm') + "h");
+                    
+                    var time = secondsToHHMMSS(data.fields.aggregatetimeoriginalestimate);
+                    
+                    $(this).find(".info-container:nth-child(2) .value").html(data.fields.subtasks.length + " tasks / " + time.hours + ":" + time.minutes + "h");
                     
                     data.fields.subtasks.length > 0 ? $(this).find(".no-tracks").hide() : $(this).find(".no-tracks").show();
                     
@@ -90,7 +93,9 @@
                     element.find(".album-name .ellipses").html(data.fields.assignee.displayName);
                 }
                 
-                element.find(".track-duration").html(moment.utc(data.fields.aggregatetimeoriginalestimate*1000).format('HH:mm'));
+                var time = secondsToHHMMSS(data.fields.aggregatetimeoriginalestimate);
+                
+                element.find(".track-duration").html(time.hours + ":" + time.minutes);
                 
                 if(g_status_map.closed[data.fields.status.id] == undefined)
                 { 

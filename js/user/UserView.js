@@ -143,7 +143,8 @@
                 
                 if(data.fields.timetracking != undefined && data.fields.timetracking.originalEstimateSeconds != undefined)
                 {
-                    clone.find(".track-duration").html(moment.utc(data.fields.timetracking.originalEstimateSeconds*1000).format('HH:mm'));
+                    var time = secondsToHHMMSS(data.fields.timetracking.originalEstimateSeconds);
+                    clone.find(".track-duration").html(time.hours + ":" + time.minutes);
                 }
                 
                 if(g_status_map.closed[data.fields.status.id] == undefined)
@@ -208,8 +209,8 @@
                     
                     if(secondsLeft > 0)
                     {
-                        var time = moment.utc(secondsLeft * 1000);
-                        countdown.html(time.format("H") + " hours " + time.format("mm") + " minutes left");
+                        var time = secondsToHHMMSS(secondsLeft);
+                        countdown.html(time.hours + " hours " + time.minutes + " minutes left");
                     }
                     else
                     {
@@ -218,7 +219,9 @@
                     
                     countdown.removeClass("hidden");
                     
-                    $("<span/>", {class: "", html: moment.utc(this.days[day] * 1000).format("H:mm")}).appendTo(hours);
+                    var time = secondsToHHMMSS(this.days[day]);
+                    
+                    $("<span/>", {class: "", html: time.hours + ":" + time.minutes}).appendTo(hours);
                     
                     var rate = (this.days[day] / (60 * 60 * 8));
                     

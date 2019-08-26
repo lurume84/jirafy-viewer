@@ -6,6 +6,12 @@ $(document).ready(function ()
     });
 });
 
+Number.prototype.pad = function(size) {
+  var s = String(this);
+  while (s.length < (size || 2)) {s = "0" + s;}
+  return s;
+}
+
 moment.locale('en', {
     relativeTime: {
       future: 'in %s',
@@ -76,4 +82,16 @@ function showError(data)
     }
     
     document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: message});
+}
+
+function secondsToHHMMSS(totalSeconds)
+{
+    var output = {};
+    
+    output.hours = Math.floor(totalSeconds / 3600).pad(2);
+    totalSeconds %= 3600;
+    output.minutes = Math.floor(totalSeconds / 60).pad(2);
+    output.seconds = round(totalSeconds % 60, 0).pad(2);
+    
+    return output;
 }

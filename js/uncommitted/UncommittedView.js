@@ -83,7 +83,10 @@
                             clone.find(".remove-track").hide();
                             clone.find(".track-added").hide();
                             clone.find(".track-name .ellipses").html(key);
-                            clone.find(".track-duration").html(moment.utc(seconds*1000).format('HH:mm:ss'));
+                            
+                            var time = secondsToHHMMSS(seconds);
+                            
+                            clone.find(".track-duration").html(time.hours + ":" + time.minutes + ":" + time.seconds);
                             
                             clone.appendTo($(".album-table"));
                             
