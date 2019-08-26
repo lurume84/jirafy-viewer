@@ -36,27 +36,6 @@ viewer.listeners = viewer.listeners || {};
             },
             enumerable: false
         },
-        getSprintPresenter : {
-            value: function()
-            {
-                return new viewer.presenters.SprintPresenter(this);
-            },
-            enumerable: false
-        },
-        getSprintView : {
-            value: function(presenter)
-            {
-                return new viewer.views.SprintView(presenter);
-            },
-            enumerable: false
-        },
-        getSprintInteractor : {
-            value: function()
-            {
-                return new viewer.interactors.SprintInteractor();
-            },
-            enumerable: false
-        },
         getUncommittedPresenter : {
             value: function()
             {

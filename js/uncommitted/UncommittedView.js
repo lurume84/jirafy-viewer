@@ -28,6 +28,11 @@
                     
                     self.presenter.load();
                 });
+                
+                $(".playlists-list").on("loaded", function (evt, data)
+                {             
+                    self.presenter.load();
+                });
             },
             enumerable: false
         },

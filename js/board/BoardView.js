@@ -20,7 +20,7 @@
                 
                 $(document).on("login", function ()
                 {    
-                    self.presenter.getBoards();
+                    self.presenter.getSettings();
                 });
             },
             enumerable: false
@@ -28,25 +28,39 @@
         load : {
             value: function(data)
             {
-                $("<div/>", {class: "title", html: data.values[0].name}).appendTo($(".playlists > h2"));
-                var button = $("<i/>", {class: "iconMenu fas fa-exchange-alt"});
+                var self = this;
                 
-                button.appendTo($(".playlists > h2"));
-                
-                var boards = $("<ul/>", {class: "mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect", 
-                                html: ""});
-                 
-                $.each(data.values, function()
+                $(".modal-dialog").load("js/board/template.html", function()
                 {
-                    $("<li/>", {class: "mdl-menu__item", html: this.name}).appendTo(boards);
+                    self.template = $(this);
+                    
+                    var board = self.template.find(".body li").detach();
+                    
+                    self.dialog = $(this).find(".board-dialog");
+                    
+                    self.dialog.find(".mdl-button.close").click(function()
+                    {
+                        self.dialog[0].close();
+                    });
+                   
+                    var boards = self.template.find(".body");
+                    
+                    $.each(data.values, function()
+                    {
+                        var clone = board.clone();
+                        clone.html(this.name);
+                        
+                        var id = this.id;
+                        var name = this.name;
+                        
+                        clone.click(function()
+                        {
+                            self.presenter.setSetting("board", {id: id, name: name});
+                        }).appendTo(boards);
+                    });
+                    
+                    self.dialog[0].showModal();
                 });
-                                
-                boards.appendTo($(".playlists > h2"));
-                
-                componentHandler.upgradeAllRegistered();
-                componentHandler.upgradeElements(boards[0]);
-                
-                this.presenter.getSprint(data.values[0].id);
             },
             enumerable: false
         },
@@ -59,6 +73,8 @@
                 {
                     self.presenter.getIssues(this.originBoardId, this.id);
                 });
+                
+                self.dialog[0].close();
             },
             enumerable: false
         },
@@ -79,6 +95,46 @@
                 this.ps.update();
                 
                 $(".playlists-list").trigger("loaded", data);
+            },
+            enumerable: false
+        },
+        changeBoard : {
+            value: function(id, name)
+            {
+                var self = this;
+                
+                $(".playlists > h2").html("");
+                
+                $("<i/>", {class: "iconMenu fas fa-exchange-alt"}).click(function()
+                {
+                   self.presenter.getBoards();
+                }).appendTo($(".playlists > h2"));
+                
+                $("<div/>", {class: "title", html: name}).appendTo($(".playlists > h2"));
+                $(".playlists-list").html("");
+                
+                this.presenter.getSprint(id);
+            },
+            enumerable: false
+        },
+        onLoadSettings : {
+            value: function(data)
+            {
+                if(data.board != undefined)
+                {
+                    this.changeBoard(data.board.id, data.board.name);
+                }
+                else
+                {
+                    self.presenter.getBoards();
+                }
+            },
+            enumerable: false
+        },
+        onSaveSetting : {
+            value: function(data)
+            {
+                this.changeBoard(data.board.id, data.board.name);
             },
             enumerable: false
         },
