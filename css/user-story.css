@@ -4,7 +4,7 @@
     max-width: 100pc;
     margin: 0 auto;
     position: relative;
-    padding: 20px 25px;
+    padding: 20px 0 20px 0;
 }
 
 .page-shadow 
@@ -18,7 +18,7 @@
     display: flex;
     margin-bottom: 20px;
     border-bottom: 1px solid #2a2b30;
-    padding-bottom: 10px;
+    padding: 0 25px 10px 25px;
 }
 
 .flex-table 
@@ -38,6 +38,12 @@
 {
     height: calc(100% - 132px);
     overflow-y: auto;
+}
+
+.album-table
+{
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .album-table .flex-table-row 
