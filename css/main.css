@@ -110,7 +110,7 @@
     border-color: #FFD740;
 }
 
-.left-panel .main-menu .menu-item:hover, .left-panel .playlists .menu-item:hover, .left-panel .search-bar .left-panel .your-music .menu-item:hover
+.left-panel .main-menu .menu-item:hover, .left-panel .playlists .menu-item:hover, .left-panel .search-bar, .left-panel .your-music .menu-item:hover
 {
     background-color:#323235
 }
