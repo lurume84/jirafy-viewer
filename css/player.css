@@ -350,15 +350,15 @@
     display:block
 }
 .left-panel .current-track>img{
-    width:55px;
-    height:55px;
+    width: 32px;
+    height: 32px;
     -webkit-flex:0 0 auto;
     -ms-flex:0 0 auto;
     flex:0 0 auto
 }
 .left-panel .current-track>.info{
     margin-left:10px;
-    max-width:calc(100% - 90px);
+    max-width:calc(100% - 65px);
     -webkit-flex:1 1 auto;
     -ms-flex:1 1 auto;
     flex:1 1 auto

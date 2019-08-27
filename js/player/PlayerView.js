@@ -89,7 +89,7 @@
                 if(this.task.fields.assignee != undefined)
                 {
                     $(".current-track img").show();
-                    $(".current-track img").attr("src", this.task.fields.assignee.avatarUrls["48x48"]);
+                    $(".current-track img").attr("src", this.task.fields.assignee.avatarUrls["32x32"]);
                 }
                 else
                 {
