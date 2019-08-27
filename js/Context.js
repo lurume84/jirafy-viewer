@@ -210,7 +210,28 @@ viewer.listeners = viewer.listeners || {};
                 return new viewer.interactors.SettingsInteractor();
             },
             enumerable: false
-        }
+        },
+        getNewTaskPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.NewTaskPresenter(this);
+            },
+            enumerable: false
+        },
+        getNewTaskView : {
+            value: function(presenter)
+            {
+                return new viewer.views.NewTaskView(presenter);
+            },
+            enumerable: false
+        },
+        getNewTaskInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.NewTaskInteractor();
+            },
+            enumerable: false
+        },
     });
 
     helpers.Context = Context;
@@ -229,6 +250,7 @@ viewer.listeners = viewer.listeners || {};
                     player: "getPlayerPresenter",
                     commit: "getCommitPresenter",
                     context_menu: "getContextMenuPresenter",
+                    new_task: "getNewTaskPresenter",
                 };
 
     function Initializer()
