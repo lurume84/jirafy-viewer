@@ -18,6 +18,7 @@
 					url: credentials.server + "/rest/api/latest/user?username=" + userName,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -25,7 +26,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -42,6 +46,7 @@
 					url: credentials.server + "/rest/api/latest/user?key=" + key,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -49,7 +54,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -66,6 +74,7 @@
 					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=subtasks",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -73,7 +82,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -90,6 +102,7 @@
 					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=assignee,status,issuetype,parent,summary,timetracking,progress",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -97,7 +110,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -117,6 +133,7 @@
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         xhr.setRequestHeader("Content-Type", "application/json;odata=verbose");
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -124,7 +141,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -142,6 +162,7 @@
 					url: credentials.server + "/rest/api/2/worklog/updated?since=" + beginDate + "&until=" + endDate,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -154,7 +175,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -172,6 +196,7 @@
 					url: credentials.server + path,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -179,7 +204,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },

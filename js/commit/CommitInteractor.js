@@ -18,6 +18,7 @@
 					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=parent,summary,issuetype,assignee",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -25,7 +26,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -42,6 +46,7 @@
 					url: credentials.server + "/rest/api/2/issue/" + key + "/transitions?expand=transitions.fields",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -49,7 +54,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },

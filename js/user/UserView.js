@@ -56,6 +56,8 @@
                 
                 $("<div/>", {class: "menu-item", html: "<i class=\"icon icon-calendar-1\"></i>This week"}).appendTo($(".your-music-list")).click(function()
                 {
+                    $.xhrPool.abortAll();
+                    
                     $(".menu-item").removeClass("active");
                     $(this).addClass("active");
                     
@@ -64,6 +66,8 @@
                 
                 $("<div/>", {class: "menu-item", html: "<i class=\"icon icon-users\"></i>Assigned to me"}).appendTo($(".your-music-list")).click(function()
                 {
+                    $.xhrPool.abortAll();
+                    
                     $(".menu-item").removeClass("active");
                     $(this).addClass("active");
                     

@@ -81,6 +81,8 @@
                 
                     us.click(function()
                     {
+                        $.xhrPool.abortAll();
+                        
                         $(".menu-item").removeClass("active");
                         $(this).addClass("active");
                     }) 

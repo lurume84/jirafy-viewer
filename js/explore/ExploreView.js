@@ -27,6 +27,8 @@
                     menu.appendTo($(".left-panel-inner .content .main-menu"));
                     menu.click(function()
                     {
+                        $.xhrPool.abortAll();
+                        
                         $(".menu-item").removeClass("active");
                         $(this).addClass("active");
                 

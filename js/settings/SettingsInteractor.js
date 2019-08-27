@@ -16,6 +16,10 @@
 					url: "/data/settings.json",
 					dataType: 'json',
                     contentType: 'application/json',
+                    beforeSend: function(xhr)
+                    {
+                        $.xhrPool.push(xhr);
+					},
 					success: function (json)
 					{
 						listener.onSuccess(json);
@@ -45,13 +49,20 @@
 					data: JSON.stringify(data),
 					dataType: 'json',
                     contentType: 'application/json',
+                    beforeSend: function(xhr)
+                    {
+                        $.xhrPool.push(xhr);
+					},
 					success: function (json)
 					{
 						listener.onSuccess(json);
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },

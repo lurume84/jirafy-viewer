@@ -18,6 +18,7 @@
 					url: credentials.server + "/rest/agile/1.0/board",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -25,7 +26,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+                        if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -42,6 +46,7 @@
 					url: credentials.server + "/rest/agile/1.0/board/" + board + "/sprint?maxResults=1000&state=active",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -49,7 +54,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -77,6 +85,7 @@
 					url: credentials.server + "/rest/agile/1.0/board/" + board + "/sprint/" + sprint + "/issue?maxResults=1000&fields=summary,issuetype&jql=" + jql,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -84,7 +93,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },

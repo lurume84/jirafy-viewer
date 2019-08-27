@@ -1,3 +1,19 @@
+$.xhrPool = [];
+$.xhrPool.abortAll = function() {
+    $(this).each(function(idx, jqXHR) {
+        jqXHR.abort();
+    });
+};
+
+$.ajaxSetup({
+    complete: function(jqXHR) {
+        var index = $.xhrPool.indexOf(jqXHR);
+        if (index > -1) {
+            $.xhrPool.splice(index, 1);
+        }
+    }
+});
+
 $(document).ready(function ()
 {             
     $("#toolbar-window .close").click(function()

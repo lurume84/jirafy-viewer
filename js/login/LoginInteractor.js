@@ -17,13 +17,20 @@
 					data: JSON.stringify({server: server, token: btoa(user + ":" + password)}),
 					dataType: 'json',
                     contentType: 'application/json',
+                    beforeSend: function(xhr)
+                    {
+                        $.xhrPool.push(xhr);
+					},
 					success: function (json)
 					{
 						listener.onSuccess(json);
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -38,13 +45,20 @@
 					url: "/data/token.json",
 					dataType: 'json',
                     contentType: 'application/json',
+                    beforeSend: function(xhr)
+                    {
+                        $.xhrPool.push(xhr);
+					},
 					success: function (json)
 					{
 						listener.onSuccess(json);
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
@@ -61,6 +75,7 @@
 					url: credentials.server + "/rest/auth/1/session",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -68,7 +83,10 @@
 					},
 					error: function (jqxhr, textStatus, error)
 					{
-						listener.onError(jqxhr.responseJSON);
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
 					}
 				});
             },
