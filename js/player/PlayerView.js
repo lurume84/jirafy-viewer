@@ -179,7 +179,7 @@
                     
                     diff += (self.uncommitted * 1000);
                     
-                    var time = secondsToHHMMSS(diff);
+                    var time = secondsToHHMMSS(diff / 1000);
                     
                     $(".player-controls .progress-container .elapsed-time").html(time.hours + ":" + time.minutes + ":" + time.seconds);
                     
