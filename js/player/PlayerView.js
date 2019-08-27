@@ -153,7 +153,10 @@
         stop : {
             value: function()
             {
-                this.pause();
+                if(this.startDate != undefined)
+                {
+                    this.pause();
+                }
                 
                 if(this.commit)
                 {
