@@ -6,11 +6,7 @@
     color: #cbcbcc;
     max-height: 30vh;
     width: 100%;
-    overflow-y: hidden;
-}
-
-.board-dialog .body:hover {
-  overflow-y: auto !important;
+    overflow-y: auto;
 }
 
 .board-dialog .header{
