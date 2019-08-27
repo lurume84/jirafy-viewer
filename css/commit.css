@@ -3,9 +3,14 @@
     width: 760px;
 }
 
-.commit-task
+.commit-dialog .mdl-dialog__content .body
 {
-    /* height: 300px; */
+    position: relative;
+    width: 100%;
+    height: 300px;
+    max-height: 50vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
   
 .commit-dialog .header 

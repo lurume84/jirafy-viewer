@@ -143,6 +143,9 @@
 
 .public-user-profile .content .tabs {
     padding: 20px 35px;
+    height: calc(100% - 340px);
+    position: relative;
+    overflow-y: auto;
 }
 
 .worklog .weekday-container
@@ -223,6 +226,12 @@
     justify-content: center;
 }
 
+.worklog
+{
+    width:100%;
+    height:100%;
+}
+
 .worklog .weekday.disabled
 {
     opacity: 0.2;
@@ -234,6 +243,7 @@
     margin-top: -30px;
     right: 10px;
     width: 100px;
+    height:13px;
 }
 
 .bufferbar.bar.bar2

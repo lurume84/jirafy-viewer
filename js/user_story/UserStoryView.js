@@ -79,8 +79,6 @@
                         
                         self.presenter.getIssue(clone, task.key);
                     });
-                    
-                    var ps = new PerfectScrollbar($(".playlist-page")[0], { suppressScrollX: true });
                 });
             },
             enumerable: false

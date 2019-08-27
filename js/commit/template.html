@@ -9,57 +9,59 @@
             </div>
             <div class="commit-progress mdl-progress mdl-js-progress"></div>
         </div>
-        <div class="info">
-            <div class="left">
-                <label class="label">Time spent</label>
-                <input id="commit-hourspent" type="text" class="timespent"/> <span>h</span>
-                <input id="commit-minutespent" type="text" class="timespent"/> <span>m</span>
-                <input id="commit-secondspent" type="text" class="timespent"/> <span>s</span>
+        <div class="body">
+            <div class="info">
+                <div class="left">
+                    <label class="label">Time spent</label>
+                    <input id="commit-hourspent" type="text" class="timespent"/> <span>h</span>
+                    <input id="commit-minutespent" type="text" class="timespent"/> <span>m</span>
+                    <input id="commit-secondspent" type="text" class="timespent"/> <span>s</span>
+                </div>
+                <div class="right">
+                    <label class="label">Remaining estimate</label>
+                    <div class="radio">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                          <input type="radio" id="option-1" class="mdl-radio__button" name="adjustEstimate" value="auto" checked>
+                          <span class="mdl-radio__label">Automatic</span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                          <input type="radio" id="option-2" class="mdl-radio__button" name="adjustEstimate" value="leave">
+                          <span class="mdl-radio__label">Existing</span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                          <input type="radio" id="option-3" class="mdl-radio__button" name="adjustEstimate" value="new">
+                          <span class="mdl-radio__label labelInput">Set to <input class="text short-field" name="newEstimate" type="text" disabled="disabled" placeholder="4h 15m"></span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+                          <input type="radio" id="option-4" class="mdl-radio__button" name="adjustEstimate" value="manual">
+                          <span class="mdl-radio__label labelInput">Reduce by <input class="text short-field" name="adjustmentAmount" type="text" disabled="disabled" placeholder="4h 15m"></span>
+                        </label>
+                    </div>
+                </div>
+            </div> 
+            <div class="info info2">
+                <label class="label" for="commit-description">Work description</label>
+                <textarea id="commit-description" name="description" placeholder="Describe the work done"></textarea>
             </div>
-            <div class="right">
-                <label class="label">Remaining estimate</label>
-                <div class="radio">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                      <input type="radio" id="option-1" class="mdl-radio__button" name="adjustEstimate" value="auto" checked>
-                      <span class="mdl-radio__label">Automatic</span>
-                    </label>
+            <div class="info3">
+                <label class="label" for="commit-description">Transition</label>
+                <div class="radios">
+                    <div class="radio">
+                        <label class="transitionRadio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="transition-0">
+                          <input type="radio" id="transition-0" class="mdl-radio__button" name="transition" value="none" checked>
+                          <span class="mdl-radio__label">None</span>
+                        </label>
+                    </div>
                 </div>
-                <div class="radio">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="adjustEstimate" value="leave">
-                      <span class="mdl-radio__label">Existing</span>
-                    </label>
+                <div class="fields">
+                    
                 </div>
-                <div class="radio">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="adjustEstimate" value="new">
-                      <span class="mdl-radio__label labelInput">Set to <input class="text short-field" name="newEstimate" type="text" disabled="disabled" placeholder="4h 15m"></span>
-                    </label>
-                </div>
-                <div class="radio">
-                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
-                      <input type="radio" id="option-4" class="mdl-radio__button" name="adjustEstimate" value="manual">
-                      <span class="mdl-radio__label labelInput">Reduce by <input class="text short-field" name="adjustmentAmount" type="text" disabled="disabled" placeholder="4h 15m"></span>
-                    </label>
-                </div>
-            </div>
-        </div> 
-        <div class="info info2">
-            <label class="label" for="commit-description">Work description</label>
-            <textarea id="commit-description" name="description" placeholder="Describe the work done"></textarea>
-        </div>
-        <div class="info3">
-            <label class="label" for="commit-description">Transition</label>
-            <div class="radios">
-                <div class="radio">
-                    <label class="transitionRadio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="transition-0">
-                      <input type="radio" id="transition-0" class="mdl-radio__button" name="transition" value="none" checked>
-                      <span class="mdl-radio__label">None</span>
-                    </label>
-                </div>
-            </div>
-            <div class="fields">
-                
             </div>
         </div>
       </div>

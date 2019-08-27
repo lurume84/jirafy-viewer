@@ -1,0 +1,5 @@
+.uncommited-table-container
+{
+    height: calc(100% - 68px);
+    overflow-y: auto;
+}

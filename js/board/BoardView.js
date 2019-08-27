@@ -13,10 +13,6 @@
             value: function()
             {
                 var self = this;
-
-                this.ps = new PerfectScrollbar($(".content")[0], {    
-                    suppressScrollX: true
-                });
                 
                 $(document).on("login", function ()
                 {    
@@ -73,8 +69,6 @@
                 {
                     self.presenter.getIssues(this.originBoardId, this.id);
                 });
-                
-                self.dialog[0].close();
             },
             enumerable: false
         },
@@ -91,8 +85,6 @@
                         $(this).addClass("active");
                     }) 
                 });
-                
-                this.ps.update();
                 
                 $(".playlists-list").trigger("loaded", data);
             },
@@ -135,6 +127,7 @@
             value: function(data)
             {
                 this.changeBoard(data.board.id, data.board.name);
+                this.dialog[0].close();
             },
             enumerable: false
         },

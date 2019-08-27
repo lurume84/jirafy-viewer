@@ -93,7 +93,6 @@
                     {
                         $(this).addClass("active").siblings().removeClass("active");
                         self.template.find(".tabs > div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
-                        self.ps.update();
                     });
                     
                     var monday = moment().startOf('isoweek');
@@ -113,8 +112,6 @@
                     self.total = 0;
                     
                     self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
-                    
-                    self.ps = new PerfectScrollbar($(".public-user-profile")[0], { suppressScrollX: true });
                     
                     if(tab > 0)
                     {
@@ -176,8 +173,6 @@
                 clone.appendTo($(".album-table .rows"));
                 
                 clone.find(".track-index").html(clone.index() + 1);
-                
-                this.ps.update();
             },
             enumerable: false
         },

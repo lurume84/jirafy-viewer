@@ -25,8 +25,6 @@
                 
                         self.presenter.load();
                     });
-                    
-                    self.presenter.load();
                 });
                 
                 $(".playlists-list").on("loaded", function (evt, data)
@@ -114,8 +112,6 @@
                             self.presenter.getIssue(clone, key);
                             index++;
                         }
-                        
-                        var ps = new PerfectScrollbar($(".playlist-page")[0], { suppressScrollX: true });
                     }
                 });
             },

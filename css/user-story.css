@@ -34,6 +34,12 @@
     display: -ms-flexbox;
 }
 
+.album-table-container
+{
+    height: calc(100% - 132px);
+    overflow-y: auto;
+}
+
 .album-table .flex-table-row 
 {
     height: 42px;

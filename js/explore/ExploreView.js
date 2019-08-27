@@ -44,8 +44,6 @@
                             {
                                 self.presenter.getIssue(this.key);
                             }); 
-                            
-                            var ps = new PerfectScrollbar($(".albums-page")[0], { suppressScrollX: true });
                         });
                     });
                 });

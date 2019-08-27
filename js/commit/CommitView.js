@@ -132,8 +132,6 @@
                         clone.find("input[name=adjustmentAmount]").prop("disabled", this.value != "manual");
                     });
                     
-                    this.scrolllbar = new PerfectScrollbar(clone[0], { suppressScrollX: true });
-                    this.scrolllbar.update();
                     componentHandler.upgradeAllRegistered();
                     
                     $(".commit-dialog .header .commit-progress")[0].MaterialProgress.setProgress(((this.index + 1) / elements.length) * 100);
