@@ -81,6 +81,7 @@
                 }
                 
                 $(".current-track").removeClass("hidden");
+                $(".new-playlist").addClass("hidden");
                 
                 $(".current-track .track-name").html(this.task.fields.summary);
                 $(".current-track .artist-name .artists").html(this.task.key);
@@ -163,7 +164,10 @@
                 
                 this.task = undefined;
                 this.uncommitted = 0;
+                
                 $(".current-track").addClass("hidden");
+                $(".new-playlist").removeClass("hidden");
+                
                 $(".player-controls .progress-container .elapsed-time").html("00:00:00");
                 $(".player-controls .track-length").html("00:00:00");
                 $(".player-controls .progress-bar .elapsed").css("width", "0%");
