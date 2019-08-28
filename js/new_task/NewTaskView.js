@@ -42,6 +42,8 @@
                     {
                         self.dialog = $(this).find(".new-task-dialog");
                     
+                        componentHandler.upgradeAllRegistered();
+                    
                         self.dialog.find(".mdl-button.close").click(function()
                         {
                             self.dialog[0].close();
@@ -81,6 +83,8 @@
                 {
                     var us = this.issues[index];
                 
+                    this.issuetype = us.fields.issuetype.id;
+                
                     this.presenter.getIssueType(us.fields.issuetype.id);
                 }
             },
@@ -117,7 +121,10 @@
                                     {
                                         var sel = $(this).find("option:selected");
                                         
-                                        self.presenter.setSetting("defaultTask", sel.val());
+                                        self.settings["issuetype"][self.issuetype].default = sel.val();
+                                        
+                                        self.presenter.setSetting("issuetype", self.settings["issuetype"]);
+                                        
                                         self.onClickIssueType(sel.index());
                                     }).appendTo($(self.dialog.find(".body .issuetype")));
                     
@@ -186,18 +193,37 @@
                             $("<input/>", {class: "fieldNewTask timetracking", name: "remainingEstimate", placeholder: "Remaining Estimate"}).appendTo(fields);
                         break;
                     }
+                    
+                    if(this.schema.system == "worklog")
+                    {
+                        $("<input/>", {class: "fieldNewTask", name: "TimeSpent", placeholder: "Time spent"}).appendTo(worklog);
+                    }
                 });
+                
+                
             },
             enumerable: false
         },
         onLoadSettings : {
             value: function(data)
             {
+                this.settings = data;
+                
+                if(this.settings["issuetype"] == undefined)
+                {
+                    this.settings["issuetype"] = {};
+                }
+                
+                if(this.settings["issuetype"][this.issuetype] == undefined)
+                {
+                    this.settings["issuetype"][this.issuetype] = {};
+                }
+                
                 var first;
                 
-                if(data.defaultTask != undefined)
+                if(this.settings["issuetype"][this.issuetype].default != undefined)
                 {
-                    first = this.dialog.find("select[name=issuetype] option[value=" + data.defaultTask + "]");
+                    first = this.dialog.find("select[name=issuetype] option[value=" + this.settings["issuetype"][this.issuetype].default + "]");
                 }
                 else
                 {

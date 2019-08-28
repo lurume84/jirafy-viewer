@@ -124,3 +124,14 @@
 {
     height: 20px;
 }
+
+.new-task-dialog .transition
+{
+    padding: 15px;
+    font-size:.9rem;
+}
+
+.new-task-dialog .transition .mdl-switch__label
+{
+    color:#898B8C;
+}
