@@ -109,6 +109,12 @@
     padding-top: 10px;
 }
 
+.new-task-dialog .timetracking
+{
+    float: left;
+    width: calc(50% - 10px);
+}
+
 .new-task-dialog .body > div > label.label img
 {
     margin-right: 5px;

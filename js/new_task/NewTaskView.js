@@ -148,6 +148,7 @@
                 var issueType = this.issuetypes[index];
                 
                 var fields = this.dialog.find(".body .fields").html("");
+                var worklog = this.dialog.find(".body .worklog").html("");
                 
                 $.each(issueType.fields, function()
                 {
@@ -176,9 +177,17 @@
                                     $("<option/>", {value: this.id, text: this.value}).appendTo(dropdown);
                                 });
                             }
+                            break;
+                        case "timetracking":
+                            $("<input/>", {class: "fieldNewTask timetracking", name: "originalEstimate", placeholder: "Original Estimate"}).appendTo(fields);
+                            $("<input/>", {class: "fieldNewTask timetracking", name: "remainingEstimate", placeholder: "Remaining Estimate"}).appendTo(fields);
                         break;
                     }
                     
+                    if(this.schema.system == "worklog")
+                    {
+                        $("<input/>", {class: "fieldNewTask", name: "TimeSpent", placeholder: "Time spent"}).appendTo(worklog);
+                    }
                 });
             },
             enumerable: false

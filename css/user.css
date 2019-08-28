@@ -148,20 +148,20 @@
     overflow-y: auto;
 }
 
-.worklog .weekday-container
+.public-user-profile .worklog .weekday-container
 {
     display: -webkit-flex;
     display: -ms-flexbox;
 }
 
-.worklog .weekday
+.public-user-profile .worklog .weekday
 {
     width: 20%;
     margin: 0;
     padding: 14px;
 }
 
-.worklog .weekday > figcaption .title
+.public-user-profile .worklog .weekday > figcaption .title
 {
     color: inherit;
     width: 100%;
@@ -172,7 +172,7 @@
     margin-left: 5px;
 }
 
-.worklog .weekday > figcaption .hours
+.public-user-profile .worklog .weekday > figcaption .hours
 {
     color: #fff;
     width: 100%;
@@ -182,7 +182,7 @@
     line-height: 5vw;
 }
 
-.worklog .weekday > figcaption .rates
+.public-user-profile .worklog .weekday > figcaption .rates
 {
     width:100%;
     height:1vw;
@@ -208,7 +208,7 @@
     
 }
 
-.worklog .weekday > figcaption 
+.public-user-profile .worklog .weekday > figcaption 
 {
     background-color: #252528;
     padding: 10px;
@@ -226,18 +226,18 @@
     justify-content: center;
 }
 
-.worklog
+.public-user-profile .worklog
 {
     width:100%;
     height:100%;
 }
 
-.worklog .weekday.disabled
+.public-user-profile .worklog .weekday.disabled
 {
     opacity: 0.2;
 }
 
-.worklog .worklog-progress
+.public-user-profile .worklog .worklog-progress
 {
     position:absolute;
     margin-top: -30px;
@@ -252,7 +252,7 @@
     background-image: none !important;
 }
 
-.worklog .countdown
+.public-user-profile .worklog .countdown
 {
     background-color: #252528;
     margin: 14px;
