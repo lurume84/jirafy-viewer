@@ -115,7 +115,10 @@
                     
                     var dropdown = $("<select/>", {class: "dropdown", name: "issuetype"}).change(function()
                                     {
-                                        self.onClickIssueType($(this).find("option:selected").index());
+                                        var sel = $(this).find("option:selected");
+                                        
+                                        self.presenter.setSetting("defaultTask", sel.val());
+                                        self.onClickIssueType(sel.index());
                                     }).appendTo($(self.dialog.find(".body .issuetype")));
                     
                     self.issuetypes = [];
@@ -131,11 +134,7 @@
                         }
                     });
                     
-                    var first = dropdown.find('option:first-child');
-                        
-                    first.attr("selected", "selected");
-                    
-                    self.onClickIssueType(first.index());
+                    self.presenter.getSettings();
                 }
             },
             enumerable: false
@@ -149,6 +148,10 @@
                 
                 var fields = this.dialog.find(".body .fields").html("");
                 var worklog = this.dialog.find(".body .worklog").html("");
+                
+                var label = $("<label/>", {class: "label", html: issueType.name});
+                $("<img/>", {src: issueType.iconUrl}).prependTo(label);
+                label.appendTo(this.dialog.find(".body .issuetypeLabel").html(""));
                 
                 $.each(issueType.fields, function()
                 {
@@ -189,6 +192,33 @@
                         $("<input/>", {class: "fieldNewTask", name: "TimeSpent", placeholder: "Time spent"}).appendTo(worklog);
                     }
                 });
+            },
+            enumerable: false
+        },
+        onLoadSettings : {
+            value: function(data)
+            {
+                var first;
+                
+                if(data.defaultTask != undefined)
+                {
+                    first = this.dialog.find("select[name=issuetype] option[value=" + data.defaultTask + "]");
+                }
+                else
+                {
+                    first = this.dialog.find("select[name=issuetype] option:first-child");
+                }
+                        
+                first.attr("selected", "selected");
+                
+                this.onClickIssueType(first.index());
+            },
+            enumerable: false
+        },
+        onSaveSetting : {
+            value: function(data)
+            {
+                
             },
             enumerable: false
         },

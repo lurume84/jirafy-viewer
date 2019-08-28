@@ -119,3 +119,8 @@
 {
     margin-right: 5px;
 }
+
+.new-task-dialog .fieldsLabel
+{
+    height: 20px;
+}

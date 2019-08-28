@@ -3,7 +3,7 @@
     function BoardPresenter(Context)
     {
         this.interactor = Context.getBoardInteractor();
-       this.interactorSettings = Context.getSettingsInteractor();
+        this.interactorSettings = Context.getSettingsInteractor();
        
         this.view = Context.getBoardView(this);
         this.view.init();
