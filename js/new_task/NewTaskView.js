@@ -59,7 +59,7 @@
                         
                         $.each(self.issues, function()
                         {
-                            $("<option/>", {value: this.key, text: this.fields.summary}).appendTo(dropdown);
+                            $("<option/>", {value: this.key, name: "parent", text: this.fields.summary}).appendTo(dropdown);
                         });
                         
                         var last = dropdown.find('option:last-child');
@@ -93,7 +93,7 @@
                 
                 var label = $("<label/>", {class: "label", html: data.name});
                 $("<img/>", {src: data.iconUrl}).prependTo(label);
-                label.appendTo(issuetype);
+                label.appendTo(this.dialog.find(".body .user-story > .label").html(""));
                 
                 this.presenter.getIssueProject(this.issues[0].key);
             },
@@ -113,10 +113,14 @@
                 {
                     var self = this;
                     
-                    var dropdown = $("<select/>", {class: "dropdown"});
-                    dropdown.appendTo($(self.dialog.find(".body .issuetype")));
+                    var dropdown = $("<select/>", {class: "dropdown", name: "issuetype"}).change(function()
+                                    {
+                                        self.onClickIssueType($(this).find("option:selected").index());
+                                    }).appendTo($(self.dialog.find(".body .issuetype")));
                     
                     self.issuetypes = [];
+                    
+                    self.project = data.projects[0].key;
                     
                     $.each(data.projects[0].issuetypes, function()
                     {
@@ -126,7 +130,56 @@
                             $("<option/>", {value: this.id, text: this.name}).appendTo(dropdown);
                         }
                     });
+                    
+                    var first = dropdown.find('option:first-child');
+                        
+                    first.attr("selected", "selected");
+                    
+                    self.onClickIssueType(first.index());
                 }
+            },
+            enumerable: false
+        },
+        onClickIssueType : {
+            value: function(index)
+            {
+                var self = this;
+                
+                var issueType = this.issuetypes[index];
+                
+                var fields = this.dialog.find(".body .fields").html("");
+                
+                $.each(issueType.fields, function()
+                {
+                    switch(this.schema.type)
+                    {
+                        case "string":
+                            if(this.allowedValues == undefined)
+                            {
+                                if(this.schema.system == "description" || this.schema.custom == "com.atlassian.jira.plugin.system.customfieldtypes:textarea")
+                                {
+                                    $("<textarea/>", {class: "fieldNewTask", name: this.name, placeholder: this.name}).appendTo(fields);
+                                }
+                                else
+                                {
+                                    $("<input/>", {class: "fieldNewTask", name: this.name, placeholder: this.name}).appendTo(fields);
+                                }
+                            }
+                            else
+                            {
+                                var dropdown = $("<select/>", {class: "dropdown", name: this.name}).appendTo($(self.dialog.find(".body .fields")));
+                                
+                                $("<option/>", {disabled: "disabled", selected: "selected", text: this.name}).appendTo(dropdown);
+                                
+                                $.each(this.allowedValues, function()
+                                {
+                                    $("<option/>", {value: this.id, text: this.value}).appendTo(dropdown);
+                                });
+                            }
+                        break;
+                    }
+                    
+                });
             },
             enumerable: false
         },
