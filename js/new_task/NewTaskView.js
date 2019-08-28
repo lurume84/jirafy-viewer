@@ -17,16 +17,16 @@
                 $(".playlists-list").on("loaded", function (evt, data)
                 {
                     self.issues = data.issues;
-                    
-                    $(".new-playlist").click(function()
-                    {
-                        self.onNewTask();
-                    });
-                    
-                    $(".current-track .add-track").click(function()
-                    {
-                        self.onNewTask();
-                    });
+                });
+                
+                $(".new-playlist").click(function()
+                {
+                    self.onNewTask();
+                });
+                
+                $(".current-track .add-track").click(function()
+                {
+                    self.onNewTask();
                 });
             },
             enumerable: false
