@@ -2,10 +2,10 @@
 {
     function SetupPresenter(Context)
     {
-        this.interactor = Context.getBoardInteractor();
+        this.interactor = Context.getSetupInteractor();
         this.interactorSettings = Context.getSettingsInteractor();
        
-        this.view = Context.getBoardView(this);
+        this.view = Context.getSetupView(this);
         this.view.init();
     }
 
