@@ -52,24 +52,25 @@
             },
             enumerable: false
         },
-        onClosedSubtask : {
+        onOpenedSubtask : {
             value: function(data)
             {
-                var cover = this.figure.clone();
-                
                 var user = data.fields.assignee;
                 
                 if(user != undefined)
                 {
                     var container = $(".albums-page").find("section.albums");
+                    var cover;
                     
                     if(container.find("figure." + user.key).length == 0)
                     {
+                        cover = this.figure.clone();
+                        
                         cover.addClass(user.key);
                         cover.find(".image img").attr("src", user.avatarUrls["48x48"]);
                         cover.find(".title").html(user.displayName);
                         cover.find(".subtitle span").html("1");
-                        cover.click(function()
+                        cover.find("figcaption").click(function()
                         {
                            $(document).trigger("user_profile", user.key); 
                         });
@@ -77,9 +78,21 @@
                     }
                     else
                     {
-                        var cnt = container.find("figure." + user.key + " .subtitle span");
-                        cnt.html(parseInt(cnt.html(), 10) + 1);
+                        cover = container.find("figure." + user.key + " .subtitle span");
+                        cover.html(parseInt(cnt.html(), 10) + 1);
                     }
+                    
+                    var li = $("<li/>", {});
+                    li.appendTo(cover.find(".tasks"));
+                    
+                    li.contextmenu(function(evt) 
+                    {
+                        $(document).trigger("context-menu", {key: data.key, pos: {left:evt.pageX,top:evt.pageY}});
+                        evt.preventDefault();
+                    });
+                    
+                    $("<img/>", {src: data.fields.issuetype.iconUrl}).appendTo(li);
+                    $("<span/>", {html: data.key + " " + data.fields.summary}).appendTo(li);
                 }
             },
             enumerable: false

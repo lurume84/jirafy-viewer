@@ -104,8 +104,8 @@ figure {
 
 #songs-page, .albums-page .albums .album>.image, .hover-overlay .image {
     position: relative;
-    width: 48px;
-    height: 48px;
+    width: 49px;
+    height: 49px;
     float: left;
     background-color: #252528;
     padding: 8px;
@@ -150,6 +150,36 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .albums-page .albums .album>figcaption .subtitle {
     color: #898B8C !important;
     margin-top: 5px;
+}
+
+.albums-page .albums .album .tasks {
+    width: 100%;
+    max-width:100%;
+    max-height: 70px;
+    background-color: #252528;
+    border-top:1px solid #323235;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.albums-page .albums .album .tasks li {
+    list-style: none;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    padding: 5px;
+    width:100%;
+    height:20px;
+}
+
+.albums-page .albums .album .tasks li img {
+    margin-right: 5px;
+    -webkit-filter: grayscale(100%);
+    opacity: 0.8;
+}
+
+.albums-page .albums .album .tasks li:hover{
+    background-color:#323235;
+    color:#cbcbcc;
 }
 
 .hover-overlay .overlay {

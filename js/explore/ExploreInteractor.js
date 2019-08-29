@@ -43,7 +43,7 @@
 					type: "GET",
                     dataType: 'json',
                     contentType: 'application/json',
-					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=assignee,status",
+					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=assignee,status,summary,issuetype",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         $.xhrPool.push(xhr);

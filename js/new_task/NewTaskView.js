@@ -121,7 +121,7 @@
                                     {
                                         var sel = $(this).find("option:selected");
                                         
-                                        self.settings["issuetype"][self.issuetype].default = sel.val();
+                                        self.settings["issuetype"][self.issuetype].default_subtask = sel.val();
                                         
                                         self.presenter.setSetting("issuetype", self.settings["issuetype"]);
                                         
@@ -221,9 +221,9 @@
                 
                 var first;
                 
-                if(this.settings["issuetype"][this.issuetype].default != undefined)
+                if(this.settings["issuetype"][this.issuetype].default_subtask != undefined)
                 {
-                    first = this.dialog.find("select[name=issuetype] option[value=" + this.settings["issuetype"][this.issuetype].default + "]");
+                    first = this.dialog.find("select[name=issuetype] option[value=" + this.settings["issuetype"][this.issuetype].default_subtask + "]");
                 }
                 else
                 {

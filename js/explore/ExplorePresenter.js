@@ -42,7 +42,7 @@
                     {
                         if(g_status_map.closed[data.fields.status.id] == undefined)
                         {
-                            self.view.onClosedSubtask(data);
+                            self.view.onOpenedSubtask(data);
                         }
                         
                         self.view.onSubtask(data);
