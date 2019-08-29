@@ -55,6 +55,7 @@
         onOpenedSubtask : {
             value: function(data)
             {
+                var self = this;
                 var user = data.fields.assignee;
                 
                 if(user != undefined)
@@ -79,7 +80,7 @@
                     else
                     {
                         cover = container.find("figure." + user.key + " .subtitle span");
-                        cover.html(parseInt(cnt.html(), 10) + 1);
+                        cover.html(parseInt(cover.html(), 10) + 1);
                     }
                     
                     var li = $("<li/>", {});
