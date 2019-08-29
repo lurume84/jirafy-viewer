@@ -1,6 +1,6 @@
 (function(presenters)
 {
-    function BoardPresenter(Context)
+    function SetupPresenter(Context)
     {
         this.interactor = Context.getBoardInteractor();
         this.interactorSettings = Context.getSettingsInteractor();
@@ -9,25 +9,8 @@
         this.view.init();
     }
 
-    Object.defineProperties(BoardPresenter.prototype,
+    Object.defineProperties(SetupPresenter.prototype,
     {
-        getIssueTypes : {
-            value: function()
-            {
-                var self = this;
-                    
-                this.interactor.getIssueTypes(new viewer.listeners.BaseDecisionListener(
-                    function(data)
-                    {
-                        self.view.onIssueTypes(data);
-                    },
-                    function(data)
-                    {
-                        self.view.showError(data);
-                    }));
-            },
-            enumerable: false
-        },
         getBoards : {
             value: function()
             {
@@ -63,11 +46,11 @@
             enumerable: false
         },
         getIssues : {
-            value: function(board, sprint, issuetypes)
+            value: function(board, sprint)
             {
                 var self = this;
                 
-                this.interactor.getIssues(board, sprint, issuetypes, new viewer.listeners.BaseDecisionListener(
+                this.interactor.getIssues(board, sprint, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
                         self.view.onIssues(data);
@@ -124,5 +107,5 @@
         }
     });
 
-    presenters.BoardPresenter = BoardPresenter;
+    presenters.SetupPresenter = SetupPresenter;
 })(viewer.presenters);

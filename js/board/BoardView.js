@@ -16,7 +16,7 @@
                 
                 $(document).on("login", function ()
                 {    
-                    self.presenter.getSettings();
+                    self.presenter.getIssueTypes();
                 });
             },
             enumerable: false
@@ -67,7 +67,7 @@
                 
                 $.each(data.values, function()
                 {
-                    self.presenter.getIssues(this.originBoardId, this.id);
+                    self.presenter.getIssues(this.originBoardId, this.id, self.issueTypes);
                 });
             },
             enumerable: false
@@ -130,6 +130,14 @@
             {
                 this.changeBoard(data.board.id, data.board.name);
                 this.dialog[0].close();
+            },
+            enumerable: false
+        },
+        onIssueTypes : {
+            value: function(data)
+            {
+                this.issueTypes = data;
+                this.presenter.getSettings();
             },
             enumerable: false
         },

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/board.css">
         <link rel="stylesheet" href="css/uncommitted.css">
         <link rel="stylesheet" href="css/new-task.css">
+        <link rel="stylesheet" href="css/setup.css">
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/mdl/material.min.js"></script>
         <script src="lib/moment.min.js"></script>
@@ -55,6 +56,9 @@
         <script src="js/new_task/NewTaskView.js"></script>
         <script src="js/new_task/NewTaskInteractor.js"></script>
         <script src="js/new_task/NewTaskPresenter.js"></script>
+        <script src="js/setup/SetupView.js"></script>
+        <script src="js/setup/SetupInteractor.js"></script>
+        <script src="js/setup/SetupPresenter.js"></script>
         <title>Jirafy Viewer</title>
     </head>
     <body>
@@ -143,8 +147,13 @@
     </body>
     <script>
         var credentials = {server: "", user: "", password: ""};
-        var g_issuetype_map = {user_story: {"9": "us", "10302" : "offsprint_us"}, task: {"12": "qa", "5": "dev", "10402": "at", "10303": "offsprint_task"}};
-        var g_status_map = {closed: {"10028": "resolved", "6": "closed", "10035": "rejected"}};
+        var g_issuetype_map = {
+                                user_story: {"9": "us", "10302" : "offsprint_us"}
+                              };
+                                
+        var g_status_map = {
+                            closed: {"10028": "resolved", "6": "closed", "10035": "rejected"}
+                           };
         
         var initializeConfig = initializeConfig || [];
         initializeConfig.push("login");
@@ -157,7 +166,8 @@
         initializeConfig.push("commit");
         initializeConfig.push("context_menu");
         initializeConfig.push("new_task");
-
+        initializeConfig.push("setup");
+        
         (function()
         {
             new viewer.helpers.Initializer();

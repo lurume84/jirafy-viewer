@@ -232,6 +232,27 @@ viewer.listeners = viewer.listeners || {};
             },
             enumerable: false
         },
+        getSetupPresenter : {
+            value: function()
+            {
+                return new viewer.presenters.SetupPresenter(this);
+            },
+            enumerable: false
+        },
+        getSetupView : {
+            value: function(presenter)
+            {
+                return new viewer.views.SetupView(presenter);
+            },
+            enumerable: false
+        },
+        getSetupInteractor : {
+            value: function()
+            {
+                return new viewer.interactors.SetupInteractor();
+            },
+            enumerable: false
+        }
     });
 
     helpers.Context = Context;
@@ -251,6 +272,7 @@ viewer.listeners = viewer.listeners || {};
                     commit: "getCommitPresenter",
                     context_menu: "getContextMenuPresenter",
                     new_task: "getNewTaskPresenter",
+                    setup: "getSetupPresenter"
                 };
 
     function Initializer()
