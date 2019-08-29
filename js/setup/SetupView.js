@@ -16,7 +16,7 @@
                 
                 $(document).on("login", function ()
                 {    
-                    self.presenter.getSettings();
+                    //self.presenter.getSettings();
                 });
             },
             enumerable: false

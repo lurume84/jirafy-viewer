@@ -79,8 +79,10 @@
                     }
                     else
                     {
-                        cover = container.find("figure." + user.key + " .subtitle span");
-                        cover.html(parseInt(cover.html(), 10) + 1);
+                        cover = container.find("figure." + user.key);
+                        
+                        var subtitle = cover.find(".subtitle span");
+                        subtitle.html(parseInt(subtitle.html(), 10) + 1);
                     }
                     
                     var li = $("<li/>", {});
