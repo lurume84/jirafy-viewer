@@ -131,6 +131,7 @@
                                     issues.push(this.key);
                                 });
                                 
+                                self.progress.show();
                                 self.presenter.getIssues(data.key, issues);
                             break;
                         }

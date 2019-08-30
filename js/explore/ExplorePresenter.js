@@ -28,20 +28,15 @@
             },
             enumerable: false
         },
-        getIssue : {
-            value: function(key)
+        getIssues : {
+            value: function(issues)
             {
                 var self = this;
                     
-                this.interactor.getIssue(key, new viewer.listeners.BaseDecisionListener(
+                this.interactor.getIssues(issues, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        $.each(data.fields.subtasks, function()
-                        {
-                            self.getSubtask(this.key);
-                        });
-                        
-                        self.view.onIssue(data.fields.subtasks.length);
+                        self.view.onSubtasks(data);
                     },
                     function(data)
                     {
@@ -50,23 +45,6 @@
             },
             enumerable: false
         },
-        getSubtask : {
-            value: function(key)
-            {
-                var self = this;
-                    
-                this.interactor.getSubtask(key, new viewer.listeners.BaseDecisionListener(
-                    function(data)
-                    {
-                        self.view.onSubtask(data);
-                    },
-                    function(data)
-                    {
-                        self.view.showError(data);
-                    }));
-            },
-            enumerable: false
-        }
     });
 
     presenters.ExplorePresenter = ExplorePresenter;

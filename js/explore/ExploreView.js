@@ -38,7 +38,7 @@
             },
             enumerable: false
         },
-        loadProfile : {
+        onSubtask : {
             value: function(data)
             {
                 var self = this;
@@ -86,32 +86,17 @@
             },
             enumerable: false
         },
-        onIssue : {
-            value: function(length)
-            {
-                this.numTasks += length;
-            },
-            enumerable: false
-        },
-        onSubtask : {
+        onSubtasks : {
             value: function(data)
             {
-                this.loadProfile(data);
+                var self = this;
                 
-                this.cnt++;
-                
-                componentHandler.upgradeElement(this.progress[0]);
-                
-                this.progress[0].MaterialProgress.setProgress(((this.cnt + 1) / this.numTasks) * 100);
-                    
-                if(this.cnt >= this.numTasks)
+                $.each(data.issues, function()
                 {
-                    this.progress.hide();
-                }
-                else
-                {
-                    this.progress.show();
-                }
+                    self.onSubtask(this);
+                });
+                
+                this.progress.hide();
             },
             enumerable: false
         },
@@ -129,13 +114,13 @@
                     self.progress = $(this).find(".friends-progress");
                     componentHandler.upgradeElement(self.progress[0]);
                     
-                    self.numTasks = 0;
-                    self.cnt = 0;
-                    
+                    var issues = [];
                     $.each(self.issues, function()
                     {
-                        self.presenter.getIssue(this.key);
-                    }); 
+                        issues.push(this.key);
+                    });
+                    
+                    self.presenter.getIssues(issues);
                 });
             },
             enumerable: false
