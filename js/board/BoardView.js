@@ -14,7 +14,7 @@
             {
                 var self = this;
                 
-                $(document).on("login", function ()
+                $(document).on("setup_complete", function ()
                 {    
                     self.presenter.getIssueTypes();
                 });
@@ -120,7 +120,7 @@
                 }
                 else
                 {
-                    self.presenter.getBoards();
+                    this.presenter.getBoards();
                 }
             },
             enumerable: false

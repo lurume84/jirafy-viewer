@@ -32,21 +32,7 @@
                         $(".menu-item").removeClass("active");
                         $(this).addClass("active");
                 
-                        $(".main-view").load("js/explore/template.html", function()
-                        {
-                            self.figure = $(this).find("figure.album").detach();
-                            
-                            self.progress = $(this).find(".friends-progress");
-                            componentHandler.upgradeElement(self.progress[0]);
-                            
-                            self.numTasks = 0;
-                            self.cnt = 0;
-                            
-                            $.each(self.issues, function()
-                            {
-                                self.presenter.getIssue(this.key);
-                            }); 
-                        });
+                        self.presenter.getSettings();
                     });
                 });
             },
@@ -78,7 +64,7 @@
                         cover.appendTo(container);
                     }
                     
-                    if(g_status_map.closed[data.fields.status.id] == undefined)
+                    if(this.settings.status.closed.find(function(x){return x == data.fields.status.id;}) == undefined)
                     {
                         cover = container.find("figure." + user.key);
                         
@@ -126,6 +112,31 @@
                 {
                     this.progress.show();
                 }
+            },
+            enumerable: false
+        },
+        onLoadSettings : {
+            value: function(data)
+            {
+                this.settings = data;
+                
+                var self = this;
+                
+                $(".main-view").load("js/explore/template.html", function()
+                {
+                    self.figure = $(this).find("figure.album").detach();
+                    
+                    self.progress = $(this).find(".friends-progress");
+                    componentHandler.upgradeElement(self.progress[0]);
+                    
+                    self.numTasks = 0;
+                    self.cnt = 0;
+                    
+                    $.each(self.issues, function()
+                    {
+                        self.presenter.getIssue(this.key);
+                    }); 
+                });
             },
             enumerable: false
         },

@@ -3,13 +3,31 @@
     function UserPresenter(Context)
     {
         this.interactor = Context.getUserInteractor();
-       
+        this.interactorSettings = Context.getSettingsInteractor();
+        
         this.view = Context.getUserView(this);
         this.view.init();
     }
 
     Object.defineProperties(UserPresenter.prototype,
     {
+        getSettings : {
+            value: function(key, tab = 0)
+            {
+                var self = this;
+                    
+                this.interactorSettings.load(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onLoadSettings(key, tab, data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         getUser : {
             value: function(userName)
             {

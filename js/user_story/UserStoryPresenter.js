@@ -3,6 +3,7 @@
     function UserStoryPresenter(Context)
     {
         this.interactor = Context.getUserStoryInteractor();
+        this.interactorSettings = Context.getSettingsInteractor();
        
         this.view = Context.getUserStoryView(this);
         this.view.init();
@@ -10,6 +11,23 @@
 
     Object.defineProperties(UserStoryPresenter.prototype,
     {
+        getSettings : {
+            value: function(id)
+            {
+                var self = this;
+                    
+                this.interactorSettings.load(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onLoadSettings(id, data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         load : {
             value: function(key)
             {

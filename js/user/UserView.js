@@ -28,7 +28,8 @@
                 
                 $(document).on("user_profile", function (evt, key)
                 {
-                    self.presenter.getProfile(key);
+                    $.xhrPool.abortAll();
+                    self.presenter.getSettings(key);
                 });
             },
             enumerable: false
@@ -44,7 +45,7 @@
                     $(".menu-item").removeClass("active");
                     $(".current-user-widget").addClass("active");
                     
-                    self.presenter.getProfile(data.key);
+                    self.presenter.getSettings(data.key);
                 }).appendTo($(".current-user-widget"));
                 
                 var container = $("<div/>", {class: "dropdown-container", dropdown: ""});
@@ -61,7 +62,7 @@
                     $(".menu-item").removeClass("active");
                     $(this).addClass("active");
                     
-                    self.presenter.getProfile(data.key);
+                    self.presenter.getSettings(data.key);
                 });
                 
                 $("<div/>", {class: "menu-item", html: "<i class=\"icon icon-users\"></i>Assigned to me"}).appendTo($(".your-music-list")).click(function()
@@ -71,7 +72,7 @@
                     $(".menu-item").removeClass("active");
                     $(this).addClass("active");
                     
-                    self.presenter.getProfile(data.key, 1);
+                    self.presenter.getSettings(data.key, 1);
                 });
             },
             enumerable: false
@@ -148,7 +149,7 @@
                     clone.find(".track-duration").html(time.hours + ":" + time.minutes);
                 }
                 
-                if(g_status_map.closed[data.fields.status.id] == undefined)
+                if(this.settings.status.closed.find(function(x){return x == data.fields.status.id;}) == undefined)
                 {
                     $("<div/>", {class: "popularity-widget", html: "<div class=\"popularity-fill\" style=\"width: " + data.fields.progress.percent + "%\"></div>"}).appendTo(clone.find(".popularity"));
                 }
@@ -254,6 +255,14 @@
                 // componentHandler.upgradeElement(this.progress[0]);
                 
                 this.progress.hide();
+            },
+            enumerable: false
+        },
+        onLoadSettings : {
+            value: function(key, tab, data)
+            {
+                this.settings = data;
+                this.presenter.getProfile(key, tab);
             },
             enumerable: false
         },

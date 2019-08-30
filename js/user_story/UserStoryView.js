@@ -18,7 +18,7 @@
                 {             
                     $(".playlists-list > div").click(function()
                     {
-                        self.presenter.load($(this).attr("us-id"));
+                        self.presenter.getSettings($(this).attr("us-id"));
                     });
                 });
             },
@@ -58,7 +58,7 @@
                         clone.find(".artist-name .artists").html(task.fields.summary);
                         $("<img/>", {src: task.fields.issuetype.iconUrl}).appendTo(clone.find(".add-remove-track"));
                         
-                        if(g_status_map.closed[task.fields.status.id] != undefined)
+                        if(self.settings.status.closed.find(function(x){return x == task.fields.status.id;}) != undefined)
                         {
                             $("<i/>", {class: "icon icon-ok"}).appendTo(clone.find(".popularity"));
                             clone.addClass("complete");
@@ -95,10 +95,18 @@
                 
                 element.find(".track-duration").html(time.hours + ":" + time.minutes);
                 
-                if(g_status_map.closed[data.fields.status.id] == undefined)
+                if(this.settings.status.closed.find(function(x){return x == data.fields.status.id;}) == undefined)
                 { 
                     $("<div/>", {class: "popularity-widget", html: "<div class=\"popularity-fill\" style=\"width: " + data.fields.aggregateprogress.percent + "%\"></div>"}).appendTo(element.find(".popularity"));
                 }
+            },
+            enumerable: false
+        },
+        onLoadSettings : {
+            value: function(id, data)
+            {
+                this.settings = data;
+                this.presenter.load(id);
             },
             enumerable: false
         },
