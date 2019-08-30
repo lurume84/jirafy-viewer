@@ -52,7 +52,7 @@
             },
             enumerable: false
         },
-        onOpenedSubtask : {
+        loadProfile : {
             value: function(data)
             {
                 var self = this;
@@ -70,32 +70,32 @@
                         cover.addClass(user.key);
                         cover.find(".image img").attr("src", user.avatarUrls["48x48"]);
                         cover.find(".title").html(user.displayName);
-                        cover.find(".subtitle span").html("1");
+                        cover.find(".subtitle span").html("0");
                         cover.find("figcaption").click(function()
                         {
                            $(document).trigger("user_profile", user.key); 
                         });
                         cover.appendTo(container);
                     }
-                    else
+                    
+                    if(g_status_map.closed[data.fields.status.id] == undefined)
                     {
                         cover = container.find("figure." + user.key);
                         
                         var subtitle = cover.find(".subtitle span");
                         subtitle.html(parseInt(subtitle.html(), 10) + 1);
+                        var li = $("<li/>", {});
+                        li.appendTo(cover.find(".tasks"));
+                        
+                        li.contextmenu(function(evt) 
+                        {
+                            $(document).trigger("context-menu", {key: data.key, pos: {left:evt.pageX,top:evt.pageY}});
+                            evt.preventDefault();
+                        });
+                        
+                        $("<img/>", {src: data.fields.issuetype.iconUrl}).appendTo(li);
+                        $("<span/>", {html: data.key + " " + data.fields.summary}).appendTo(li);
                     }
-                    
-                    var li = $("<li/>", {});
-                    li.appendTo(cover.find(".tasks"));
-                    
-                    li.contextmenu(function(evt) 
-                    {
-                        $(document).trigger("context-menu", {key: data.key, pos: {left:evt.pageX,top:evt.pageY}});
-                        evt.preventDefault();
-                    });
-                    
-                    $("<img/>", {src: data.fields.issuetype.iconUrl}).appendTo(li);
-                    $("<span/>", {html: data.key + " " + data.fields.summary}).appendTo(li);
                 }
             },
             enumerable: false
@@ -110,6 +110,8 @@
         onSubtask : {
             value: function(data)
             {
+                this.loadProfile(data);
+                
                 this.cnt++;
                 
                 componentHandler.upgradeElement(this.progress[0]);

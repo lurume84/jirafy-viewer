@@ -15,7 +15,7 @@
 					type: "GET",
                     dataType: 'json',
                     contentType: 'application/json',
-					url: credentials.server + "/rest/api/2/issue/" + key + "",
+					url: credentials.server + "/rest/api/2/issue/" + key + "?expand=transitions",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         $.xhrPool.push(xhr);

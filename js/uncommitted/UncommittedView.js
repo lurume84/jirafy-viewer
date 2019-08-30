@@ -30,7 +30,8 @@
                 });
                 
                 $(".playlists-list").on("loaded", function (evt, data)
-                {             
+                {   
+                    $(".menu-item").removeClass("active").eq(0).addClass("active");
                     self.presenter.load();
                 });
             },

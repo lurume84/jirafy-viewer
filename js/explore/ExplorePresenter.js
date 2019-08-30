@@ -40,11 +40,6 @@
                 this.interactor.getSubtask(key, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        if(g_status_map.closed[data.fields.status.id] == undefined)
-                        {
-                            self.view.onOpenedSubtask(data);
-                        }
-                        
                         self.view.onSubtask(data);
                     },
                     function(data)
