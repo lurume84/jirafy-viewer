@@ -63,62 +63,6 @@
             },
             enumerable: false
         },
-        getIssue : {
-            value: function(key, listener)
-            {
-				$.ajax
-				({
-					type: "GET",
-                    dataType: 'json',
-                    contentType: 'application/json',
-					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=subtasks",
-                    beforeSend: function(xhr) { 
-						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
-                        $.xhrPool.push(xhr);
-					},
-					success: function (json)
-					{
-						listener.onSuccess(json);
-					},
-					error: function (jqxhr, textStatus, error)
-					{
-						if(textStatus != "abort")
-                        {
-                            listener.onError(jqxhr.responseJSON);
-                        }
-					}
-				});
-            },
-            enumerable: false
-        },
-        getSubtask : {
-            value: function(key, listener)
-            {
-				$.ajax
-				({
-					type: "GET",
-                    dataType: 'json',
-                    contentType: 'application/json',
-					url: credentials.server + "/rest/api/2/issue/" + key + "?fields=assignee,status,issuetype,parent,summary,timetracking,progress",
-                    beforeSend: function(xhr) { 
-						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
-                        $.xhrPool.push(xhr);
-					},
-					success: function (json)
-					{
-						listener.onSuccess(json);
-					},
-					error: function (jqxhr, textStatus, error)
-					{
-						if(textStatus != "abort")
-                        {
-                            listener.onError(jqxhr.responseJSON);
-                        }
-					}
-				});
-            },
-            enumerable: false
-        },
         getWorklogList : {
             value: function(ids, listener)
             {
@@ -194,6 +138,34 @@
                     dataType: 'json',
                     contentType: 'application/json',
 					url: credentials.server + path,
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
+					}
+				});
+            },
+            enumerable: false
+        },
+        getIssues : {
+            value: function(user, issues, listener)
+            {
+                $.ajax
+				({
+					type: "GET",
+                    dataType: 'json',
+                    contentType: 'application/json',
+					url: credentials.server + "/rest/api/2/search/?jql=assignee = " + user + " AND parent in (" + issues.toString() + ")+order+by+updated&fields=assignee,status,issuetype,parent,summary,timetracking,progress&maxResults=1000",
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         $.xhrPool.push(xhr);

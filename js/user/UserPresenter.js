@@ -62,40 +62,15 @@
             },
             enumerable: false
         },
-        getIssue : {
-            value: function(userKey, issueKey)
+        getIssues : {
+            value: function(user, issues)
             {
                 var self = this;
                     
-                this.interactor.getIssue(issueKey, new viewer.listeners.BaseDecisionListener(
+                this.interactor.getIssues(user, issues, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        $.each(data.fields.subtasks, function()
-                        {
-                            self.getSubtask(userKey, this.key);
-                        });
-                    },
-                    function(data)
-                    {
-                        self.view.showError(data);
-                    }));
-            },
-            enumerable: false
-        },
-        getSubtask : {
-            value: function(userKey, issueKey)
-            {
-                var self = this;
-                    
-                this.interactor.getSubtask(issueKey, new viewer.listeners.BaseDecisionListener(
-                    function(data)
-                    {
-                        var assignee = data.fields.assignee;
-                        
-                        if(assignee != undefined && assignee.key == userKey)
-                        {
-                            self.view.onSubtask(data);
-                        }
+                        self.view.onSubtasks(data);
                     },
                     function(data)
                     {

@@ -99,33 +99,59 @@
                     
                     self.template.find(".navigation .nav-item").click(function()
                     {
+                        $.xhrPool.abortAll();
+                        
+                        self.progress.show();
+                        
                         $(this).addClass("active").siblings().removeClass("active");
                         self.template.find(".tabs > div").eq($(this).index()).removeClass("hidden").siblings().addClass("hidden");
+                        
+                        switch($(this).index())
+                        {
+                            case 0:
+                                var monday = moment().startOf('isoweek');
+                    
+                                self.template.find(".weekday").eq(0).find(".title span").html(monday.format('D'));
+                                self.template.find(".weekday").eq(1).find(".title span").html(monday.add(1, "days").format('D'));
+                                self.template.find(".weekday").eq(2).find(".title span").html(monday.add(1, "days").format('D'));
+                                self.template.find(".weekday").eq(3).find(".title span").html(monday.add(1, "days").format('D'));
+                                self.template.find(".weekday").eq(4).find(".title span").html(monday.add(1, "days").format('D'));
+                                
+                                self.days = [];
+                                self.total = 0;
+                                
+                                self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
+                                break;
+                            case 1:
+                                self.template.find(".tasks .rows").html("");
+                                
+                                var issues = [];
+                                $.each(self.issues, function()
+                                {
+                                    issues.push(this.key);
+                                });
+                                
+                                self.presenter.getIssues(data.key, issues);
+                            break;
+                        }
                     });
                     
-                    var monday = moment().startOf('isoweek');
-                    
-                    self.template.find(".weekday").eq(0).find(".title").append(monday.format('D'));
-                    self.template.find(".weekday").eq(1).find(".title").append(monday.add(1, "days").format('D'));
-                    self.template.find(".weekday").eq(2).find(".title").append(monday.add(1, "days").format('D'));
-                    self.template.find(".weekday").eq(3).find(".title").append(monday.add(1, "days").format('D'));
-                    self.template.find(".weekday").eq(4).find(".title").append(monday.add(1, "days").format('D'));
-                    
-                    $.each(self.issues, function()
-                    {
-                        self.presenter.getIssue(data.key, this.key);
-                    });
-                    
-                    self.days = [];
-                    self.total = 0;
-                    
-                    self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
-                    
-                    if(tab > 0)
-                    {
-                        $(this).find(".navigation .nav-item").eq(tab).trigger("click");
-                    }
+                    $(this).find(".navigation .nav-item").eq(tab).trigger("click");
                 }); 
+            },
+            enumerable: false
+        },
+        onSubtasks : {
+            value: function(data)
+            {
+                var self = this;
+                
+                $.each(data.issues, function()
+                {
+                    self.onSubtask(this);
+                });
+                
+                this.progress.hide();
             },
             enumerable: false
         },
