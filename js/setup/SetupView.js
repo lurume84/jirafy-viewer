@@ -18,6 +18,11 @@
                 {
                     self.presenter.getSettings();
                 });
+                
+                $(document).on("setup", function ()
+                {
+                    self.presenter.getSettings(true);
+                });
             },
             enumerable: false
         },
@@ -61,7 +66,8 @@
                             self.showSelection();
                         }).appendTo(issuetypes);
                         
-                        if(this.statusCategory.key == "done")
+                        if((self.settings.status.closed.length == 0 && this.statusCategory.key == "done") || 
+                        self.settings.status.closed.find(function(x){return x == id;}) != undefined)
                         {
                             clone.trigger("click");
                         }
@@ -76,6 +82,8 @@
             value: function(data)
             {
                 var self = this;
+                
+                this.settings.status.closed = [];
                 
                 $.each($(this.dialog).find(".body .setup-menu-item.active"), function()
                 {
@@ -95,24 +103,30 @@
             enumerable: false
         },
         onLoadSettings : {
-            value: function(data)
+            value: function(force, data)
             {
                 this.settings = data;
                 
-                if(this.settings.status == undefined)
+                if(force)
                 {
-                    this.settings.status = {};
-                }
-                
-                if(this.settings.status.closed == undefined)
-                {
-                    this.settings.status.closed = [];
-                    
                     this.presenter.getIssueStatus();
                 }
                 else
                 {
-                    $(document).trigger("setup_complete");
+                    if(this.settings.status == undefined)
+                    {
+                        this.settings.status = {};
+                    }
+                    
+                    if(this.settings.status.closed == undefined)
+                    {
+                        this.settings.status.closed = [];
+                        this.presenter.getIssueStatus();
+                    }
+                    else
+                    {
+                        $(document).trigger("setup_complete");
+                    }
                 }
             },
             enumerable: false

@@ -29,14 +29,14 @@
             enumerable: false
         },
         getSettings : {
-            value: function()
+            value: function(force = false)
             {
                 var self = this;
                     
                 this.interactorSettings.load(new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        self.view.onLoadSettings(data);
+                        self.view.onLoadSettings(force, data);
                     },
                     function(data)
                     {

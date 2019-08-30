@@ -49,10 +49,13 @@
                 }).appendTo($(".current-user-widget"));
                 
                 var container = $("<div/>", {class: "dropdown-container", dropdown: ""});
-                
-                $("<i/>", {class: "icon icon-cog edit-profile dropdown-trigger"}).appendTo(container);
+            
+                $("<i/>", {class: "icon icon-cog edit-profile dropdown-trigger"}).click(function()
+                {
+                    $(document).trigger("setup");
+                }).appendTo(container);
                 $("<div/>", {class: "dropdown-menu hidden"}).appendTo(container);
-                
+            
                 container.appendTo($(".current-user-widget"));
                 
                 $("<div/>", {class: "menu-item", html: "<i class=\"icon icon-calendar-1\"></i>This week"}).appendTo($(".your-music-list")).click(function()
