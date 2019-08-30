@@ -12,14 +12,14 @@
     Object.defineProperties(UserStoryPresenter.prototype,
     {
         getSettings : {
-            value: function(id)
+            value: function(index)
             {
                 var self = this;
                     
                 this.interactorSettings.load(new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        self.view.onLoadSettings(id, data);
+                        self.view.onLoadSettings(index, data);
                     },
                     function(data)
                     {
@@ -45,15 +45,15 @@
             },
             enumerable: false
         },
-        getIssue : {
-            value: function(element, key)
+        getIssues : {
+            value: function(key)
             {
                 var self = this;
                     
-                this.interactor.load(key, new viewer.listeners.BaseDecisionListener(
+                this.interactor.getIssues(key, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        self.view.onIssue(element, data);
+                        self.view.onIssues(data);
                     },
                     function(data)
                     {
