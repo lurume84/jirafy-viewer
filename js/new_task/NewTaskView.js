@@ -41,6 +41,7 @@
                     $(".modal-dialog").load("js/new_task/template.html", function()
                     {
                         self.dialog = $(this).find(".new-task-dialog");
+                        self.templateDialog = $(this).find(".task-template-dialog");
                     
                         componentHandler.upgradeAllRegistered();
                     
@@ -52,6 +53,11 @@
                         self.dialog.find(".mdl-button.confirm").click(function()
                         {
                             self.commit();
+                        });
+                        
+                        self.dialog.find(".mdl-button.save").click(function()
+                        {
+                            self.save();
                         });
                         
                         var dropdown = self.dialog.find(".dropdown").html("").change(function(element, element2)
@@ -160,6 +166,8 @@
                 $("<img/>", {src: issueType.iconUrl}).prependTo(label);
                 label.appendTo(this.dialog.find(".body .issuetypeLabel").html(""));
                 
+                this.presenter.getUserDefs();
+                
                 $.each(issueType.fields, function()
                 {
                     switch(this.schema.type)
@@ -178,7 +186,7 @@
                             }
                             else
                             {
-                                var dropdown = $("<select/>", {class: "dropdown", name: this.name}).appendTo($(self.dialog.find(".body .fields")));
+                                var dropdown = $("<select/>", {class: "dropdown fieldNewTask", name: this.name}).appendTo(fields);
                                 
                                 $("<option/>", {disabled: "disabled", selected: "selected", text: this.name}).appendTo(dropdown);
                                 
@@ -199,8 +207,6 @@
                         $("<input/>", {class: "fieldNewTask", name: "TimeSpent", placeholder: "Time spent"}).appendTo(worklog);
                     }
                 });
-                
-                
             },
             enumerable: false
         },
@@ -245,6 +251,100 @@
         },
         commit : {
             value: function()
+            {
+                
+            },
+            enumerable: false
+        },
+        save : {
+            value: function()
+            {
+                var self = this
+                var task = {fields: [], autoclose: self.dialog.find(".mdl-switch__input").prop("checked")};
+                
+                var templateDialog = this.templateDialog;
+                
+                templateDialog[0].showModal();
+                
+                templateDialog.find(".mdl-button.close").click(function()
+                {
+                    templateDialog[0].close();
+                });
+            
+                templateDialog.find(".mdl-button.confirm").click(function()
+                {
+                    $.each(self.dialog.find(".fieldNewTask"), function()
+                    {
+                        task.fields.push($(this).val());
+                    });
+                    
+                    var name = templateDialog.find(".body input").val();
+                    
+                    self.userdefs.tasks[self.issuetype][name] = task;
+                    
+                    self.presenter.setUserDefs("tasks", self.userdefs.tasks);
+                    
+                    templateDialog[0].close();
+                });
+                
+                
+            },
+            enumerable: false
+        },
+        onLoadUserDefs : {
+            value: function(data)
+            {
+                var self = this;
+                
+                if(data.tasks != undefined)
+                {
+                    if(data.tasks[this.issuetype] != undefined)
+                    {
+                        var dropdown = $("<select/>", {class: "dropdown", name: "template"}).appendTo(this.dialog.find(".body .template"));
+                                        
+                        $("<option/>", {disabled: "disabled", selected: "selected", text: "Load user-defined"}).appendTo(dropdown);
+                        
+                        $.each(data.tasks[this.issuetype], function(name)
+                        {
+                            $("<option/>", {value: name, text: name}).appendTo(dropdown);
+                        });
+                        
+                        dropdown.change(function()
+                        {
+                            var selection = $(this).find("option:selected").val();
+                         
+                            var task = data.tasks[self.issuetype][selection];
+                         
+                            $.each(self.dialog.find(".fieldNewTask"), function(index)
+                            {
+                                $(this).val(task.fields[index]);
+                            });
+                            
+                            var autoclose = self.dialog.find(".mdl-switch__input");
+                            
+                            if(autoclose.prop("checked") != task.autoclose)
+                            {
+                                autoclose.trigger("click");
+                            }
+                        });
+                    }
+                    else
+                    {
+                        data.tasks[this.issuetype] = {};
+                    }
+                }
+                else
+                {
+                    data.tasks = {};
+                    data.tasks[this.issuetype] = {};
+                }
+                
+                this.userdefs = data;
+            },
+            enumerable: false
+        },
+        onSaveUserDefs : {
+            value: function(data)
             {
                 
             },

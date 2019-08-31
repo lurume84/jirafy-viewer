@@ -12,6 +12,7 @@
             </div>
             <div class="issuetypeLabel"></div>
             <div class="issuetype"></div>
+            <div class="template"></div>
             <div class="fieldsLabel">
                 <label class="label"></label>
             </div>
@@ -20,13 +21,31 @@
             <div class="transition">
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="transit-switch">
                   <input type="checkbox" id="transit-switch" class="mdl-switch__input">
-                  <span class="mdl-switch__label">Force transition</span>
+                  <span class="mdl-switch__label">Close task</span>
                 </label>
             </div>
         </div>
     </div>
     <div class="mdl-dialog__actions mdl-dialog__actions">
+        <button type="button" class="mdl-button save">Save as template</button>
         <button type="button" class="mdl-button confirm">Create</button>
+        <button type="button" class="mdl-button close">Cancel</button>
+    </div>
+</dialog>
+<dialog class="task-template-dialog mdl-dialog">
+    <div class="mdl-dialog__content">
+        <div class="header">
+            <div class="info">
+                <div class="name">User-defined task</div>
+                <div class="sub-name">Save this task as template for future use</div>
+            </div>
+        </div>
+        <div class="body">
+            <input name="templateName" placeholder="Name"/>
+        </div>
+    </div>
+    <div class="mdl-dialog__actions mdl-dialog__actions">
+        <button type="button" class="mdl-button confirm">Save</button>
         <button type="button" class="mdl-button close">Cancel</button>
     </div>
 </dialog>

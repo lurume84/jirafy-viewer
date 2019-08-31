@@ -1,14 +1,26 @@
 .new-task-dialog 
 {
-    width: 400px;
+    width: 500px;
 }
 
-.new-task-dialog .header{
+.new-task-dialog .body
+{
+    display: block;
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.new-task-dialog .header, .task-template-dialog .header
+{
     display:flex;
     width:92%;
     border-bottom:1px solid #323235
 }
-.new-task-dialog .header>.image{
+.new-task-dialog .header > .image, .task-template-dialog .header > .image
+{
     width:60px;
     height:60px;
     margin-right:15px;
@@ -16,66 +28,68 @@
     -ms-flex:0 0 auto;
     flex:0 0 auto
 }
-.new-task-dialog .header>.image img{
+.new-task-dialog .header > .image img, .task-template-dialog .header > .image img
+{
     width:100%;
     height:100%;
     object-fit:cover
 }
 
-.new-task-dialog .header>.image .loading-content 
+.new-task-dialog .header > .image .loading-content, .task-template-dialog .header > .image .loading-content
 {
     width: 60px;
     height: 60px;
 }
 
-.new-task-dialog .header>.image .mdl-spinner 
+.new-task-dialog .header > .image .mdl-spinner, .task-template-dialog .header > .image .mdl-spinner
 {
     margin-top: 16px;
     margin-left: 16px;
 }
 
-.new-task-dialog .header>.info{
+.new-task-dialog .header > .info, .task-template-dialog .header > .info
+{
     display:-webkit-flex;
     display:-ms-flexbox;
     display:flex;
     -webkit-flex-direction:column;
-    -ms-flex-direction:column;
+    -ms-flex-direction:column; 
     flex-direction:column;
     -webkit-justify-content:center;
     -ms-flex-pack:center;
     justify-content:center;
     white-space:nowrap
 }
-.new-task-dialog .header>.info .sub-name, .new-task-dialog>.header>.info>.name{
+.new-task-dialog .header > .info .sub-name, .task-template-dialog .header > .info .sub-name,
+.new-task-dialog .header > .info .name, .task-template-dialog .header > .info .name
+{
     overflow:hidden;
     max-width:100%;
     text-overflow:ellipsis;
 }
-.new-task-dialog .header>.info>.name{
+
+.new-task-dialog .header > .info .name, .task-template-dialog .header > .info .name
+{
     margin-bottom:2px;
     color:#cbcbcc;
     font-size: 25px;
     line-height: 25px;
 }
-.new-task-dialog .header>.info>.sub-name{
+
+.new-task-dialog .header > .info .sub-name, .task-template-dialog .header > .info .sub-name
+{
     font-size:.9rem;
     color:#898B8C
 }
 
-.new-task-dialog .mdl-dialog__content
+.task-template-dialog input
 {
-    height:100%;
-    height: 70vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+    margin-top: 20px;
 }
 
-.new-task-dialog .body .dropdown.user-story
-{
-    max-width:100%;
-}
-
-.new-task-dialog input, .new-task-dialog textarea, .new-task-dialog select
+.new-task-dialog input, .task-template-dialog input,
+.new-task-dialog textarea, .task-template-dialog textarea,
+.new-task-dialog select, .task-template-dialog select
 {
     border: 0;
     background: #323235;
@@ -89,16 +103,15 @@
 
 .new-task-dialog select, .new-task-dialog input
 {
-    width:100%;
+    width:95%;
     margin-top: 10px;
-    margin-left: 10px;
+    padding-right:5px;
 }
 
 .new-task-dialog textarea
 {
-    width:100%;
+    width:95%;
     height:100;
-    margin-left: 10px;
     margin-top: 12px;
 }
 
@@ -112,7 +125,13 @@
 .new-task-dialog .timetracking
 {
     float: left;
-    width: calc(50% - 10px);
+    width: 25%;
+    margin-right: 2%
+}
+
+.new-task-dialog .worklog input
+{
+    width: 25%;
 }
 
 .new-task-dialog .body > div > label.label img
@@ -128,6 +147,13 @@
 .new-task-dialog .transition
 {
     padding: 15px;
+    margin-top: 10px;
+}
+
+.new-task-dialog .mdl-dialog__actions .save
+{
+    position:absolute;
+    left:24px;
 }
 
 .new-task-dialog .transition .mdl-switch__label

@@ -90,6 +90,67 @@
 				});
             },
             enumerable: false
+        },
+        loadUserDefs : {
+            value: function(listener)
+            {
+				$.ajax
+				({
+					type: "GET",
+					url: "/data/userdefs.json",
+					dataType: 'json',
+                    contentType: 'application/json',
+                    beforeSend: function(xhr)
+                    {
+                        $.xhrPool.push(xhr);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+                        if(jqxhr.status == 404)
+                        {
+                            listener.onSuccess({});
+                        }
+                        else
+                        {
+                            listener.onError(jqxhr);
+                        }
+					}
+				});
+            },
+            enumerable: false
+        },
+        saveUserDefs : {
+            value: function(data, listener)
+            {
+				$.ajax
+				({
+					type: "POST",
+					url: "/data/userdefs.json",
+					data: JSON.stringify(data),
+					dataType: 'json',
+                    contentType: 'application/json',
+                    beforeSend: function(xhr)
+                    {
+                        $.xhrPool.push(xhr);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
+					}
+				});
+            },
+            enumerable: false
         }
     });
 

@@ -104,6 +104,49 @@
                     }));
             },
             enumerable: false
+        },
+        getUserDefs : {
+            value: function()
+            {
+                var self = this;
+                    
+                this.interactor.loadUserDefs(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onLoadUserDefs(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
+        setUserDefs : {
+            value: function(setting, value)
+            {
+                var self = this;
+                this.interactor.loadUserDefs(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        data[setting] = value;
+                        
+                        self.interactor.saveUserDefs(data, new viewer.listeners.BaseDecisionListener(
+                        function()
+                        {
+                            self.view.onSaveUserDefs(data);
+                        },
+                        function(data)
+                        {
+                            self.view.showError(data);
+                        }));
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
         }
     });
 
