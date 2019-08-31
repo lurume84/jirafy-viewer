@@ -156,6 +156,10 @@
     left:24px;
 }
 
+.new-task-dialog .mdl-dialog__actions .save span
+{
+    margin-left: 5px;
+}    
 .new-task-dialog .transition .mdl-switch__label
 {
     color:#898B8C;
