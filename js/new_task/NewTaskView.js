@@ -302,7 +302,7 @@
                     {
                         var dropdown = $("<select/>", {class: "dropdown", name: "template"}).appendTo(this.dialog.find(".body .template"));
                                         
-                        $("<option/>", {disabled: "disabled", selected: "selected", text: "Load user-defined"}).appendTo(dropdown);
+                        $("<option/>", {disabled: "disabled", selected: "selected", text: "Load user-defined task"}).appendTo(dropdown);
                         
                         $.each(data.tasks[this.issuetype], function(name)
                         {
