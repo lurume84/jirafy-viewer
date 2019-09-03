@@ -54,6 +54,19 @@
                 {     
                     self.presenter.playInfo(key);
                 });
+                
+                $(document).on("toastify", function (evt, code)
+                {
+                    switch(code)
+                    {
+                        case "917504":
+                            if(self.playing) self.pause(); else self.play();    
+                            break;
+                        case "851968":
+                            self.stop();
+                            break;
+                    }
+                });
             },
             enumerable: false
         },
@@ -121,6 +134,7 @@
                 
                 this.timer = setInterval(this.updateTime, 1000, this);
                 
+                document.title = this.task.fields.summary + " - " + this.task.key;
             },
             enumerable: false
         },
@@ -147,6 +161,8 @@
                 this.presenter.setUncommitted(this.task.key, seconds);
                 
                 this.uncommitted += diff / 1000;
+                
+                document.title = this.task.fields.summary + " - Paused";
             },
             enumerable: false
         },
@@ -174,6 +190,8 @@
                 $(".player-controls .progress-container .elapsed-time").html("00:00:00");
                 $(".player-controls .track-length").html("00:00:00");
                 $(".player-controls .progress-bar .elapsed").css("width", "0%");
+                
+                document.title = "Jirafy";
             },
             enumerable: false
         },
