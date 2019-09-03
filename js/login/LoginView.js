@@ -16,7 +16,7 @@
 
                 $(document).ready(function ()
                 {             
-                    $("#login dialog")[0].showModal();
+                    $("#login dialog")[0].show();
                     $("#login form").submit(function(evt)
                     {
                         $("#login .progress").show();
