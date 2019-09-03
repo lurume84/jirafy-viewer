@@ -30,6 +30,20 @@
                     self.drawEyes();
                     
                     self.presenter.checkToken();
+                    
+                    $(document).on("upgrade", function (evt, version)
+                    {
+                        var data = {
+                          message: "Jirafy " + version + " is ready.",
+                          actionHandler: function(event)
+                          {
+                              location.reload();
+                          },
+                          actionText: 'Refresh',
+                          timeout: 1000000
+                        };
+                        $('#toast')[0].MaterialSnackbar.showSnackbar(data);
+                    });
                 });
             },
             enumerable: false
