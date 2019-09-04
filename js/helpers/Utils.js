@@ -97,7 +97,8 @@ function showError(data)
         message = data.message;
     }
     
-    document.querySelector('#toast').MaterialSnackbar.showSnackbar({message: message});
+    $('#toast').find("i").removeClass().addClass("fas").addClass("fa-exclamation-triangle");
+    $('#toast')[0].MaterialSnackbar.showSnackbar({message: message});
 }
 
 function secondsToHHMMSS(totalSeconds)
