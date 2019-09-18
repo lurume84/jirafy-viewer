@@ -119,6 +119,22 @@
                     }));
             },
             enumerable: false
+        },
+        assign : {
+            value: function(key, who)
+            {
+                var self = this;
+                this.interactor.assign(key, who, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onAssign(key, data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
         }
     });
 

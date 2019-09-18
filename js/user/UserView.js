@@ -191,12 +191,12 @@
                 
                 clone.dblclick(function() 
                 {
-                    $(document).trigger("play", data.key);
+                    $(document).trigger("play", {key: data.key, assignee: undefined});
                 });
                 
                 clone.find(".play-icon").click(function() 
                 {
-                    $(document).trigger("play", data.key);
+                    $(document).trigger("play", {key: data.key, assignee: undefined});
                 });
                 
                 clone.contextmenu(function(evt) 

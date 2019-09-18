@@ -98,12 +98,12 @@
                             
                             clone.dblclick(function() 
                             {
-                                $(document).trigger("play", key);
+                                $(document).trigger("play", {key: key, assignee: undefined});
                             });
                             
                             clone.find(".play-icon").click(function() 
                             {
-                                $(document).trigger("play", key);
+                                $(document).trigger("play", {key: key, assignee: undefined});
                             });
                             
                             clone.contextmenu(function(evt) 

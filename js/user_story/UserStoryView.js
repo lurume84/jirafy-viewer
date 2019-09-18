@@ -94,7 +94,7 @@
                 
                 clone.dblclick(function() 
                 {
-                    $(document).trigger("play", data.key);
+                    $(document).trigger("play", {key: data.key, assignee: clone.find(".album-name .ellipses")});
                 });
                 
                 clone.contextmenu(function(evt) 

@@ -50,9 +50,15 @@
                     self.presenter.getSettings();
                 });
                 
-                $(document).on("play", function (evt, key)
+                $(document).on("play", function (evt, data)
                 {     
-                    self.presenter.playInfo(key);
+                    self.assigneeElement = data.assignee;
+                    self.presenter.playInfo(data.key);
+                });
+                
+                $(document).on("login", function (evt, data)
+                {
+                    self.myself = data;
                 });
                 
                 $(document).on("toastify", function (evt, code)
@@ -79,7 +85,27 @@
                 }
                 
                 this.task = data;
-                this.presenter.getUncommitted();
+                
+                if(data.fields.assignee == undefined)
+                {
+                    this.presenter.assign(data.key, this.myself.name);
+                }
+                else
+                {
+                    if(this.assigneeElement != undefined && this.assigneeElement.html() == "")
+                    {
+                        this.assigneeElement.html(data.fields.assignee.displayName);
+                    }
+                    
+                    this.presenter.getUncommitted();
+                }
+            },
+            enumerable: false
+        },
+        onAssign : {
+            value: function(key, data)
+            {
+                this.presenter.playInfo(key);
             },
             enumerable: false
         },
