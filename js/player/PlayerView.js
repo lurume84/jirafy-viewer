@@ -86,6 +86,11 @@
                 
                 this.task = data;
                 
+                if(data.fields.status.statusCategory.key == "new" && data.transitions.length > 0)
+                {
+                    this.presenter.transit(data.key, data.transitions[0].id);
+                }
+                
                 if(data.fields.assignee == undefined)
                 {
                     this.presenter.assign(data.key, this.myself.name);
@@ -109,6 +114,13 @@
             },
             enumerable: false
         },
+        onTransit : {
+            value: function(data)
+            {
+                
+            },
+            enumerable: false
+        },
         onLoadUncommitted : {
             value: function(data)
             {
@@ -116,7 +128,8 @@
                 
                 if(this.uncommitted == undefined)
                 {
-                    this.uncommitted = 0;
+                    this.uncommitted.started = moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
+                    this.uncommitted.seconds = 0;
                 }
                 
                 $(".current-track").removeClass("hidden");
@@ -186,7 +199,7 @@
                 
                 this.presenter.setUncommitted(this.task.key, seconds);
                 
-                this.uncommitted += diff / 1000;
+                this.uncommitted.seconds += diff / 1000;
                 
                 document.title = this.task.fields.summary + " - Paused";
             },
@@ -208,7 +221,7 @@
                 }
                 
                 this.task = undefined;
-                this.uncommitted = 0;
+                this.uncommitted = undefined;
                 
                 $(".current-track").addClass("hidden");
                 $(".new-playlist").removeClass("hidden");
@@ -228,7 +241,7 @@
                 {
                     var diff = ((Date.now() - self.startDate));
                     
-                    diff += (self.uncommitted * 1000);
+                    diff += (self.uncommitted.seconds * 1000);
                     
                     var time = secondsToHHMMSS(diff / 1000);
                     

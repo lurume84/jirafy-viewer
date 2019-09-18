@@ -29,6 +29,23 @@
             },
             enumerable: false
         },
+        transit : {
+            value: function(key, id)
+            {
+                var self = this;
+                    
+                this.interactor.transit(key, id, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onTransit(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         getUncommitted : {
             value: function()
             {
