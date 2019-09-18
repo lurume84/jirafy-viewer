@@ -128,8 +128,7 @@
                 
                 if(this.uncommitted == undefined)
                 {
-                    this.uncommitted.started = moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
-                    this.uncommitted.seconds = 0;
+                    this.uncommitted = {seconds: 0, started: moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ')};
                 }
                 
                 $(".current-track").removeClass("hidden");
