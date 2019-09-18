@@ -187,7 +187,7 @@
                 
                 if(minutes != undefined)
                 {
-                    if(seconds != undefined)
+                    if(seconds != undefined && seconds > 0)
                     {
                         minutes++;
                     }
@@ -197,7 +197,7 @@
                 }
                 else
                 {
-                    if(seconds != undefined)
+                    if(seconds != undefined && seconds > 0)
                     {
                         if(content.timeSpent != "") content.timeSpent += " ";
                         content.timeSpent += "1m";
@@ -210,7 +210,7 @@
                 
                 var transition = element.find("input[name=transition]:checked");
                 
-                if(transition != undefined)
+                if(transition != undefined && transition.val() != "none")
                 {
                     var fields = {};
                     
