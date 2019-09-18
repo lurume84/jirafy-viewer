@@ -79,7 +79,7 @@
                         const keys = Object.keys(data)
                         for (const key of keys)
                         {
-                            var seconds = data[key];
+                            var seconds = data[key].seconds;
                             var clone = row.clone();
                             
                             clone.find(".track-index").html(index);

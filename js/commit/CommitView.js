@@ -113,7 +113,7 @@
                 {
                     var key = Object.keys(this.data)[this.index]
                     
-                    var seconds = this.data[key];
+                    var seconds = this.data[key].seconds;
                     var clone = this.template.clone();
                     
                     clone.find(".header .info .name").html(key);
@@ -153,7 +153,8 @@
                 
                 var key = Object.keys(this.data)[this.index]
                     
-                var seconds = this.data[key];
+                var started = this.data[key].started;
+                var seconds = this.data[key].seconds;
                 
                 var adjust = element.find("input[name=adjustEstimate]:checked").val();
                 
@@ -196,15 +197,14 @@
                 }
                 else
                 {
-                    if(content.timeSpent != "") content.timeSpent += " ";
-                    
                     if(seconds != undefined)
                     {
+                        if(content.timeSpent != "") content.timeSpent += " ";
                         content.timeSpent += "1m";
                     }
                 }
                 
-                content.started = moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
+                content.started = started;
                 
                 this.presenter.addWorklog(key, content, query);
             },
@@ -223,6 +223,13 @@
             {
                 this.index++;
                 this.next();
+                
+                var uncommitted = $(".left-panel-inner .content .main-menu .menu-item:first-child");
+                
+                if(uncommitted.hasClass("active"))
+                {
+                    uncommitted.trigger("click");
+                }
             },
             enumerable: false
         },

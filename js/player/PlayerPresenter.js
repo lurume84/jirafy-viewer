@@ -55,10 +55,12 @@
                     {
                         if(data[key] == undefined)
                         {
-                            data[key] = 0;
+                            data[key] = {};
+                            data[key].seconds = 0;
+                            data[key].started = moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
                         }
                         
-                        data[key] += seconds;
+                        data[key].seconds += seconds;
                         
                         self.interactorUncommitted.save(data, new viewer.listeners.BaseDecisionListener(
                         function(data)
