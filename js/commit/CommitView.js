@@ -72,11 +72,11 @@
                     
                     transition.appendTo(element.find(".info3 > .radios"));
                     
-                    $.each(this.fields, function()
+                    $.each(this.fields, function(key)
                     {
                         if(this.schema.type == "string")
                         {
-                            var field = "<textarea class=\"fieldTransition transition-" + (index + 1) + " hidden\" placeholder=\"" + this.name + "\"></textarea>";
+                            var field = "<textarea name=\"" + key + "\" class=\"fieldTransition transition-" + (index + 1) + " hidden\" placeholder=\"" + this.name + "\"></textarea>";
                             element.find(".info3 > .fields").append(field);
                         }
                         else if(this.schema.type == "resolution")
@@ -88,7 +88,7 @@
                                 options += "<option value=\"" + this.id + "\">" + this.name + "</option>";
                             });
 
-                            var field = $("<select/>", {class: "fieldTransition transition-" + (index + 1) + " hidden", html: options});
+                            var field = $("<select/>", {class: "fieldTransition transition-" + (index + 1) + " hidden", html: options, name: this.name});
                             element.find(".info3 > .fields").append(field);
                         }
                     });
@@ -207,6 +207,20 @@
                 content.started = started;
                 
                 this.presenter.addWorklog(key, content, query);
+                
+                var transition = element.find("input[name=transition]:checked");
+                
+                if(transition != undefined)
+                {
+                    var fields = {};
+                    
+                    $.each(element.find(".fieldTransition." + transition.attr("id")), function(key)
+                    {
+                        fields[this.name] = this.value;
+                    });
+                    
+                    this.presenter.transit(key, transition.val(), fields);
+                }
             },
             enumerable: false
         },
@@ -230,6 +244,13 @@
                 {
                     uncommitted.trigger("click");
                 }
+            },
+            enumerable: false
+        },
+        onTransit : {
+            value: function(data)
+            {
+                
             },
             enumerable: false
         },

@@ -92,6 +92,35 @@
             },
             enumerable: false
         },
+        transit : {
+            value: function(key, id, fields, listener)
+            {
+				$.ajax
+				({
+					type: "POST",
+                    dataType: 'json',
+                    contentType: 'application/json',
+					url: credentials.server + "/rest/api/2/issue/" + key + "/transitions",
+                    data: JSON.stringify({"transition": id, "fields": fields}),
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
+					}
+				});
+            },
+            enumerable: false
+        }
     });
 
     interactors.CommitInteractor = CommitInteractor;
