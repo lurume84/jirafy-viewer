@@ -62,7 +62,36 @@
 				});
             },
             enumerable: false
-        }
+        },
+        addWorklog : {
+            value: function(key, content, query, listener)
+            {
+				$.ajax
+				({
+					type: "POST",
+                    dataType: 'json',
+                    data: JSON.stringify(content),
+                    contentType: 'application/json',
+					url: credentials.server + "/rest/api/2/issue/" + key + "/worklog" + query,
+                    beforeSend: function(xhr) { 
+						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
+                        $.xhrPool.push(xhr);
+					},
+					success: function (json)
+					{
+						listener.onSuccess(json);
+					},
+					error: function (jqxhr, textStatus, error)
+					{
+						if(textStatus != "abort")
+                        {
+                            listener.onError(jqxhr.responseJSON);
+                        }
+					}
+				});
+            },
+            enumerable: false
+        },
     });
 
     interactors.CommitInteractor = CommitInteractor;

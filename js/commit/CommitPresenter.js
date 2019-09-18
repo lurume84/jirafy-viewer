@@ -3,6 +3,7 @@
     function CommitPresenter(Context)
     {
         this.interactor = Context.getCommitInteractor();
+        this.interactorUncommitted = Context.getUncommittedInteractor();
        
         this.view = Context.getCommitView(this);
         this.view.init();
@@ -61,6 +62,23 @@
             },
             enumerable: false
         },
+        addWorklog : {
+            value: function(key, content, query)
+            {
+                var self = this;
+                    
+                this.interactor.addWorklog(key, content, query, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onAddWorklog(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         empty : {
             value: function()
             {
@@ -78,6 +96,35 @@
             },
             enumerable: false
         },
+        removeUncommitted : {
+            value: function(key)
+            {
+                var self = this;
+                this.interactorUncommitted.load(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        if(data[key] != undefined)
+                        {
+                            delete data[key];
+                        }
+                        
+                        self.interactorUncommitted.save(data, new viewer.listeners.BaseDecisionListener(
+                        function(data)
+                        {
+                            self.view.onRemoveUncommitted(data);
+                        },
+                        function(data)
+                        {
+                            self.view.showError(data);
+                        }));
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        }
     });
 
     presenters.CommitPresenter = CommitPresenter;

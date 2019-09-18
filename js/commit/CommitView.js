@@ -149,6 +149,78 @@
         commit : {
             value: function()
             {
+                var element = $(".commit-dialog .mdl-dialog__content");
+                
+                var key = Object.keys(this.data)[this.index]
+                    
+                var seconds = this.data[key];
+                
+                var adjust = element.find("input[name=adjustEstimate]:checked").val();
+                
+                query = "?adjustEstimate=" + adjust;
+                
+                switch(adjust)
+                {
+                    case "new": 
+                        query += "&newEstimate=" + element.find("input[name=newEstimate]").val();
+                        break;
+                    case "manual": 
+                        query += "&reduceBy=" + element.find("input[name=adjustmentAmount]").val();
+                        break;
+                }
+                
+                var content = {};
+                
+                content.comment = element.find("textarea[name=description]").val();
+
+                var hours = Number.parseInt(element.find("#commit-hourspent").val());
+                var minutes = Number.parseInt(element.find("#commit-minutespent").val());
+                var seconds = Number.parseInt(element.find("#commit-secondspent").val());
+
+                content.timeSpent = "";
+
+                if(hours != undefined)
+                {
+                    content.timeSpent += hours + "h";
+                }
+                
+                if(minutes != undefined)
+                {
+                    if(seconds != undefined)
+                    {
+                        minutes++;
+                    }
+                    
+                    if(content.timeSpent != "") content.timeSpent += " ";
+                    content.timeSpent += minutes + "m";
+                }
+                else
+                {
+                    if(content.timeSpent != "") content.timeSpent += " ";
+                    
+                    if(seconds != undefined)
+                    {
+                        content.timeSpent += "1m";
+                    }
+                }
+                
+                content.started = moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
+                
+                this.presenter.addWorklog(key, content, query);
+            },
+            enumerable: false
+        },
+        onAddWorklog : {
+            value: function(data)
+            {
+                var key = Object.keys(this.data)[this.index];
+                this.presenter.removeUncommitted(key);
+            },
+            enumerable: false
+        },
+        onRemoveUncommitted : {
+            value: function(data)
+            {
                 this.index++;
                 this.next();
             },
