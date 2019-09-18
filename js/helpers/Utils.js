@@ -91,10 +91,18 @@ function base64Encode(str)
 function showError(data)
 {
     var message = "Unspecified error";
-                
+    
     if(data != undefined)
     {
-        message = data.message;
+        if(data.errorMessages != undefined)
+        {
+            message = data.errorMessages[0];
+        }
+        
+        if(data.message != undefined && data.message != "")
+        {
+            message = data.message;
+        }
     }
     
     $('#toast').find("i").removeClass().addClass("fas").addClass("fa-exclamation-triangle");
