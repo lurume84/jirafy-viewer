@@ -28,6 +28,11 @@
                 {
                     self.onNewTask();
                 });
+                
+                $(document).on("login", function (evt, data)
+                {
+                    self.myself = data;
+                });
             },
             enumerable: false
         },
@@ -168,7 +173,7 @@
                 
                 this.presenter.getUserDefs();
                 
-                $.each(issueType.fields, function()
+                $.each(issueType.fields, function(key)
                 {
                     switch(this.schema.type)
                     {
@@ -177,16 +182,16 @@
                             {
                                 if(this.schema.system == "description" || this.schema.custom == "com.atlassian.jira.plugin.system.customfieldtypes:textarea")
                                 {
-                                    $("<textarea/>", {class: "fieldNewTask", name: this.name, placeholder: this.name}).appendTo(fields);
+                                    $("<textarea/>", {class: "fieldNewTask", name: key, placeholder: this.name}).appendTo(fields);
                                 }
                                 else
                                 {
-                                    $("<input/>", {class: "fieldNewTask", name: this.name, placeholder: this.name}).appendTo(fields);
+                                    $("<input/>", {class: "fieldNewTask", name: key, placeholder: this.name}).appendTo(fields);
                                 }
                             }
                             else
                             {
-                                var dropdown = $("<select/>", {class: "dropdown fieldNewTask", name: this.name}).appendTo(fields);
+                                var dropdown = $("<select/>", {class: "dropdown fieldNewTask", name: key}).appendTo(fields);
                                 
                                 $("<option/>", {disabled: "disabled", selected: "selected", text: this.name}).appendTo(dropdown);
                                 
@@ -204,7 +209,7 @@
                     
                     if(this.schema.system == "worklog")
                     {
-                        $("<input/>", {class: "fieldNewTask", name: "TimeSpent", placeholder: "Time spent"}).appendTo(worklog);
+                        $("<input/>", {class: "fieldNewTask worklog", name: "TimeSpent", placeholder: "Time spent"}).appendTo(worklog);
                     }
                 });
             },
@@ -252,7 +257,47 @@
         commit : {
             value: function()
             {
+                var content = {};
                 
+                content.fields = {};
+                
+                content.fields.project = {"key": this.project};
+
+                $.each(this.dialog.find(".fieldNewTask:not(.worklog):not(.timetracking)"), function()
+                {
+                    if($(this).is("select"))
+                    {
+                        content.fields[this.name] = {"id": this.value};
+                    }
+                    else
+                    {
+                        content.fields[this.name] = this.value;
+                    }
+                });
+                
+                content.fields.assignee = {"name": this.myself.name};
+                content.fields.parent = {"key": this.dialog.find("select[name=user-story]").val()};
+                content.fields.issuetype = {"id": this.dialog.find("select[name=issuetype]").val()};
+                
+                content.fields["timetracking"] = {"originalEstimate": this.dialog.find("input[name=originalEstimate]").val(),
+                                          "remainingEstimate": this.dialog.find("input[name=remainingEstimate]").val()};
+                                          
+                
+                var timespent = this.dialog.find("input[name=TimeSpent]").val()
+                
+                if(timespent != "")
+                {
+                    content.update = {"worklog" : [
+                                                    {
+                                                        "add": {
+                                                            "timeSpent": timespent,
+                                                            "started": moment().local().format('YYYY-MM-DDTHH:mm:ss.SSSZZ')
+                                                        }
+                                                    }
+                                                  ]};
+                }
+                
+                this.presenter.createIssue(content);
             },
             enumerable: false
         },
@@ -286,8 +331,6 @@
                     
                     templateDialog[0].close();
                 });
-                
-                
             },
             enumerable: false
         },
@@ -347,6 +390,32 @@
             value: function(data)
             {
                 
+            },
+            enumerable: false
+        },
+        onCommit : {
+            value: function(data)
+            {
+                //data = {id: "56849", key: "ALBA-6629", self: "http://snowserver.systelab.net:8081/rest/api/2/issue/56849"};
+                
+                if(this.dialog.find(".transition > label.is-checked") != undefined)
+                {
+                    this.presenter.getIssue(data.key);
+                }
+            },
+            enumerable: false
+        },
+        onIssue : {
+            value: function(data)
+            {
+                this.presenter.transit(data.key, data.transitions[0].id);
+            },
+            enumerable: false
+        },
+        onTransit : {
+            value: function(data)
+            {
+                this.dialog[0].close();
             },
             enumerable: false
         },

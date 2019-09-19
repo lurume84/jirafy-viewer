@@ -11,6 +11,23 @@
 
     Object.defineProperties(NewTaskPresenter.prototype,
     {
+        createIssue : {
+            value: function(data)
+            {
+                var self = this;
+                    
+                this.interactor.createIssue(data, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onCommit(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         getIssueProject : {
             value: function(key)
             {
@@ -140,6 +157,40 @@
                         {
                             self.view.showError(data);
                         }));
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
+        getIssue : {
+            value: function(key)
+            {
+                var self = this;
+                    
+                this.interactor.getIssue(key, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onIssue(data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
+        transit : {
+            value: function(key, id, fields)
+            {
+                var self = this;
+                    
+                this.interactor.transit(key, id, fields, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onTransit(data);
                     },
                     function(data)
                     {

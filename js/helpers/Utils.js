@@ -94,9 +94,14 @@ function showError(data)
     
     if(data != undefined)
     {
-        if(data.errorMessages != undefined)
+        if(data.errorMessages != undefined && data.errorMessages.length > 0)
         {
             message = data.errorMessages[0];
+        }
+        
+        if(data.errors != undefined)
+        {
+            message = JSON.stringify(data.errors);
         }
         
         if(data.message != undefined && data.message != "")
