@@ -74,12 +74,10 @@
 
 .left-panel .content 
 {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     padding-top: 15px;
     position: relative;
-    flex: 1 1 auto;
+    height: calc(100% - 66px);
 }
 
 .left-panel .main-menu, .left-panel .playlists, .left-panel .your-music
@@ -291,7 +289,7 @@
 
 .playlists-list
 {
-    height: calc(100% - 448px);
+    height: calc(100% - 385px);
     width:100%;
     overflow-y: auto;
 }
