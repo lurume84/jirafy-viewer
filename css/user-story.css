@@ -1,7 +1,6 @@
 .playlist-page 
 {
     height: calc(100% - 40px);
-    max-width: 100pc;
     margin: 0 auto;
     position: relative;
     padding: 20px 0 20px 0;
