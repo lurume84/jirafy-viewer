@@ -77,7 +77,6 @@
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         xhr.setRequestHeader("Content-Type", "application/json;odata=verbose");
-                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{

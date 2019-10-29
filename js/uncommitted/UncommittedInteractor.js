@@ -51,7 +51,7 @@
                     contentType: 'application/json',
                     beforeSend: function(xhr)
                     {
-                        $.xhrPool.push(xhr);
+                        
 					},
 					success: function (json)
 					{

@@ -47,7 +47,6 @@
                     data: JSON.stringify({"transition": id}),
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
-                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -76,7 +75,6 @@
                     data: JSON.stringify({"name": who}),
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
-                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{

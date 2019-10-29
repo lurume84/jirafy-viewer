@@ -75,7 +75,6 @@
 					url: credentials.server + "/rest/api/2/issue/" + key + "/worklog" + query,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
-                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
@@ -104,7 +103,6 @@
                     data: JSON.stringify({"transition": id, "fields": fields}),
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
-                        $.xhrPool.push(xhr);
 					},
 					success: function (json)
 					{
