@@ -207,6 +207,16 @@
                 content.started = started;
                 
                 this.presenter.addWorklog(key, content, query);
+            },
+            enumerable: false
+        },
+        onAddWorklog : {
+            value: function(data)
+            {
+                var key = Object.keys(this.data)[this.index];
+                this.presenter.removeUncommitted(key);
+                
+                var element = $(".commit-dialog .mdl-dialog__content");
                 
                 var transition = element.find("input[name=transition]:checked");
                 
@@ -221,14 +231,6 @@
                     
                     this.presenter.transit(key, transition.val(), fields);
                 }
-            },
-            enumerable: false
-        },
-        onAddWorklog : {
-            value: function(data)
-            {
-                var key = Object.keys(this.data)[this.index];
-                this.presenter.removeUncommitted(key);
             },
             enumerable: false
         },
