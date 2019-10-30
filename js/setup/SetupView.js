@@ -135,6 +135,7 @@
             value: function(data)
             {
                 this.dialog[0].close();
+                $(document).trigger("setup_complete");
             },
             enumerable: false
         },
