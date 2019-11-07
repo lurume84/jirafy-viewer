@@ -20,6 +20,16 @@ $(document).ready(function ()
     {
        window.close();   
     });
+    
+    $("#toolbar-window .minimize").click(function()
+    {
+       window.minimize();   
+    });
+    
+    $("#toolbar-window .maximize").click(function()
+    {
+       window.maximize();   
+    });
 });
 
 Number.prototype.pad = function(size) {
