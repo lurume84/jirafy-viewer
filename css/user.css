@@ -231,6 +231,13 @@
     width:100%;
 }
 
+.public-user-profile .worklog .weekday
+{
+   border-bottom: 3px solid transparent;
+   transition: border-color .2s ease;
+   cursor:pointer;
+}
+
 .public-user-profile .worklog .weekday.disabled
 {
     opacity: 0.2;
@@ -253,15 +260,21 @@
 
 .public-user-profile .worklog .countdown
 {
-    background-color: #252528;
-    margin: 14px;
-    height: 8vw;
-    line-height: 8vw;
-    text-align: center;
-    font-size: 4vw;
+    margin: 5px;
+    text-align:right;
+    font-size: 1vw;
+    font-style: italic;
+    color: #c0c0c0; 
 }
 
 .edit-profile
 {
     cursor:pointer;
+}
+
+.album-table .time-ago
+{
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+    flex-grow: 2;
 }

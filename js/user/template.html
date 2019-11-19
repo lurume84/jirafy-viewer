@@ -37,39 +37,43 @@
                 <div class="weekday-container">
                     <figure class="weekday disabled">
                         <figcaption>
-                            <div class="title">Mon <span/></div>
+                            <div class="title"> <span/></div>
                             <div class="hours">-</div>
                             <div class="rates"></div>
                         </figcaption>
                     </figure>
-                    <figure class="weekday disabled">
-                        <figcaption>
-                            <div class="title">Tue <span/></div>
-                            <div class="hours">-</div>
-                            <div class="rates"></div>
-                        </figcaption>
-                    </figure>
-                    <figure class="weekday disabled">
-                        <figcaption>
-                            <div class="title">Wed <span/></div>
-                            <div class="hours">-</div>
-                            <div class="rates"></div>
-                        </figcaption>
-                    </figure>
-                    <figure class="weekday disabled">
-                        <figcaption>
-                            <div class="title">Thu <span/></div>
-                            <div class="hours">-</div>
-                            <div class="rates"></div>
-                        </figcaption>
-                    </figure>
-                    <figure class="weekday disabled">
-                        <figcaption>
-                            <div class="title">Fri <span/></div>
-                            <div class="hours">-</div>
-                            <div class="rates"></div>
-                        </figcaption>
-                    </figure>
+                </div>
+                <div class="worklog-container">
+                    <div class="flex-table album-table hidden">
+                        <div class="flex-table-row flex-table-header hidden">
+                           <div class="flex-table-row-item track-number"></div>
+                           <div class="flex-table-row-item add-remove-track hidden-phone"></div>
+                           <div class="flex-table-row-item track-name">Task</div>
+                           <div class="flex-table-row-item artist-name">Summary</div>
+                           <div class="flex-table-row-item album-name hidden-phone">User Story</div>
+                           <div class="flex-table-row-item track-duration hidden-phone"><i class="icon icon-clock"></i></div>
+                           <div class="flex-table-row-item popularity time-ago hidden-phone"><i class="icon icon-spin6"></i></div>
+                        </div>
+                        <div class="rows hidden">
+                            <div class="flex-table-row">
+                               <div class="flex-table-row-item track-number hover-icon">
+                                   <span class="track-index hidden-tablet">1</span>
+                                   <div class="play-icon"><i class="icon icon-play"></i></div>
+                                   <div class="pause-icon"><i class="icon icon-pause"></i></div>
+                                   <div class="inside-album-table playing-icon-container"><div class="playing-icon"><div class="one"></div><div class="two"></div><div class="three"></div></div></div>
+                               </div>
+                               <div class="flex-table-row-item add-remove-track hidden-phone"></div>
+                               <div class="flex-table-row-item track-name"><div class="ellipses"></div></div>
+                               <div class="flex-table-row-item artist-name"><div class="artists"></div></div>
+                               <div class="flex-table-row-item album-name hidden-phone"><span class="ellipses"></span></div>
+                               <div class="flex-table-row-item track-duration hidden-phone">-</div>
+                               <div class="flex-table-row-item popularity time-ago hidden-phone"></div>
+                            </div>
+                        </div>
+                        <div class="no-playlists">
+                            <img src="/img/giraffe/not_found.png"/><div>Nothing to show yet.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="tasks hidden">

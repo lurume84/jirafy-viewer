@@ -77,6 +77,7 @@
                     
                     self.presenter.getSettings(data.key, 1);
                 });
+                
             },
             enumerable: false
         },
@@ -92,7 +93,9 @@
                     self.progress = self.template.find(".worklog-progress");
                     componentHandler.upgradeElement(self.progress[0]);
                     
-                    self.row = self.template.find(".album-table .rows .flex-table-row").detach();
+                    self.initWeekdays();
+                    
+                    self.row = self.template.find(".tasks .album-table .rows .flex-table-row").detach();
                     
                     self.template.find(".inner-header .avatar img").attr("src", data.avatarUrls["48x48"]);
                     self.template.find(".info .username").html(data.displayName);
@@ -120,7 +123,14 @@
                                 self.days = [];
                                 self.total = 0;
                                 
+                                self.template.find(".worklog-container").find(".rows").html("");
+                                
                                 self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
+                                
+                                var day = moment().day();
+                                var weekday = self.template.find(".worklog .weekday").eq(day - 1);
+                                
+                                weekday.trigger("click");
                                 break;
                             case 1:
                                 self.template.find(".tasks .rows").html("");
@@ -136,9 +146,40 @@
                             break;
                         }
                     });
+
+                    self.template.find(".weekday").click(function()
+                    {
+                        $(this).removeClass("disabled").siblings().addClass("disabled");
+                        
+                        var table = self.template.find(".worklog-container .album-table").eq($(this).index())
+                        
+                        table.removeClass("hidden").siblings().addClass("hidden");
+                    });
                     
                     $(this).find(".navigation .nav-item").eq(tab).trigger("click");
                 }); 
+            },
+            enumerable: false
+        },
+        initWeekdays : {
+            value: function()
+            {
+                this.rowWorklog = this.template.find(".worklog .album-table .rows .flex-table-row").detach();
+                
+                var weekdayContainer = this.template.find(".weekday-container");
+                var worklogContainer = this.template.find(".worklog-container");
+                
+                var weekdayTemplate = weekdayContainer.find(".weekday").detach();
+                var worklogTemplate = worklogContainer.find(".album-table").detach();
+                
+                $.each(["Mon", "Tue", "Wed", "Thu", "Fri"], function(key, value)
+                {
+                    var clone = weekdayTemplate.clone();
+                    clone.find(".title").prepend(value);
+                    clone.appendTo(weekdayContainer);
+                    
+                    worklogTemplate.clone().appendTo(worklogContainer);
+                });
             },
             enumerable: false
         },
@@ -159,8 +200,8 @@
         onSubtask : {
             value: function(data)
             {
-                $(".main-view .no-playlists").hide();
-                $(".main-view .album-table").removeClass("hidden");
+                $(".main-view .tasks .no-playlists").hide();
+                $(".main-view .tasks .album-table").removeClass("hidden");
                 
                 var clone = this.row.clone();
                 
@@ -205,22 +246,49 @@
                     evt.preventDefault();
                 });
                 
-                clone.appendTo($(".album-table .rows"));
+                clone.appendTo($(".tasks .album-table .rows"));
                 
                 clone.find(".track-index").html(clone.index() + 1);
             },
             enumerable: false
         },
         onWorklog : {
-            value: function(seconds, date)
+            value: function(data)
             {
+                var seconds = data.timeSpentSeconds;
+                var date = data.updated;
+                
                 var day = moment(date).day();
                 var weekday = this.template.find(".worklog .weekday").eq(day - 1);
-                
-                weekday.removeClass("disabled");
-                
+                var table = this.template.find(".worklog .album-table").eq(day - 1);
+ 
                 if(weekday != undefined)
                 {
+                    table.find(".no-playlists").hide();
+                    table.find(".rows").removeClass("hidden");
+                    table.find(".flex-table-header").removeClass("hidden");
+                    
+                    var issuePos = data.self.indexOf("/issue/") + 7;
+                    var issue = data.self.substring(issuePos, data.self.indexOf("/", issuePos));
+
+                    var row = this.rowWorklog.clone();
+                    
+                    if(data.timeSpentSeconds != undefined)
+                    {
+                        var time = secondsToHHMMSS(data.timeSpentSeconds);
+                        row.find(".track-duration").html(time.hours + ":" + time.minutes);
+                    }
+                    
+                    row.find(".track-name .ellipses").html(data.id);
+                    
+                    row.find(".popularity").html(moment(date).fromNow());
+                   
+                    row.appendTo(table.find(".rows"));
+                    
+                    row.find(".track-index").html(row.index() + 1);
+                    
+                    this.presenter.getIssue(row, issue);
+                    
                     var hours = weekday.find(".hours").html("");
                     var rates = weekday.find(".rates").html("");
                 
@@ -293,6 +361,15 @@
             {
                 this.settings = data;
                 this.presenter.getProfile(key, tab);
+            },
+            enumerable: false
+        },
+        onIssue : {
+            value: function(element, data)
+            {
+                element.find(".track-name .ellipses").html(data.key);
+                element.find(".artist-name .artists").html(data.fields.summary);
+                element.find(".album-name .ellipses").html(data.fields.parent.key);
             },
             enumerable: false
         },

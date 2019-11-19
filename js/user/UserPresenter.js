@@ -79,6 +79,23 @@
             },
             enumerable: false
         },
+        getIssue : {
+            value: function(element, key)
+            {
+                var self = this;
+                    
+                this.interactor.getIssue(key, new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onIssue(element, data);
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
         getWorklog : {
             value: function(beginDate, endDate, userKey)
             {
@@ -107,7 +124,7 @@
                                     {
                                         if(value.author.key == userKey)
                                         {
-                                            self.view.onWorklog(value.timeSpentSeconds, value.updated);
+                                            self.view.onWorklog(value);
                                         }
                                     });
                                     
