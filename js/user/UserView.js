@@ -279,8 +279,6 @@
                         row.find(".track-duration").html(time.hours + ":" + time.minutes);
                     }
                     
-                    row.find(".track-name .ellipses").html(data.id);
-                    
                     row.find(".popularity").html(moment(date).fromNow());
                    
                     row.appendTo(table.find(".rows"));
