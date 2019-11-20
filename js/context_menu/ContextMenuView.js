@@ -43,6 +43,16 @@
                         
                         componentHandler.upgradeAllRegistered();
                         
+                        if(data.pos.top + $("#context-menu").height() > window.innerHeight)
+                        {
+                            data.pos.top = window.innerHeight - $("#context-menu").height() - 20;
+                        }
+                        
+                        if(data.pos.left + $("#context-menu").width() > window.innerWidth)
+                        {
+                            data.pos.left = window.innerWidth - $("#context-menu").width() - 20;
+                        }
+                        
                         $(this).offset(data.pos);
                         $(this).show();
                     });
