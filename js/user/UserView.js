@@ -368,6 +368,22 @@
                 element.find(".track-name .ellipses").html(data.key);
                 element.find(".artist-name .artists").html(data.fields.summary);
                 element.find(".album-name .ellipses").html(data.fields.parent.key);
+                
+                element.dblclick(function() 
+                {
+                    $(document).trigger("play", {key: data.key, assignee: undefined});
+                });
+                
+                element.find(".play-icon").click(function() 
+                {
+                    $(document).trigger("play", {key: data.key, assignee: undefined});
+                });
+                
+                element.contextmenu(function(evt) 
+                {
+                    $(document).trigger("context-menu", {key: data.key, pos: {left:evt.pageX,top:evt.pageY}});
+                    evt.preventDefault();
+                });
             },
             enumerable: false
         },
