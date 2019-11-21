@@ -3,3 +3,14 @@
     height: calc(100% - 68px);
     overflow-y: auto;
 }
+
+.playlist-page .actions .option-btn.error
+{
+    background-color: #C5002F !important;
+    color: #fff !important;
+}
+
+.playlist-page .actions .empty-dialog .mdl-dialog__content .count
+{
+    font-weight: 600;
+}

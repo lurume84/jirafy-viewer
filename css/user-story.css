@@ -33,6 +33,14 @@
     display: -ms-flexbox;
 }
 
+.flex-table .ellipses
+{
+    max-width:95%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:inherit
+}
+
 .album-table-container
 {
     height: calc(100% - 132px);
@@ -301,6 +309,10 @@
 
 .flex-table-row:hover{
     background-color:#1e1e20
+}
+
+.flex-table-row.selected{
+    background-color:#333333
 }
 
 .album-table .playing{

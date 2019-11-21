@@ -51,6 +51,8 @@
                 
                 $(".main-view").load("js/uncommitted/template.html", function()
                 {
+                    self.template = $(this);
+                    
                     if(Object.keys(data).length > 0)
                     {
                         $(".playlist-page .actions .primary").click(function()
@@ -69,9 +71,28 @@
                                 dialog[0].close();
                             });
                             
+                            var items = [];
+                                    
+                            $.each(self.template.find(".album-table .flex-table-row.selected").find(".track-name"), function()
+                            {
+                                items.push($(this).text());
+                            });
+                            
+                            if(items.length > 0)
+                            {
+                                dialog.find(".mdl-dialog__content .count").html(items.toString());
+                            }
+                            
                             dialog.find(".mdl-button.confirm").click(function()
                             {
-                                self.presenter.empty();
+                                if(items.length > 0)
+                                {
+                                    self.presenter.remove(items);
+                                }
+                                else
+                                {
+                                    self.presenter.empty();
+                                }
                             });
                         });
                             
@@ -102,6 +123,11 @@
                             clone.find(".track-duration").html(time.hours + ":" + time.minutes + ":" + time.seconds);
                             
                             clone.appendTo($(".album-table"));
+                            
+                            clone.click(function() 
+                            {
+                                $(this).toggleClass("selected");
+                            });
                             
                             clone.dblclick(function() 
                             {

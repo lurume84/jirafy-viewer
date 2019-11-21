@@ -61,6 +61,39 @@
             },
             enumerable: false
         },
+        remove :
+        {
+            value: function(keys)
+            {
+                var self = this;
+                this.interactor.load(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        $.each(keys, function( index, value )
+                        {
+                            if(data[value] != undefined)
+                            {
+                                delete data[value];
+                            }
+                        });
+                        
+                        self.interactor.save(data, new viewer.listeners.BaseDecisionListener(
+                        function(data)
+                        {
+                            self.view.onEmpty(data);
+                        },
+                        function(data)
+                        {
+                            self.view.showError(data);
+                        }));
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        }
     });
 
     presenters.UncommittedPresenter = UncommittedPresenter;
