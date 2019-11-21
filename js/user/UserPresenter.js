@@ -4,6 +4,7 @@
     {
         this.interactor = Context.getUserInteractor();
         this.interactorSettings = Context.getSettingsInteractor();
+        this.interactorUncommitted = Context.getUncommittedInteractor();
         
         this.view = Context.getUserView(this);
         this.view.init();
@@ -135,6 +136,23 @@
                                     self.view.showError(data);
                                 }));
                         }
+                    },
+                    function(data)
+                    {
+                        self.view.showError(data);
+                    }));
+            },
+            enumerable: false
+        },
+        getUncommitted : {
+            value: function()
+            {
+                var self = this;
+                    
+                this.interactorUncommitted.load(new viewer.listeners.BaseDecisionListener(
+                    function(data)
+                    {
+                        self.view.onLoadUncommitted(data);
                     },
                     function(data)
                     {

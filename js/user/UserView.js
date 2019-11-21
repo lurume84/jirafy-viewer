@@ -126,6 +126,7 @@
                                 self.template.find(".worklog-container").find(".rows").html("");
                                 
                                 self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
+                                self.presenter.getUncommitted();
                                 
                                 var day = moment().day();
                                 var weekday = self.template.find(".worklog .weekday").eq(day - 1);
@@ -252,6 +253,33 @@
             },
             enumerable: false
         },
+        onLoadUncommitted : {
+            value: function(data)
+            {
+                const keys = Object.keys(data)
+                for (const key of keys)
+                {
+                    var row = this.onWorklog({self: "/issue/" + key + "/", timeSpentSeconds: data[key].seconds, updated: moment()});
+                    
+                    if(row)
+                    {
+                        row.find(".popularity").html("<span class='uncommitted'>uncommitted</span>");
+                    }
+                }
+                
+                if(keys.length > 0)
+                {
+                    var day = moment().day();
+                    var weekday = this.template.find(".worklog .weekday").eq(day - 1);
+                    
+                    if(weekday != undefined)
+                    {
+                        weekday.find(".uncommitted").removeClass("hidden");
+                    }
+                }
+            },
+            enumerable: false
+        },
         onWorklog : {
             value: function(data)
             {
@@ -273,9 +301,9 @@
 
                     var row = this.rowWorklog.clone();
                     
-                    if(data.timeSpentSeconds != undefined)
+                    if(seconds != undefined)
                     {
-                        var time = secondsToHHMMSS(data.timeSpentSeconds);
+                        var time = secondsToHHMMSS(seconds);
                         row.find(".track-duration").html(time.hours + ":" + time.minutes);
                     }
                     
@@ -331,6 +359,12 @@
                         var trend = Math.abs(round((1 - rate) * 100, 2));
                         $("<span/>", {class: "", html: "<span class='icomoon-trending-up green-fg'></span><span class='trend green-fg'>" + trend + "%</span> of target"}).appendTo(rates);
                     }
+                    
+                    return row;
+                }
+                else
+                {
+                    return undefined;
                 }
             },
             enumerable: false

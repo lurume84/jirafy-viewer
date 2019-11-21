@@ -278,3 +278,15 @@
     -ms-flex-positive: 2;
     flex-grow: 2;
 }
+
+.worklog-container .rows .uncommitted
+{
+    font-style: italic;
+}
+
+.weekday-container .uncommitted
+{
+    position: absolute;
+    margin-left: 110px;
+    margin-top: -30px;
+}
