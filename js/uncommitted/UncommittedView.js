@@ -16,7 +16,7 @@
 
                 $(document).on("login", function ()
                 {             
-                    var menu = $("<div/>", {class: "menu-item active", href: "", html: "Uncommitted"});
+                    var menu = $("<div/>", {class: "menu-item active", href: "", html: "<i class=\"icon icon-spin6\"></i>Uncommitted<span class='mdl-badge badge'></span>"});
                     menu.appendTo($(".left-panel-inner .content .main-menu"));
                     menu.click(function()
                     {
@@ -27,6 +27,11 @@
                 
                         self.presenter.load();
                     });
+                });
+                
+                $(document).on("uncommited_change", function (evt, count)
+                {             
+                    self.onUpdate(count);
                 });
                 
                 $(".playlists-list").on("loaded", function (evt, data)
@@ -41,6 +46,8 @@
             value: function(data)
             {
                 var self = this;
+                
+                this.onUpdate(Object.keys(data).length);
                 
                 $(".main-view").load("js/uncommitted/template.html", function()
                 {
@@ -117,6 +124,23 @@
                         }
                     }
                 });
+            },
+            enumerable: false
+        },
+        onUpdate : {
+            value: function(count)
+            {
+                var uncommitted = $(".left-panel-inner .content .main-menu .menu-item:first-child");
+                
+                if(count > 0)
+                {
+                    uncommitted.find(".badge").show();
+                    uncommitted.find(".badge").attr("data-badge", count);
+                }
+                else
+                {
+                    uncommitted.find(".badge").hide();
+                }
             },
             enumerable: false
         },

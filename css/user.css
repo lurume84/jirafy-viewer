@@ -290,3 +290,18 @@
     margin-left: 110px;
     margin-top: -30px;
 }
+
+.left-panel-inner .content .main-menu .menu-item:first-child .badge
+{
+    position: absolute;
+    right: 12px;
+    top: 54px;
+}
+
+.left-panel-inner .content .main-menu .menu-item:first-child .badge:after
+{
+    background-color: #FFD740;
+    color: #323235;
+    width: 20px;
+    height: 20px;
+}

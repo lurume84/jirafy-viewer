@@ -65,6 +65,8 @@
                         }
 					}
 				});
+                
+                $(document).trigger( "uncommited_change", Object.keys(data).length);
             },
             enumerable: false
         },

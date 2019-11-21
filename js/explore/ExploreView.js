@@ -23,7 +23,7 @@
                 
                 $(document).on("login", function ()
                 {             
-                    var menu = $("<div/>", {class: "menu-item", href: "", html: "Explore"});
+                    var menu = $("<div/>", {class: "menu-item", href: "", html: "<i class=\"icon icon-search\"></i>Explore"});
                     menu.appendTo($(".left-panel-inner .content .main-menu"));
                     menu.click(function()
                     {
