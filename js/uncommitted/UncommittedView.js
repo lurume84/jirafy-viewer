@@ -57,7 +57,31 @@
                     {
                         $(".playlist-page .actions .primary").click(function()
                         {
-                            $(document).trigger("commit", data);
+                            var items = [];
+                                    
+                            $.each(self.template.find(".album-table .flex-table-row.selected").find(".track-name"), function()
+                            {
+                                items.push($(this).text());
+                            });
+                            
+                            if(items.length > 0)
+                            {
+                                var cleaned = {};
+                                
+                                $.each(items, function( index, value )
+                                {
+                                    if(data[value] != undefined)
+                                    {
+                                        cleaned[value] = data[value];
+                                    }
+                                });
+                                
+                                $(document).trigger("commit", cleaned);
+                            }
+                            else
+                            {
+                                $(document).trigger("commit", data);
+                            }
                         });
                         
                         $(".playlist-page .actions .option-btn").click(function()
