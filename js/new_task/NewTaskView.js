@@ -201,6 +201,16 @@
                                 });
                             }
                             break;
+                        case "option":
+                            var dropdown = $("<select/>", {class: "dropdown fieldNewTask", name: key}).appendTo(fields);
+                                
+                            $("<option/>", {disabled: "disabled", selected: "selected", text: this.name}).appendTo(dropdown);
+                            
+                            $.each(this.allowedValues, function()
+                            {
+                                $("<option/>", {value: this.id, text: this.value}).appendTo(dropdown);
+                            });
+                            break;
                         case "timetracking":
                             $("<input/>", {class: "fieldNewTask timetracking", name: "originalEstimate", placeholder: "Original Estimate"}).appendTo(fields);
                             $("<input/>", {class: "fieldNewTask timetracking", name: "remainingEstimate", placeholder: "Remaining Estimate"}).appendTo(fields);
