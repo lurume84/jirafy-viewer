@@ -37,7 +37,7 @@
                 this.interactor.getUserByName(userName, new viewer.listeners.BaseDecisionListener(
                     function(data)
                     {
-                        self.view.load(data);
+                        self.view.load(data[0]);
                     },
                     function(data)
                     {
@@ -123,7 +123,7 @@
                                 {
                                     $.each(data, function( key, value )
                                     {
-                                        if(value.author.key == userKey)
+                                        if(value.author.accountId == userKey)
                                         {
                                             self.view.onWorklog(value);
                                         }

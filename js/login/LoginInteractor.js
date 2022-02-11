@@ -14,7 +14,7 @@
 				({
 					type: "POST",
 					url: "/data/token.json",
-					data: JSON.stringify({server: server, token: btoa(user + ":" + password)}),
+					data: JSON.stringify({server: server, token: btoa(user + ":" + password), user: user}),
 					dataType: 'json',
                     contentType: 'application/json',
                     beforeSend: function(xhr)

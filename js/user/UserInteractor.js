@@ -15,7 +15,7 @@
 					type: "GET",
                     dataType: 'json',
                     contentType: 'application/json',
-					url: credentials.server + "/rest/api/latest/user?username=" + userName,
+					url: credentials.server + "/rest/api/latest/user/search?query=" + userName,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         $.xhrPool.push(xhr);
@@ -43,7 +43,7 @@
 					type: "GET",
                     dataType: 'json',
                     contentType: 'application/json',
-					url: credentials.server + "/rest/api/latest/user?key=" + key,
+					url: credentials.server + "/rest/api/latest/user?accountId=" + key,
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
                         $.xhrPool.push(xhr);

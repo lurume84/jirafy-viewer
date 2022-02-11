@@ -17,7 +17,7 @@
                 this.issues = [];
                 
                 $(".playlists-list").on("loaded", function (evt, data)
-                {             
+                {
                     self.issues = data.issues;
                 });
                 
@@ -49,24 +49,24 @@
                     var container = $(".albums-page").find("section.albums");
                     var cover;
                     
-                    if(container.find("figure." + user.key).length == 0)
+                    if(container.find("figure." + user.accountId).length == 0)
                     {
                         cover = this.figure.clone();
                         
-                        cover.addClass(user.key);
+                        cover.addClass(user.accountId);
                         cover.find(".image img").attr("src", user.avatarUrls["48x48"]);
                         cover.find(".title").html(user.displayName);
                         cover.find(".subtitle span").html("0");
                         cover.find("figcaption").click(function()
                         {
-                           $(document).trigger("user_profile", user.key); 
+                           $(document).trigger("user_profile", user.accountId); 
                         });
                         cover.appendTo(container);
                     }
                     
                     if(this.settings.status.closed.find(function(x){return x == data.fields.status.id;}) == undefined)
                     {
-                        cover = container.find("figure." + user.key);
+                        cover = container.find("figure." + user.accountId);
                         
                         var subtitle = cover.find(".subtitle span");
                         subtitle.html(parseInt(subtitle.html(), 10) + 1);

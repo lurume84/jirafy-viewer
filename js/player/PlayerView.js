@@ -93,7 +93,7 @@
                 
                 if(data.fields.assignee == undefined)
                 {
-                    this.presenter.assign(data.key, this.myself.name);
+                    this.presenter.assign(data.key, myself.accountId);
                 }
                 else
                 {

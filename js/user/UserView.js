@@ -23,7 +23,7 @@
                 
                 $(document).on("login", function (evt, data)
                 {
-                    self.presenter.getUser(data.name);
+                    self.presenter.getUser(credentials.user);
                 });
                 
                 $(document).on("user_profile", function (evt, key)
@@ -39,13 +39,14 @@
             {
                 var self = this;
                 
+				myself = data;
+				
                 $("<img/>", {src: data.avatarUrls["48x48"]}).appendTo($(".current-user-widget"));
                 $("<a/>", {class: "user-email", href: "#", html: data.displayName}).click(function()
                 {
                     $(".menu-item").removeClass("active");
                     $(".current-user-widget").addClass("active");
-                    
-                    self.presenter.getSettings(data.key);
+                    self.presenter.getSettings(data.accountId);
                 }).appendTo($(".current-user-widget"));
                 
                 var container = $("<div/>", {class: "dropdown-container", dropdown: ""});
@@ -65,7 +66,7 @@
                     $(".menu-item").removeClass("active");
                     $(this).addClass("active");
                     
-                    self.presenter.getSettings(data.key);
+                    self.presenter.getSettings(data.accountId);
                 });
                 
                 $("<div/>", {class: "menu-item", html: "<i class=\"icon icon-users\"></i>Assigned to me"}).appendTo($(".your-music-list")).click(function()
@@ -75,7 +76,7 @@
                     $(".menu-item").removeClass("active");
                     $(this).addClass("active");
                     
-                    self.presenter.getSettings(data.key, 1);
+                    self.presenter.getSettings(data.accountId, 1);
                 });
                 
             },
@@ -125,7 +126,7 @@
                                 
                                 self.template.find(".worklog-container").find(".rows").html("");
                                 
-                                self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.key);
+                                self.presenter.getWorklog(moment().startOf('isoweek').valueOf(), moment().endOf('isoweek').valueOf(), data.accountId);
                                 self.presenter.getUncommitted();
                                 
                                 var day = moment().day();
@@ -143,7 +144,7 @@
                                 });
                                 
                                 self.progress.show();
-                                self.presenter.getIssues(data.key, issues);
+                                self.presenter.getIssues(data.accountId, issues);
                             break;
                         }
                     });

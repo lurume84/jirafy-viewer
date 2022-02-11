@@ -72,7 +72,7 @@
                     dataType: 'json',
                     contentType: 'application/json',
 					url: credentials.server + "/rest/api/2/issue/" + key + "/assignee",
-                    data: JSON.stringify({"name": who}),
+                    data: JSON.stringify({"accountId": who}),
                     beforeSend: function(xhr) { 
 						xhr.setRequestHeader("Authorization", "Basic " + credentials.token);
 					},

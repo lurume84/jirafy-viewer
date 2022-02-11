@@ -28,11 +28,6 @@
                 {
                     self.onNewTask();
                 });
-                
-                $(document).on("login", function (evt, data)
-                {
-                    self.myself = data;
-                });
             },
             enumerable: false
         },
@@ -285,7 +280,7 @@
                     }
                 });
                 
-                content.fields.assignee = {"name": this.myself.name};
+                content.fields.assignee = {"accountId": myself.accountId};
                 content.fields.parent = {"key": this.dialog.find("select[name=user-story]").val()};
                 content.fields.issuetype = {"id": this.dialog.find("select[name=issuetype]").val()};
                 
